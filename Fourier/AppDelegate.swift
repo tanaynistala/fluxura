@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Integra
+//  Fourier
 //
 //  Created by Tanay Nistala on 6/15/20.
 //  Copyright © 2020 Tanay Nistala. All rights reserved.
@@ -15,6 +15,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        UISwitch.appearance().onTintColor = UIColor(named: "\(UserDefaults.standard.string(forKey: "app_tint") ?? "blue")")
+        
+//        let appearance = UINavigationBarAppearance()
+//        let attrs: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(named: "\(UserDefaults.standard.string(forKey: "app_tint") ?? "blue")") ?? UIColor.systemBlue]
+//        appearance.largeTitleTextAttributes = attrs
+//        UINavigationBar.appearance().standardAppearance = appearance
+        
         return true
     }
 
