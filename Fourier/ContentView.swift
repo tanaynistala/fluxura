@@ -20,7 +20,7 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text("Solver")
+                Text("Fourier")
                     .accessibility(addTraits: [.isHeader, .isStaticText])
                     .font(Font.system(.largeTitle).weight(.bold))
                 Spacer()
@@ -62,9 +62,9 @@ struct ContentView: View {
                             Text("Ordinary").tag(1)
                             Text("Partial").tag(2)
                         }
-                        .animation(.none)
                         .pickerStyle(SegmentedPickerStyle())
                         .fixedSize(horizontal: true, vertical: true)
+                        .animation(.none)
                     }
                     
                     HStack {

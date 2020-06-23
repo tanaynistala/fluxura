@@ -19,6 +19,7 @@ final class SettingsStore: ObservableObject {
         static let appTheme = "app_theme"
         static let editOnOpen = "edit_on_open"
         static let reduceMotion = "reduce_motion"
+        static let appIcon = "app_icon"
     }
 
     private let cancellable: Cancellable
@@ -36,7 +37,8 @@ final class SettingsStore: ObservableObject {
             Keys.appTint: AppColor.blue.rawValue,
             Keys.appTheme: 0,
             Keys.editOnOpen: true,
-            Keys.reduceMotion: false
+            Keys.reduceMotion: false,
+            Keys.appIcon: "Sine Light"
             ])
 
         cancellable = NotificationCenter.default
@@ -106,6 +108,30 @@ final class SettingsStore: ObservableObject {
         set {
             defaults.set(newValue.rawValue, forKey: Keys.appTint)
             UISwitch.appearance().onTintColor = UIColor(named: "\(defaults.string(forKey: Keys.appTint) ?? "blue")")
+        }
+    }
+    
+    enum AppIcon: String, CaseIterable {
+        case SineLight = "Sine Light"
+        case SineDark = "Sine Dark"
+        case LogLight = "Log Light"
+        case LogDark = "Log Dark"
+        case TwilightMonochrome = "Twilight Monochrome"
+        case SunriseMonochrome = "Sunrise Monochrome"
+        case Twilight
+        case Sunrise
+        case NetworkLight = "Network Light"
+        case NetworkDark = "Network Dark"
+    }
+
+    var appIcon: AppIcon {
+        get {
+            return defaults.string(forKey: Keys.appIcon)
+            .flatMap { AppIcon(rawValue: $0) } ?? .SineLight
+        }
+
+        set {
+            defaults.set(newValue.rawValue, forKey: Keys.appIcon)
         }
     }
 }

@@ -55,6 +55,7 @@ struct AppView: View {
             Color(UIColor.systemGroupedBackground)
                 .edgesIgnoringSafeArea(.all)
         )
+            .onAppear{UserDefaults.standard.set(false, forKey: "pro")}
     }
 }
 

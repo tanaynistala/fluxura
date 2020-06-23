@@ -56,5 +56,110 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>CFBundleIcons</key>
+    <dict>
+        <key>CFBundlePrimaryIcon</key>
+        <dict>
+            <key>CFBundleIconFiles</key>
+            <array>
+                <string>SineLight</string>
+            </array>
+            <key>UIPrerenderedIcon</key>
+            <false/>
+        </dict>
+        <key>CFBundleAlternateIcons</key>
+        <dict>
+            <key>Sine Light</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>SineLight</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+            </dict>
+            <key>Sine Dark</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>SineDark</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+            </dict>
+            <key>Log Light</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>LogLight</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+            </dict>
+            <key>Log Dark</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>LogDark</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+            </dict>
+            <key>Network Light</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>NetworkLight</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+            </dict>
+            <key>Network Dark</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>NetworkDark</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+            </dict>
+            <key>Twilight Monochrome</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>TwilightMonochrome</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+            </dict>
+            <key>Sunrise Monochrome</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>SunriseMonochrome</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+            </dict>
+            <key>Twilight</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>Twilight</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+            </dict>
+            <key>Sunrise</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>Sunrise</string>
+                </array>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+            </dict>
+        </dict>
+    </dict>
 </dict>
 </plist>
