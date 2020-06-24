@@ -29,6 +29,8 @@
 		1132EC9924973D820017628A /* Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1132EC9824973D820017628A /* Extended.swift */; };
 		1146694F249B90C4008B7812 /* CoefficientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1146694E249B90C4008B7812 /* CoefficientsView.swift */; };
 		11527BAA24986E2200263B83 /* Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11527BA924986E2200263B83 /* Standard.swift */; };
+		11544D3B24A2EBE10068EB92 /* Publishers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11544D3A24A2EBE10068EB92 /* Publishers.swift */; };
+		11544D3D24A2F3340068EB92 /* KeyboardAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11544D3C24A2F3340068EB92 /* KeyboardAccessoryView.swift */; };
 		11924A3C249A7848009719D2 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11924A3B249A7848009719D2 /* AppView.swift */; };
 		11924A3E249A8453009719D2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11924A3D249A8453009719D2 /* SettingsView.swift */; };
 		11924A40249A84A6009719D2 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11924A3F249A84A6009719D2 /* SettingsStore.swift */; };
@@ -64,6 +66,8 @@
 		1132EC9824973D820017628A /* Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extended.swift; sourceTree = "<group>"; };
 		1146694E249B90C4008B7812 /* CoefficientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoefficientsView.swift; sourceTree = "<group>"; };
 		11527BA924986E2200263B83 /* Standard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standard.swift; sourceTree = "<group>"; };
+		11544D3A24A2EBE10068EB92 /* Publishers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publishers.swift; sourceTree = "<group>"; };
+		11544D3C24A2F3340068EB92 /* KeyboardAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAccessoryView.swift; sourceTree = "<group>"; };
 		11924A3B249A7848009719D2 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		11924A3D249A8453009719D2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		11924A3F249A84A6009719D2 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
@@ -137,11 +141,13 @@
 				11116E4C249F11D500CDACF9 /* AppIconsView.swift */,
 				1108914D249EEAD2003CED17 /* ProPreview.swift */,
 				1132EC93249735E10017628A /* KeyboardView.swift */,
+				11544D3C24A2F3340068EB92 /* KeyboardAccessoryView.swift */,
 				1108914C249DFB31003CED17 /* Supporting Views */,
 				1132EC9524973D680017628A /* Keyboards */,
 				119AE15F24987DBA00D84555 /* Algorithms */,
 				1132EC7F249735CE0017628A /* AppDelegate.swift */,
 				1132EC81249735CE0017628A /* SceneDelegate.swift */,
+				11544D3A24A2EBE10068EB92 /* Publishers.swift */,
 				11924A43249B3B71009719D2 /* AppData.swift */,
 				11924A3F249A84A6009719D2 /* SettingsStore.swift */,
 				1132EC85249735CF0017628A /* Assets.xcassets */,
@@ -269,6 +275,7 @@
 				11527BAA24986E2200263B83 /* Standard.swift in Sources */,
 				11AC22A2249DBED20061A629 /* ClearFieldsView.swift in Sources */,
 				1132EC80249735CE0017628A /* AppDelegate.swift in Sources */,
+				11544D3D24A2F3340068EB92 /* KeyboardAccessoryView.swift in Sources */,
 				11924A44249B3B71009719D2 /* AppData.swift in Sources */,
 				11FD5538249A41CA00D775D8 /* BottomSheetView.swift in Sources */,
 				1132EC94249735E10017628A /* KeyboardView.swift in Sources */,
@@ -276,6 +283,7 @@
 				1132EC9924973D820017628A /* Extended.swift in Sources */,
 				119AE163249880D500D84555 /* Solver.swift in Sources */,
 				11924A3C249A7848009719D2 /* AppView.swift in Sources */,
+				11544D3B24A2EBE10068EB92 /* Publishers.swift in Sources */,
 				1132EC82249735CE0017628A /* SceneDelegate.swift in Sources */,
 				11924A40249A84A6009719D2 /* SettingsStore.swift in Sources */,
 				1132EC84249735CE0017628A /* ContentView.swift in Sources */,

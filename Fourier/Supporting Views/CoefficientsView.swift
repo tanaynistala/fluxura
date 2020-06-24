@@ -15,11 +15,14 @@ struct CoefficientsView: View {
     var body: some View {
         ForEach(0..<self.data.order, id: \.self) { coefficient in
             HStack {
-                if self.data.inputs[coefficient].count <= 0 {
-                    Placeholder(coefficient: coefficient).environmentObject(self.data)
-                } else {
-                    InputView(coefficient: coefficient).environmentObject(self.data)
-                }
+//                if self.data.inputs[coefficient].count <= 0 {
+//                    Placeholder(coefficient: coefficient).environmentObject(self.data)
+//                } else {
+//                    InputView(coefficient: coefficient).environmentObject(self.data)
+//                }
+                
+                TextField("Enter coefficient \(coefficient+1)", text: self.$data.inputs[coefficient])
+                    .keyboardType(.decimalPad)
                 
                 Spacer()
                 

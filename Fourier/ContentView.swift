@@ -100,8 +100,24 @@ struct ContentView: View {
                 }
                 
                 Section(header: ClearFieldsView().environmentObject(self.data)) {
-                    CoefficientsView()
-                        .environmentObject(self.data)
+                    ForEach(0..<self.data.order, id: \.self) { coefficient in
+                        HStack {
+                            TextField(
+                                "Enter coefficient \(coefficient+1)",
+                                text: self.$data.inputs[coefficient],
+                                onEditingChanged: {_ in
+                                    UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
+                            })
+                            .disableAutocorrection(true)
+                            .keyboardType(.alphabet)
+                            
+                            Text("y")
+                                +
+                            Text(self.data.type == 1 ? "(\(coefficient))" : String(repeating: "x", count: coefficient))
+                                .font(.footnote)
+                            .baselineOffset(6.0 * (self.data.type == 1 ? 1 : -1))
+                        }
+                    }
                 }
                 
                 Section {

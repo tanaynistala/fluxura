@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct AppView: View {
     @EnvironmentObject var data: AppData
@@ -14,48 +15,25 @@ struct AppView: View {
     
     @State var settingsShown = false
     @State private var keyboardShown = UserDefaults.standard.bool(forKey: "edit_on_open")
+    @State private var keyboardHeight: CGFloat = 0
 
     var body: some View {
-        GeometryReader { geometry in
-//            if geometry.size.width < geometry.size.height {
-                VStack(spacing: 0) {
-                    ContentView()
-                        .environmentObject(self.data)
-                    
-                    BottomSheetView(
-                        isOpen: self.$keyboardShown,
-                        maxHeight: self.data.keyboardView == 1 ? 372 : 312,
-                        minHeight: 56
-                    ) {
-                        KeyboardView()
-                            .environmentObject(self.data)
-                            .offset(y: self.keyboardShown ? -8 : 16)
-                    }
-                    .frame(height: self.keyboardShown ? (self.data.keyboardView == 1 ? 372 : 312) : 56 )
-                }
-//            } else {
-//                HStack(spacing: 0) {
-//                    ContentView()
-//                        .environmentObject(self.data)
-//
-//                    KeyboardView()
-//                        .environmentObject(self.data)
-//                        .offset(y: 8)
-//                        .background(
-//                            RoundedRectangle(cornerRadius: 16)
-//                                .foregroundColor(Color(UIColor.systemGray6))
-//                                .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.25), radius: 5)
-//                        )
-//                        .animation(self.reduceMotion || UserDefaults.standard.bool(forKey: "reduce_motion") ? .easeInOut : .interactiveSpring(response: 0.35, dampingFraction: 0.75, blendDuration: 0.5))
-//                }
-//            }
+        VStack(spacing: 0) {
+            ContentView()
+                .environmentObject(self.data)
+                
+            KeyboardAccessoryView()
+                .environmentObject(self.data)
+                .animation(.spring())
         }
         .edgesIgnoringSafeArea(.bottom)
         .background(
             Color(UIColor.systemGroupedBackground)
                 .edgesIgnoringSafeArea(.all)
         )
-            .onAppear{UserDefaults.standard.set(false, forKey: "pro")}
+        .onAppear{UserDefaults.standard.set(false, forKey: "pro")}
+        .padding(.bottom, self.keyboardHeight)
+        .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
     }
 }
 
