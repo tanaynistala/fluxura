@@ -38,6 +38,16 @@ class AppData: ObservableObject {
     }
     @Published var reduceColors = UserDefaults.standard.bool(forKey: "reduce_colors")
     @Published var appTint = UserDefaults.standard.string(forKey: "app_tint")
+    @Published var currentPage: String
+    
+    init() {
+        if !UserDefaults.standard.bool(forKey: "didLaunchBefore") {
+            UserDefaults.standard.set(true, forKey: "didLaunchBefore")
+            currentPage = "onboardingView"
+        } else {
+            currentPage = "homeView"
+        }
+    }
     
     func refresh() {
         reduceColors = UserDefaults.standard.bool(forKey: "reduce_colors")

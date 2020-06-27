@@ -29,6 +29,29 @@ struct ClearFieldsView: View {
                 .padding(4)
             }
             .buttonStyle(IconButtonStyle())
+            .contextMenu {
+                Button(action: {
+                    for input in 0..<self.data.inputs.count {
+                        self.data.inputs[input] = ""
+                        self.data.cursorPos = 0
+                    }
+                }) {
+                    Text("Clear All")
+                    Image(systemName: "xmark.circle")
+                        .imageScale(.small)
+                }
+                
+                Button(action: {
+                    self.data.cursorPos = 0
+                    self.data.activeInput = 0
+                    self.data.order = 1
+                    self.data.inputs = [""]
+                }) {
+                    Text("Reset")
+                    Image(systemName: "trash.fill")
+                    .imageScale(.small)
+                }
+            }
         }
     }
 }

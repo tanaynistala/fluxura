@@ -90,17 +90,18 @@ struct KeyboardView: View {
                         .frame(width: 44, height: 24)
                         .padding(4)
                         .foregroundColor(
-                            self.data.reduceColors ? Color.black : Color.white
+                            self.data.inputs.contains("") ? Color.gray : (self.data.reduceColors ? Color.black : Color.white)
                         )
                         .background(
                             RoundedRectangle(cornerRadius: 8, style: .continuous)
                         )
                 }
+                .disabled(self.data.inputs.contains(""))
                 .buttonStyle(KeyboardButtonStyle())
                 .foregroundColor(
-                    self.data.reduceColors ?
+                    self.data.inputs.contains("") ? Color(UIColor.systemGray4) : (self.data.reduceColors ?
                     Color(UIColor.systemGray4) :
-                        Color(self.data.appTint ?? "blue")
+                        Color(self.data.appTint ?? "indigo"))
                 )
                 .animation(.easeInOut)
                 .accessibility(label: Text("Calculate"))

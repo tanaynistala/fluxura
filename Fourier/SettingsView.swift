@@ -13,6 +13,7 @@ struct SettingsView: View {
     @Environment(\.presentationMode) var presentationMode
     @State var isProView = false
     @State var icon = UIApplication.shared.alternateIconName
+    @State var isEmailShown = false
     
     func refresh() {
         icon = UIApplication.shared.alternateIconName
@@ -62,7 +63,7 @@ struct SettingsView: View {
                                     .antialiased(true)
                                     .aspectRatio(2, contentMode: .fill)
                                     .padding(.bottom, 64)
-                                    .background(Color(UserDefaults.standard.string(forKey: "app_tint") ?? "blue"))
+                                    .background(Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo"))
                             )
                         }.buttonStyle(PlainButtonStyle())
                     }
@@ -92,6 +93,18 @@ struct SettingsView: View {
                                     Text("Keypresses!")
                                         .font(.caption)
                                 }
+                            }
+                        }
+                        
+                        Toggle(isOn: $settings.nativeKeyboard) {
+                            Image(systemName: "keyboard")
+                                .imageScale(.large)
+                                .frame(width: 32)
+                                .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .primary)
+                            VStack(alignment: .leading) {
+                                Text("Use Native Keyboard")
+                                Text("Use the system keyboard.")
+                                    .font(.caption)
                             }
                         }
                         
@@ -262,7 +275,7 @@ struct SettingsView: View {
                     }
                     
                     Section(header: Text("REACH US")) {
-                        NavigationLink(destination: EmptyView()) {
+                        NavigationLink(destination: EmptyView(), isActive: .constant(false)) {
                             Image(systemName: "envelope")
                                 .imageScale(.large)
                                 .frame(width: 32)
@@ -273,12 +286,15 @@ struct SettingsView: View {
                                     .font(.caption)
                             }
                         }
+                        .onTapGesture {
+                            UIApplication.shared.open(URL(string: "mailto:nistalatanay@gmail.com")!)
+                        }
                         
                         NavigationLink(destination: EmptyView()) {
                             Image(systemName: "text.bubble")
                                 .imageScale(.large)
                                 .frame(width: 32)
-                                .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .blue)
+                                .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : Color("indigo"))
                             VStack(alignment: .leading) {
                                 Text("Tweet Us")
                                 Text("Spread the word.")
@@ -298,7 +314,7 @@ struct SettingsView: View {
                             }
                         }
                         
-                        NavigationLink(destination: EmptyView()) {
+                        NavigationLink(destination: Help()) {
                             Image(systemName: "questionmark")
                                 .imageScale(.large)
                                 .frame(width: 32)
@@ -312,7 +328,7 @@ struct SettingsView: View {
                     }
                     
                     Section(header: Text("LEGAL")) {
-                        NavigationLink(destination: EmptyView()) {
+                        NavigationLink(destination: PrivacyPolicy()) {
                             Image(systemName: "lock.shield")
                                 .imageScale(.large)
                                 .frame(width: 32)
@@ -324,7 +340,7 @@ struct SettingsView: View {
                             }
                         }
                         
-                        NavigationLink(destination: EmptyView()) {
+                        NavigationLink(destination: TermsOfUse()) {
                             Image(systemName: "doc.text")
                                 .imageScale(.large)
                                 .frame(width: 32)
@@ -335,25 +351,6 @@ struct SettingsView: View {
                                     .font(.caption)
                             }
                         }
-                    }
-
-                    if !settings.isPro {
-                        Section {
-                            Button(action: {
-                                self.isProView.toggle()
-                                self.settings.unlockPro()
-                            }) {
-                                Text("Unlock Fourier Pro")
-                            }
-
-                            Button(action: {
-                                self.settings.restorePurchase()
-                            }) {
-                                Text("Restore Purchase")
-                            }
-                        }
-    //                    .foregroundColor(.secondary)
-    //                    .disabled(true)
                     }
                 }
                 .onAppear{
@@ -377,7 +374,7 @@ struct SettingsView: View {
                     .foregroundColor(
     //                UserDefaults.standard.bool(forKey: "reduce_colors") ?
     //                Color.primary :
-    //                Color(UserDefaults.standard.string(forKey: "app_tint") ?? "blue")
+    //                Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")
                         .primary
                     )
                 )
@@ -386,7 +383,7 @@ struct SettingsView: View {
         .accentColor(
             UserDefaults.standard.bool(forKey: "reduce_colors") ?
             Color.primary :
-            Color(UserDefaults.standard.string(forKey: "app_tint") ?? "blue")
+            Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")
         )
         .navigationViewStyle(StackNavigationViewStyle())
     }

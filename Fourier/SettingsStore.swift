@@ -20,6 +20,7 @@ final class SettingsStore: ObservableObject {
         static let editOnOpen = "edit_on_open"
         static let reduceMotion = "reduce_motion"
         static let appIcon = "app_icon"
+        static let nativeKeyboard = "native_keyboard"
     }
 
     private let cancellable: Cancellable
@@ -34,11 +35,12 @@ final class SettingsStore: ObservableObject {
             Keys.hapticsEnabled: true,
             Keys.keyboardHapticsEnabled: true,
             Keys.reduceColors: false,
-            Keys.appTint: AppColor.blue.rawValue,
+            Keys.appTint: AppColor.indigo.rawValue,
             Keys.appTheme: 0,
             Keys.editOnOpen: true,
             Keys.reduceMotion: false,
-            Keys.appIcon: "Sine Light"
+            Keys.appIcon: "Sine Light",
+            Keys.nativeKeyboard: false
             ])
 
         cancellable = NotificationCenter.default
@@ -75,7 +77,7 @@ final class SettingsStore: ObservableObject {
     var reduceColors: Bool {
         set {
             defaults.set(newValue, forKey: Keys.reduceColors)
-            UISwitch.appearance().onTintColor = UIColor(named: "\(newValue ? "gray" : defaults.string(forKey: Keys.appTint) ?? "blue")")
+            UISwitch.appearance().onTintColor = UIColor(named: "\(newValue ? "gray" : defaults.string(forKey: Keys.appTint) ?? "indigo")")
             
         }
         get { defaults.bool(forKey: Keys.reduceColors) }
@@ -84,6 +86,11 @@ final class SettingsStore: ObservableObject {
     var isPro: Bool {
         set { defaults.set(newValue, forKey: Keys.pro) }
         get { defaults.bool(forKey: Keys.pro) }
+    }
+    
+    var nativeKeyboard: Bool {
+        set { defaults.set(newValue, forKey: Keys.nativeKeyboard) }
+        get { defaults.bool(forKey: Keys.nativeKeyboard) }
     }
 
     enum AppColor: String, CaseIterable {
@@ -102,12 +109,12 @@ final class SettingsStore: ObservableObject {
     var appTint: AppColor {
         get {
             return defaults.string(forKey: Keys.appTint)
-                .flatMap { AppColor(rawValue: $0) } ?? .blue
+                .flatMap { AppColor(rawValue: $0) } ?? .indigo
         }
 
         set {
             defaults.set(newValue.rawValue, forKey: Keys.appTint)
-            UISwitch.appearance().onTintColor = UIColor(named: "\(defaults.string(forKey: Keys.appTint) ?? "blue")")
+            UISwitch.appearance().onTintColor = UIColor(named: "\(defaults.string(forKey: Keys.appTint) ?? "indigo")")
         }
     }
     

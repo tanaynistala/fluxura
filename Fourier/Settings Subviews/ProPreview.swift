@@ -17,13 +17,13 @@ struct ProPreview: View {
                 Text("What you'll get:")
                     .font(.headline)
                 
-                FeatureDetail(title: "Non-Linear Equations", subTitle: "Unlock the ability to solve non-linear differential equations in no time!", imageName: "slash.circle.fill", color: .green)
+                ProFeatureDetail(title: "Non-Linear Equations", subTitle: "Unlock the ability to solve non-linear differential equations in no time!", imageName: "slash.circle.fill", color: .green)
                 
-                FeatureDetail(title: "App Tints", subTitle: "Color the app the way you like it. We've got purple and green and red, and everything in between.", imageName: "paintbrush.fill", color: .purple)
+                ProFeatureDetail(title: "App Tints", subTitle: "Color the app the way you like it. We've got purple and green and red, and everything in between.", imageName: "paintbrush.fill", color: .purple)
                 
-                FeatureDetail(title: "App Icons", subTitle: "Pick the app icon that suits you. We've always got more coming too!", imageName: "app.fill", color: .orange)
+                ProFeatureDetail(title: "App Icons", subTitle: "Pick the app icon that suits you. We've always got more coming too!", imageName: "app.fill", color: .orange)
                 
-                FeatureDetail(title: "Support Us", subTitle: "Support the devs and help us get out new features for Fourier!", imageName: "heart.fill", color: .pink)
+                ProFeatureDetail(title: "Support Us", subTitle: "Support the devs and help us get out new features for Fourier!", imageName: "heart.fill", color: .pink)
 
                 HStack(spacing: 16) {
                     Button(action: {self.settings.unlockPro()}) {
@@ -37,7 +37,7 @@ struct ProPreview: View {
                             .foregroundColor(
                                 UserDefaults.standard.bool(forKey: "reduce_colors") ?
                                 Color.primary :
-                                Color(UserDefaults.standard.string(forKey: "app_tint") ?? "blue")
+                                Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")
                             )
                             .padding()
                             Spacer()
@@ -48,7 +48,7 @@ struct ProPreview: View {
                             RoundedRectangle(cornerRadius: 16)
                                 .stroke(UserDefaults.standard.bool(forKey: "reduce_colors") ?
                                 Color.primary :
-                                Color(UserDefaults.standard.string(forKey: "app_tint") ?? "blue"), lineWidth: 3)
+                                Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo"), lineWidth: 3)
                         )
                     }.buttonStyle(PlainButtonStyle())
                     
@@ -70,7 +70,7 @@ struct ProPreview: View {
                         .padding(.horizontal, 4)
                         .background(UserDefaults.standard.bool(forKey: "reduce_colors") ?
                         Color.primary :
-                        Color(UserDefaults.standard.string(forKey: "app_tint") ?? "blue"))
+                        Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo"))
                         .clipShape(RoundedRectangle(cornerRadius: 16))
                     }.buttonStyle(PlainButtonStyle())
                 }.padding(.vertical)
@@ -86,7 +86,7 @@ struct ProPreview: View {
                         .foregroundColor(
                             UserDefaults.standard.bool(forKey: "reduce_colors") ?
                             Color.primary :
-                            Color(UserDefaults.standard.string(forKey: "app_tint") ?? "blue")
+                            Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")
                         )
                         .padding()
                         Spacer()
@@ -97,7 +97,7 @@ struct ProPreview: View {
                         RoundedRectangle(cornerRadius: 16)
                             .stroke(UserDefaults.standard.bool(forKey: "reduce_colors") ?
                             Color.primary :
-                            Color(UserDefaults.standard.string(forKey: "app_tint") ?? "blue"), lineWidth: 3)
+                            Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo"), lineWidth: 3)
                     )
                 }.buttonStyle(PlainButtonStyle())
 
@@ -105,16 +105,24 @@ struct ProPreview: View {
             
             VStack {
                 HStack {
-                    Text("Terms of Use")
-                        .underline()
+                    NavigationLink(destination: PrivacyPolicy()) {
+                        Text("Privacy Policy")
+                            .underline()
+                    }
                     Divider()
-                    Text("Privacy Policy")
-                        .underline()
+                    NavigationLink(destination: TermsOfUse()) {
+                        Text("Terms of Use")
+                            .underline()
+                    }
                 }
                 
-                Text("Restore Purchases")
-                .underline()
-            }.foregroundColor(.secondary)
+                Button(action: {self.settings.restorePurchase()}) {
+                    Text("Restore Purchases")
+                        .underline()
+                }
+            }
+            .foregroundColor(.secondary)
+            .padding()
         }
     }
 }
@@ -125,7 +133,7 @@ struct ProPreview_Previews: PreviewProvider {
     }
 }
 
-struct FeatureDetail: View {
+struct ProFeatureDetail: View {
     var title: String = "title"
     var subTitle: String = "subTitle"
     var imageName: String = "car"
@@ -138,6 +146,7 @@ struct FeatureDetail: View {
                 .foregroundColor(color)
                 .padding()
                 .accessibility(hidden: true)
+                .frame(width: 64)
 
             VStack(alignment: .leading) {
                 Text(title)

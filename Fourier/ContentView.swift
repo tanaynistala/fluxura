@@ -15,6 +15,7 @@ struct ContentView: View {
 
     @State var settingsShown = false
     
+    /// Code to call the Runge-Kutta solver
     /// Button(action: {print(self.solver.RungeKutta(model: self.solver.LotkaVolteraModel(t:x:parameters:), x0: [20, 5], t0: 0, tf: 100, dt: 0.01).1[1][1])}){Text("Toggle")}
     
     var body: some View {
@@ -45,7 +46,7 @@ struct ContentView: View {
             .foregroundColor(
                 UserDefaults.standard.bool(forKey: "reduce_colors") ?
                 Color.primary :
-                Color(UserDefaults.standard.string(forKey: "app_tint") ?? "blue")
+                Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")
             )
             .padding(.vertical, 8)
             .padding(.horizontal, 20)
@@ -99,10 +100,19 @@ struct ContentView: View {
                         .disabled(true)
                 }
                 
-                Section(header: ClearFieldsView().environmentObject(self.data)) {
-                    CoefficientsView()
-                        .environmentObject(self.data)
-                }
+                
+//                    if !UserDefaults.standard.bool(forKey: "native_keyboard") {
+//                        Section(header: ClearFieldsView().environmentObject(self.data)) {
+//                            NativeEntryView()
+//                                .environmentObject(self.data)
+//                        }
+//                    } else {
+                        Section(header: ClearFieldsView().environmentObject(self.data)) {
+                            CoefficientsView()
+                                .environmentObject(self.data)
+                        }
+//                    }
+                
                 
                 Section {
                     Text("= Answer")
@@ -110,7 +120,7 @@ struct ContentView: View {
                         .foregroundColor(
                             UserDefaults.standard.bool(forKey: "reduce_colors") ?
                             Color.primary :
-                            Color(UserDefaults.standard.string(forKey: "app_tint") ?? "blue")
+                            Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")
                         )
                 }
             }

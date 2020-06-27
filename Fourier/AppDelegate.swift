@@ -16,10 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        UISwitch.appearance().onTintColor = UIColor(named: "\(UserDefaults.standard.string(forKey: "app_tint") ?? "blue")")
+        UISwitch.appearance().onTintColor = UIColor(named: "\(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")")
         
 //        let appearance = UINavigationBarAppearance()
-//        let attrs: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(named: "\(UserDefaults.standard.string(forKey: "app_tint") ?? "blue")") ?? UIColor.systemBlue]
+//        let attrs: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(named: "\(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")") ?? UIColor.systemindigo]
 //        appearance.largeTitleTextAttributes = attrs
 //        UINavigationBar.appearance().standardAppearance = appearance
         
