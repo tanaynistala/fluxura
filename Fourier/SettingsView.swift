@@ -12,12 +12,7 @@ struct SettingsView: View {
     @EnvironmentObject var settings: SettingsStore
     @Environment(\.presentationMode) var presentationMode
     @State var isProView = false
-    @State var icon = UIApplication.shared.alternateIconName
     @State var isEmailShown = false
-    
-    func refresh() {
-        icon = UIApplication.shared.alternateIconName
-    }
     
     /// Make the pickers Navigation Links to deal with Pro features
     
@@ -82,6 +77,7 @@ struct SettingsView: View {
                                         .font(.caption)
                                 }
                             }
+                            .padding(.vertical, 4)
                             
                             Toggle(isOn: $settings.isKeyboardHapticsEnabled) {
                                 Image(systemName: "keyboard")
@@ -94,31 +90,35 @@ struct SettingsView: View {
                                         .font(.caption)
                                 }
                             }
+                            .padding(.vertical, 4)
                         }
                         
                         Toggle(isOn: $settings.nativeKeyboard) {
                             Image(systemName: "keyboard")
                                 .imageScale(.large)
                                 .frame(width: 32)
-                                .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .primary)
+                                .foregroundColor(.primary)
                             VStack(alignment: .leading) {
                                 Text("Use Native Keyboard")
                                 Text("Use the system keyboard.")
                                     .font(.caption)
                             }
                         }
+                        .padding(.vertical, 4)
+                        .disabled(true)
                         
                         Toggle(isOn: $settings.editOnOpen) {
                             Image(systemName: "pencil")
                                 .imageScale(.large)
                                 .frame(width: 32)
-                                .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .primary)
+                                .foregroundColor(.primary)
                             VStack(alignment: .leading) {
                                 Text("Edit on Open")
                                 Text("Open the keyboard automagically.")
                                     .font(.caption)
                             }
                         }
+                        .padding(.vertical, 4)
                         
                         Toggle(isOn: $settings.reduceMotion) {
                             Image(systemName: "wind")
@@ -131,6 +131,7 @@ struct SettingsView: View {
                                     .font(.caption)
                             }
                         }
+                        .padding(.vertical, 4)
                     }
 
                     Section(header: Text("APPEARANCE")) {
@@ -138,7 +139,7 @@ struct SettingsView: View {
                             Image(systemName: "circle.lefthalf.fill")
                                 .imageScale(.large)
                                 .frame(width: 32)
-                                .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .primary)
+                                .foregroundColor(.primary)
                             Text("Theme")
                             
                             Spacer(minLength: 32)
@@ -158,6 +159,7 @@ struct SettingsView: View {
                             }.pickerStyle(SegmentedPickerStyle())
                             .disabled(true)
                         }
+                        .padding(.vertical, 4)
                         
                         Toggle(isOn: $settings.reduceColors) {
                             Image(systemName: "eyedropper.halffull")
@@ -170,6 +172,7 @@ struct SettingsView: View {
                                     .font(.caption)
                             }
                         }
+                        .padding(.vertical, 4)
 
                         if settings.isPro {
                             Picker(
@@ -186,13 +189,13 @@ struct SettingsView: View {
                                     }
                                 }
                             ) {
-                                
                                 ForEach(SettingsStore.AppColor.allCases, id: \.self) {
                                     ColorRow(color: $0.rawValue).tag($0)
                                 }
                                 .navigationBarTitle("App Tint")
                             }
                             .navigationBarTitle("Settings")
+                            .padding(.vertical, 4)
                         } else {
                             NavigationLink(destination:
                                 ProPreview()
@@ -209,41 +212,12 @@ struct SettingsView: View {
                                         .font(.caption)
                                 }
                             }
+                            .padding(.vertical, 4)
                         }
                         
                         if settings.isPro {
                             NavigationLink(destination:
-                                List {
-                                    ForEach(SettingsStore.AppIcon.allCases, id: \.self) { icon in
-                                        HStack {
-                                            Image("\(icon.rawValue)")
-                                                .resizable()
-                                                .renderingMode(.original)
-                                                .aspectRatio(1, contentMode: .fit)
-                                                .frame(width: 48, height: 48)
-                                                .cornerRadius(8)
-                                                .padding([.vertical, .trailing], 8)
-                                            
-                                            VStack {
-                                                Text("\(icon.rawValue)")
-                                            }
-                                            
-                                            Spacer()
-                                            
-                                            if self.icon == icon.rawValue {
-                                                Image(systemName: "checkmark")
-                                                    .imageScale(.large)
-                                                    .font(.headline)
-                                            }
-                                        }
-                                        .onTapGesture {
-                                            UIApplication.shared.setAlternateIconName("\(icon.rawValue)")
-                                            self.refresh()
-                                        }
-                                    }
-                                }
-                                .navigationBarTitle(Text("App Icon"))
-                                .environment(\.horizontalSizeClass, .regular)
+                                AppIconsView().environment(\.horizontalSizeClass, .regular)
                             ) {
                                 Image(systemName: "app")
                                     .imageScale(.large)
@@ -255,6 +229,7 @@ struct SettingsView: View {
                                         .font(.caption)
                                 }
                             }
+                            .padding(.vertical, 4)
                         } else {
                             NavigationLink(destination:
                                 ProPreview()
@@ -271,7 +246,21 @@ struct SettingsView: View {
                                         .font(.caption)
                                 }
                             }
+                            .padding(.vertical, 4)
                         }
+                        
+                        Toggle(isOn: $settings.largeText) {
+                            Image(systemName: "textformat.size")
+                                .imageScale(.large)
+                                .frame(width: 32)
+                                .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .green)
+                            VStack(alignment: .leading) {
+                                Text("Use Large Text")
+                                Text("Use a larger font to enter coefficients.")
+                                    .font(.caption)
+                            }
+                        }
+                        .padding(.vertical, 4)
                     }
                     
                     Section(header: Text("REACH US")) {
@@ -282,13 +271,12 @@ struct SettingsView: View {
                                 .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .orange)
                             VStack(alignment: .leading) {
                                 Text("Contact Us")
-                                Text("Ask us anything, or request a feature.")
+                                Text("Get help or ask us anything.")
                                     .font(.caption)
                             }
                         }
-                        .onTapGesture {
-                            UIApplication.shared.open(URL(string: "mailto:nistalatanay@gmail.com")!)
-                        }
+                        .padding(.vertical, 4)
+//                        .onTapGesture {UIApplication.shared.open(URL(string: "mailto:nistalatanay@gmail.com")!)}
                         
                         NavigationLink(destination: EmptyView()) {
                             Image(systemName: "text.bubble")
@@ -301,6 +289,7 @@ struct SettingsView: View {
                                     .font(.caption)
                             }
                         }
+                        .padding(.vertical, 4)
                         
                         NavigationLink(destination: EmptyView()) {
                             Image(systemName: "heart")
@@ -313,6 +302,7 @@ struct SettingsView: View {
                                     .font(.caption)
                             }
                         }
+                        .padding(.vertical, 4)
                         
                         NavigationLink(destination: Help()) {
                             Image(systemName: "questionmark")
@@ -325,6 +315,7 @@ struct SettingsView: View {
                                     .font(.caption)
                             }
                         }
+                        .padding(.vertical, 4)
                     }
                     
                     Section(header: Text("LEGAL")) {
@@ -339,6 +330,7 @@ struct SettingsView: View {
                                     .font(.caption)
                             }
                         }
+                        .padding(.vertical, 4)
                         
                         NavigationLink(destination: TermsOfUse()) {
                             Image(systemName: "doc.text")
@@ -351,6 +343,7 @@ struct SettingsView: View {
                                     .font(.caption)
                             }
                         }
+                        .padding(.vertical, 4)
                     }
                 }
                 .onAppear{
@@ -367,8 +360,8 @@ struct SettingsView: View {
                     }) {
                         Image(systemName: "xmark")
                             .imageScale(.large)
-                            .font(Font.system(size: 16).weight(.bold))
-                            .frame(width: 32, height: 32)
+                            .font(Font.system(size: 16).weight(.medium))
+                            .frame(width: 24, height: 24)
                     }
                     .buttonStyle(IconButtonStyle())
                     .foregroundColor(

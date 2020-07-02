@@ -8,12 +8,12 @@
 
 import SwiftUI
 
-struct CoefficientsView: View {
+struct EntryView: View {
     @EnvironmentObject var data: AppData
     @Environment(\.accessibilityReduceTransparency) var reduceTransparency
     
     var body: some View {
-        ForEach(0..<self.data.order, id: \.self) { coefficient in
+        ForEach(0..<self.data.inputCount, id: \.self) { coefficient in
             HStack {
                 if self.data.inputs[coefficient].count <= 0 {
                     Placeholder(coefficient: coefficient).environmentObject(self.data)
@@ -25,23 +25,26 @@ struct CoefficientsView: View {
                 
                 if self.data.inputs[coefficient].count > 0 {
                     ClearButton(coefficient: coefficient)
-                        
                 }
                 
-                Text("y")
-                    +
-                Text(self.data.type == 1 ? "(\(coefficient))" : String(repeating: "x", count: min(coefficient, 1)))
-                    .font(.footnote)
-                    .baselineOffset(6.0 * (self.data.type == 1 ? 1 : -1))
-                    +
-                Text("\(coefficient > 1 && self.data.type != 1 ? String(coefficient) : "")")
-                    .font(.footnote)
-                    .baselineOffset(-2)
+                if self.data.type == 1 {
+                    Group {
+                        Text("f ").italic()
+                            +
+                        Text("(\(coefficient))")
+                            .font(Font.system(.footnote, design: .serif))
+                            .baselineOffset(6.0)
+                    }
+                    .font(Font.system(.body, design: .serif))
+                } else {
+                    CoefficientsList().list[self.data.vars - 1][coefficient]
+                        .font(Font.system(.body, design: .serif))
+                }
             }
             .listRowBackground(
                 Group {
-                self.data.activeInput == coefficient ? (
-                    self.data.reduceColors ?
+                    self.data.activeInput == coefficient ? (
+                        self.data.reduceColors ?
                         Color(UIColor.systemFill).opacity(self.reduceTransparency ? 1 : 0.8) :
                         Color(self.data.appTint ?? "indigo").opacity(self.reduceTransparency ? 1 : 0.2)
                     ) : Color.clear
@@ -53,6 +56,15 @@ struct CoefficientsView: View {
                 self.data.cursorPos = self.data.inputs[coefficient].count
             }
             .accessibility(addTraits: .updatesFrequently)
+        }
+    }
+}
+
+struct EntryView_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack {
+            EntryView()
+                .environmentObject(AppData())
         }
     }
 }
@@ -73,18 +85,11 @@ struct NativeEntryView: View {
                 
                 Text("y")
                     +
-                Text(self.data.type == 1 ? "(\(coefficient))" : String(repeating: "x", count: coefficient))
-                    .font(.footnote)
-                    .baselineOffset(6.0 * (self.data.type == 1 ? 1 : -1))
+                    Text(self.data.type == 1 ? "(\(coefficient))" : String(repeating: "x", count: coefficient))
+                        .font(.footnote)
+                        .baselineOffset(6.0 * (self.data.type == 1 ? 1 : -1))
             }
         }
-    }
-}
-
-struct CoefficientsView_Previews: PreviewProvider {
-    static var previews: some View {
-        CoefficientsView()
-        .environmentObject(AppData())
     }
 }
 
@@ -133,7 +138,7 @@ struct InputView: View {
                 )
             }
         }
-        .font(Font.system(.title).weight(.semibold))
+        .font(UserDefaults.standard.bool(forKey: "large_text") ? Font.system(.title).weight(.semibold) : Font.headline)
     }
 }
 
@@ -149,7 +154,7 @@ struct ClearButton: View {
         }) {
             Image(systemName: "xmark.circle.fill")
                 .foregroundColor(
-                    self.reduceTransparency ? Color(UIColor.placeholderText) : (self.data.activeInput == self.coefficient && !UserDefaults.standard.bool(forKey: "reduce_colors") ?
+                    self.reduceTransparency ? Color.primary : (self.data.activeInput == self.coefficient && !UserDefaults.standard.bool(forKey: "reduce_colors") ?
                     Color(UserDefaults.standard.string(forKey : "app_tint") ?? "indigo") :
                         Color(UIColor.placeholderText))
                 )

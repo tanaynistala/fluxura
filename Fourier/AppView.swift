@@ -17,12 +17,31 @@ struct AppView: View {
 
     var body: some View {
         VStack {
-            if self.data.currentPage == "homeView" {
-                GeometryReader { geometry in
-                    VStack(spacing: 0) {
-                        ContentView()
-                            .environmentObject(self.data)
-                        
+            GeometryReader { geometry in
+//                VStack(spacing: 0) {
+//                    ContentView()
+//                        .environmentObject(self.data)
+//
+//                    BottomSheetView(
+//                        isOpen: self.$keyboardShown,
+//                        maxHeight: self.data.keyboardView == 1 ? 372 : 312,
+//                        minHeight: 56
+//                    ) {
+//                        KeyboardView()
+//                            .environmentObject(self.data)
+//                            .offset(y: self.keyboardShown ? -8 : 16)
+//                    }
+//                    .frame(height: self.data.presetsShown ? 32 : (self.keyboardShown ? (self.data.keyboardView == 1 ? 372 : 312) : 56) )
+//                    .offset(y: self.data.presetsShown ? (self.keyboardShown ? (self.data.keyboardView == 1 ? 372 : 312) : 56) : 0)
+//                }
+                
+                ZStack(alignment: .bottom) {
+                    ContentView()
+                        .environmentObject(self.data)
+                        .padding(.bottom, self.data.presetsShown ? 32 : (self.keyboardShown ? (self.data.keyboardView == 1 ? 372 : 312) : 56))
+                        .animation(self.reduceMotion || UserDefaults.standard.bool(forKey: "reduce_motion") ? nil : (self.keyboardShown ? .easeInOut : nil))
+                    
+                    if !self.data.presetsShown {
                         BottomSheetView(
                             isOpen: self.$keyboardShown,
                             maxHeight: self.data.keyboardView == 1 ? 372 : 312,
@@ -32,20 +51,25 @@ struct AppView: View {
                                 .environmentObject(self.data)
                                 .offset(y: self.keyboardShown ? -8 : 16)
                         }
-                        .frame(height: self.keyboardShown ? (self.data.keyboardView == 1 ? 372 : 312) : 56 )
+                        .frame(height: self.data.keyboardView == 1 ? 372 : 312)
+                        .transition(.move(edge: .bottom))
                     }
+                }
+                .edgesIgnoringSafeArea(.bottom)
             }
-            .edgesIgnoringSafeArea(.bottom)
             .background(
                 Color(UIColor.systemGroupedBackground)
                     .edgesIgnoringSafeArea(.all)
             )
-            .onAppear{UserDefaults.standard.set(false, forKey: "pro")}
-            .onAppear{UserDefaults.standard.set(false, forKey: "didLaunchBefore")}
-            } else {
-                Splashscreen()
-                    .environmentObject(self.data)
+            .onAppear{
+                UserDefaults.standard.set(false, forKey: "pro")
+                UserDefaults.standard.set(false, forKey: "didLaunchBefore")
+                UserDefaults.standard.set(false, forKey: "didShowHint")
             }
+//            .sheet(isPresented: self.$data.onboarding) {
+//                        Splashscreen()
+//                        .environmentObject(self.data)
+//            }
         }
     }
 }
@@ -54,6 +78,5 @@ struct AppView_Previews: PreviewProvider {
     static var previews: some View {
         AppView()
             .environmentObject(AppData())
-//            .environment(\.colorScheme, .dark)
     }
 }

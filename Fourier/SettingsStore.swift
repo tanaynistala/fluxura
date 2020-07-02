@@ -21,6 +21,7 @@ final class SettingsStore: ObservableObject {
         static let reduceMotion = "reduce_motion"
         static let appIcon = "app_icon"
         static let nativeKeyboard = "native_keyboard"
+        static let largeText = "large_text"
     }
 
     private let cancellable: Cancellable
@@ -40,7 +41,8 @@ final class SettingsStore: ObservableObject {
             Keys.editOnOpen: true,
             Keys.reduceMotion: false,
             Keys.appIcon: "Sine Light",
-            Keys.nativeKeyboard: false
+            Keys.nativeKeyboard: false,
+            Keys.largeText: false
             ])
 
         cancellable = NotificationCenter.default
@@ -67,6 +69,11 @@ final class SettingsStore: ObservableObject {
     var editOnOpen: Bool {
         set { defaults.set(newValue, forKey: Keys.editOnOpen) }
         get { defaults.bool(forKey: Keys.editOnOpen) }
+    }
+    
+    var largeText: Bool {
+        set { defaults.set(newValue, forKey: Keys.largeText) }
+        get { defaults.bool(forKey: Keys.largeText) }
     }
     
     var reduceMotion: Bool {

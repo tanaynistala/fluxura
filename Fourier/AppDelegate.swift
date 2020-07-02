@@ -18,6 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UISwitch.appearance().onTintColor = UIColor(named: "\(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")")
         
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+
+        let attrs: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UserDefaults.standard.bool(forKey: "reduce_colors") ? UIColor.systemGray : UIColor(named: UserDefaults.standard.string(forKey: "app_tint") ?? "indigo") ?? UIColor.systemIndigo,
+        ]
+
+        appearance.largeTitleTextAttributes = attrs
+
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        
 //        let appearance = UINavigationBarAppearance()
 //        let attrs: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(named: "\(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")") ?? UIColor.systemindigo]
 //        appearance.largeTitleTextAttributes = attrs
@@ -42,4 +53,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-

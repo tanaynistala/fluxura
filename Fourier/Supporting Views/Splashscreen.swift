@@ -31,33 +31,37 @@ struct Splashscreen: View {
             
             VStack(alignment: .leading) {
                 FeatureDetail(
+                    title: "Solve",
+                    subTitle: "Solve all kinds of ordinary or partial differential equations.",
+                    imageName: "equal"
+                )
+                
+                FeatureDetail(
+                    title: "Configure",
+                    subTitle: "Set the order, number of variables, and linearity instantly.",
+                    imageName: "dial"
+                )
+                
+                FeatureDetail(
                     title: "Enter",
                     subTitle: "Enter coefficients as constants or as functions.",
                     imageName: "function"
                 )
-                .foregroundColor(.black)
             
                 FeatureDetail(
                     title: "Type",
                     subTitle: "The custom keyboard helps you enter formulae quickly.",
                     imageName: "keyboard"
                 )
-                .foregroundColor(.black)
-                
-                FeatureDetail(
-                    title: "Solve",
-                    subTitle: "Solve all kinds of ordinary or partial differential equations.",
-                    imageName: "equal"
-                )
-                .foregroundColor(.black)
             }
+            .foregroundColor(.black)
             
             Spacer()
             
             Button(action: {
                 let generator = UINotificationFeedbackGenerator()
                 generator.notificationOccurred(.success)
-                withAnimation() { self.data.currentPage = "homeView" }
+                withAnimation() { self.data.onboarding = false }
             }) {
                 Text("Continue")
                     .foregroundColor(.white)

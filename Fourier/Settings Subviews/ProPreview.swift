@@ -19,6 +19,8 @@ struct ProPreview: View {
                 
                 ProFeatureDetail(title: "Non-Linear Equations", subTitle: "Unlock the ability to solve non-linear differential equations in no time!", imageName: "slash.circle.fill", color: .green)
                 
+                ProFeatureDetail(title: "Equation Presets", subTitle: "Get presets for common differential equations in physics, biology, chemistry, and computer science.", imageName: "tuningfork", color: .gray)
+                
                 ProFeatureDetail(title: "App Tints", subTitle: "Color the app the way you like it. We've got purple and green and red, and everything in between.", imageName: "paintbrush.fill", color: .purple)
                 
                 ProFeatureDetail(title: "App Icons", subTitle: "Pick the app icon that suits you. We've always got more coming too!", imageName: "app.fill", color: .orange)

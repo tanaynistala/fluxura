@@ -19,9 +19,24 @@ struct TermsOfUse: View {
                 .font(.headline)
             Text("Fourier Pro is enabled through a one-time purchase or a recurring, cancelable subscription. This unlocks all features, including non-linear differential equations, and app customization options.")
             Spacer()
+            Button(action: {
+                let generator = UINotificationFeedbackGenerator()
+                generator.notificationOccurred(.success)
+            }) {
+                Text("Contact Us")
+                    .foregroundColor(.white)
+                    .font(.headline)
+                    .padding()
+                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                    .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
+                        .fill(Color(UIColor.systemIndigo)))
+                    .padding(.bottom)
+            }
+            .padding(.horizontal)
         }
         .padding()
         .navigationBarTitle("Terms of Use")
+        .edgesIgnoringSafeArea(.bottom)
     }
 }
 

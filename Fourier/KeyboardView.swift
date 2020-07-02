@@ -10,6 +10,7 @@ import SwiftUI
 
 struct KeyboardView: View {
     @EnvironmentObject var data: AppData
+    @Environment(\.accessibilityReduceMotion) var reduceMotion
     
     var body: some View {
         VStack {
@@ -103,7 +104,7 @@ struct KeyboardView: View {
                     Color(UIColor.systemGray4) :
                         Color(self.data.appTint ?? "indigo"))
                 )
-                .animation(.easeInOut)
+                .animation(self.reduceMotion || UserDefaults.standard.bool(forKey: "reduce_motion") ? nil : .easeInOut)
                 .accessibility(label: Text("Calculate"))
             }
             

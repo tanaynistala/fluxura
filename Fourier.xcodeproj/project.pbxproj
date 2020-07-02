@@ -30,7 +30,7 @@
 		1132EC8C249735CF0017628A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1132EC8A249735CF0017628A /* LaunchScreen.storyboard */; };
 		1132EC94249735E10017628A /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1132EC93249735E10017628A /* KeyboardView.swift */; };
 		1132EC9924973D820017628A /* Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1132EC9824973D820017628A /* Extended.swift */; };
-		1146694F249B90C4008B7812 /* CoefficientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1146694E249B90C4008B7812 /* CoefficientsView.swift */; };
+		1146694F249B90C4008B7812 /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1146694E249B90C4008B7812 /* EntryView.swift */; };
 		11527BAA24986E2200263B83 /* Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11527BA924986E2200263B83 /* Standard.swift */; };
 		11924A3C249A7848009719D2 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11924A3B249A7848009719D2 /* AppView.swift */; };
 		11924A3E249A8453009719D2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11924A3D249A8453009719D2 /* SettingsView.swift */; };
@@ -38,8 +38,12 @@
 		11924A42249AFDED009719D2 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11924A41249AFDED009719D2 /* Buttons.swift */; };
 		11924A44249B3B71009719D2 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11924A43249B3B71009719D2 /* AppData.swift */; };
 		119AE163249880D500D84555 /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119AE162249880D500D84555 /* Solver.swift */; };
+		119EA0F024A7ACAB00838C2E /* CoefficientsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119EA0EF24A7ACAB00838C2E /* CoefficientsList.swift */; };
 		11AC22A2249DBED20061A629 /* ClearFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AC22A1249DBED20061A629 /* ClearFieldsView.swift */; };
+		11C27D7D24AA44F60030FD0B /* PresetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C27D7C24AA44F60030FD0B /* PresetsView.swift */; };
+		11C603C424AAF9C600FF7B86 /* Preset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C603C324AAF9C600FF7B86 /* Preset.swift */; };
 		11D2D4B424A5038300D1E6FA /* Splashscreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D2D4B324A5038300D1E6FA /* Splashscreen.swift */; };
+		11E767FD24A8598A00602A27 /* SuffixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E767FC24A8598A00602A27 /* SuffixView.swift */; };
 		11FD5538249A41CA00D775D8 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11FD5537249A41CA00D775D8 /* BottomSheetView.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,16 +73,20 @@
 		1132EC8D249735CF0017628A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1132EC93249735E10017628A /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		1132EC9824973D820017628A /* Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extended.swift; sourceTree = "<group>"; };
-		1146694E249B90C4008B7812 /* CoefficientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoefficientsView.swift; sourceTree = "<group>"; };
+		1146694E249B90C4008B7812 /* EntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
 		11527BA924986E2200263B83 /* Standard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standard.swift; sourceTree = "<group>"; };
-		11924A3B249A7848009719D2 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		11924A3B249A7848009719D2 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		11924A3D249A8453009719D2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		11924A3F249A84A6009719D2 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
 		11924A41249AFDED009719D2 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		11924A43249B3B71009719D2 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		119AE162249880D500D84555 /* Solver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solver.swift; sourceTree = "<group>"; };
+		119EA0EF24A7ACAB00838C2E /* CoefficientsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoefficientsList.swift; sourceTree = "<group>"; };
 		11AC22A1249DBED20061A629 /* ClearFieldsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearFieldsView.swift; sourceTree = "<group>"; };
+		11C27D7C24AA44F60030FD0B /* PresetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetsView.swift; sourceTree = "<group>"; };
+		11C603C324AAF9C600FF7B86 /* Preset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preset.swift; sourceTree = "<group>"; };
 		11D2D4B324A5038300D1E6FA /* Splashscreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splashscreen.swift; sourceTree = "<group>"; };
+		11E767FC24A8598A00602A27 /* SuffixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuffixView.swift; sourceTree = "<group>"; };
 		11FD5537249A41CA00D775D8 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,8 +104,11 @@
 		1108914C249DFB31003CED17 /* Supporting Views */ = {
 			isa = PBXGroup;
 			children = (
+				11C603C324AAF9C600FF7B86 /* Preset.swift */,
 				11AC22A1249DBED20061A629 /* ClearFieldsView.swift */,
-				1146694E249B90C4008B7812 /* CoefficientsView.swift */,
+				1146694E249B90C4008B7812 /* EntryView.swift */,
+				11E767FC24A8598A00602A27 /* SuffixView.swift */,
+				119EA0EF24A7ACAB00838C2E /* CoefficientsList.swift */,
 				11FD5537249A41CA00D775D8 /* BottomSheetView.swift */,
 				11D2D4B324A5038300D1E6FA /* Splashscreen.swift */,
 			);
@@ -154,6 +165,7 @@
 			children = (
 				11924A3B249A7848009719D2 /* AppView.swift */,
 				1132EC83249735CE0017628A /* ContentView.swift */,
+				11C27D7C24AA44F60030FD0B /* PresetsView.swift */,
 				11924A3D249A8453009719D2 /* SettingsView.swift */,
 				1132EC93249735E10017628A /* KeyboardView.swift */,
 				11214C1A24A476E800AEADD5 /* Settings Subviews */,
@@ -285,16 +297,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				11214C1E24A478A600AEADD5 /* TermsOfUse.swift in Sources */,
+				119EA0F024A7ACAB00838C2E /* CoefficientsList.swift in Sources */,
 				11116E4D249F11D500CDACF9 /* AppIconsView.swift in Sources */,
 				11924A42249AFDED009719D2 /* Buttons.swift in Sources */,
 				11527BAA24986E2200263B83 /* Standard.swift in Sources */,
 				11AC22A2249DBED20061A629 /* ClearFieldsView.swift in Sources */,
+				11E767FD24A8598A00602A27 /* SuffixView.swift in Sources */,
 				1132EC80249735CE0017628A /* AppDelegate.swift in Sources */,
 				11924A44249B3B71009719D2 /* AppData.swift in Sources */,
 				11D2D4B424A5038300D1E6FA /* Splashscreen.swift in Sources */,
 				11FD5538249A41CA00D775D8 /* BottomSheetView.swift in Sources */,
 				1132EC94249735E10017628A /* KeyboardView.swift in Sources */,
-				1146694F249B90C4008B7812 /* CoefficientsView.swift in Sources */,
+				11C603C424AAF9C600FF7B86 /* Preset.swift in Sources */,
+				1146694F249B90C4008B7812 /* EntryView.swift in Sources */,
+				11C27D7D24AA44F60030FD0B /* PresetsView.swift in Sources */,
 				111DE42624A49CE5001A0964 /* Help.swift in Sources */,
 				1132EC9924973D820017628A /* Extended.swift in Sources */,
 				119AE163249880D500D84555 /* Solver.swift in Sources */,

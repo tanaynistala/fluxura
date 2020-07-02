@@ -19,9 +19,24 @@ struct PrivacyPolicy: View {
                 .font(.headline)
             Text("Please don't hesitate to contact us about any queries you may have, about your data or otherwise. We're always happy to help!")
             Spacer()
+            Button(action: {
+                let generator = UINotificationFeedbackGenerator()
+                generator.notificationOccurred(.success)
+            }) {
+                Text("Contact Us")
+                    .foregroundColor(.white)
+                    .font(.headline)
+                    .padding()
+                    .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
+                    .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
+                        .fill(Color(UIColor.systemIndigo)))
+                    .padding(.bottom)
+            }
+            .padding(.horizontal)
         }
         .padding()
         .navigationBarTitle("Privacy Policy")
+        .edgesIgnoringSafeArea(.bottom)
     }
 }
 
