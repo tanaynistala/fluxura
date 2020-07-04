@@ -19,13 +19,13 @@ struct ProPreview: View {
                 
                 ProFeatureDetail(title: "Non-Linear Equations", subTitle: "Unlock the ability to solve non-linear differential equations in no time!", imageName: "slash.circle.fill", color: .green)
                 
-                ProFeatureDetail(title: "Equation Presets", subTitle: "Get presets for common differential equations in physics, biology, chemistry, and computer science.", imageName: "tuningfork", color: .gray)
+                ProFeatureDetail(title: "Equation Presets", subTitle: "Get presets for common differential equations in physics, biology, chemistry, and computer science.", imageName: "square.stack.3d.up.fill", color: .blue)
                 
                 ProFeatureDetail(title: "App Tints", subTitle: "Color the app the way you like it. We've got purple and green and red, and everything in between.", imageName: "paintbrush.fill", color: .purple)
                 
                 ProFeatureDetail(title: "App Icons", subTitle: "Pick the app icon that suits you. We've always got more coming too!", imageName: "app.fill", color: .orange)
                 
-                ProFeatureDetail(title: "Support Us", subTitle: "Support the devs and help us get out new features for Fourier!", imageName: "heart.fill", color: .pink)
+                ProFeatureDetail(title: "Support Us", subTitle: "Support the devs and help us create new features for Fourier!", imageName: "heart.fill", color: .pink)
 
                 HStack(spacing: 16) {
                     Button(action: {self.settings.unlockPro()}) {
@@ -79,7 +79,8 @@ struct ProPreview: View {
                 
                 Button(action: {self.settings.unlockPro()}) {
                     HStack {
-                        VStack(alignment: .leading) {
+                        Spacer()
+                        VStack(alignment: .center) {
                             Text("Lifetime")
                                 .font(Font.system(.title).weight(.semibold))
                             Text("$39.99")
@@ -142,13 +143,14 @@ struct ProFeatureDetail: View {
     var color: Color = .red
 
     var body: some View {
-        HStack(alignment: .center) {
+        HStack(alignment: .top) {
             Image(systemName: imageName)
+                .padding([.horizontal, .bottom])
+//                .padding(.top, 12)
                 .font(.largeTitle)
                 .foregroundColor(color)
-                .padding()
                 .accessibility(hidden: true)
-                .frame(width: 64)
+                .frame(width: 64, height: 64)
 
             VStack(alignment: .leading) {
                 Text(title)

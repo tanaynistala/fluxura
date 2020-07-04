@@ -141,6 +141,9 @@ struct ContentView: View {
                 }
             }
             .environment(\.horizontalSizeClass, .regular)
+            .onAppear {
+                UITableView.appearance().tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+            }
             .navigationBarTitle("Fourier")
             .navigationBarItems(trailing:
                 HStack {
@@ -161,6 +164,7 @@ struct ContentView: View {
                     NavigationLink(
                         destination:
                             PresetsView()
+                                .environmentObject(PresetData())
                                 .navigationBarTitle("Presets")
                                 .navigationBarBackButtonHidden(false),
                         isActive: self.$data.presetsShown) {

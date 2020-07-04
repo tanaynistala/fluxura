@@ -18,9 +18,31 @@ struct AppView: View {
     var body: some View {
         VStack {
             GeometryReader { geometry in
-//                VStack(spacing: 0) {
+                VStack(spacing: 0) {
+                    ContentView()
+                        .environmentObject(self.data)
+
+                    BottomSheetView(
+                        isOpen: self.$keyboardShown,
+                        maxHeight: self.data.keyboardView == 1 ? 372 : 312,
+                        minHeight: 56
+                    ) {
+                        KeyboardView()
+                            .environmentObject(self.data)
+                            .offset(y: self.keyboardShown ? -8 : 16)
+                    }
+                    .frame(height: self.data.presetsShown ? 32 : (self.keyboardShown ? (self.data.keyboardView == 1 ? 372 : 312) : 56) )
+                    .offset(y: self.data.presetsShown ? (self.keyboardShown ? (self.data.keyboardView == 1 ? 372 : 312) : 56) : 0)
+                    .animation(self.reduceMotion || UserDefaults.standard.bool(forKey: "reduce_motion") ? nil : (self.keyboardShown ? .easeInOut : nil))
+                }
+                
+                /// This uses Z-Stacked Elements, but has a glitch when transitioning to presets view
+                
+//                ZStack(alignment: .bottom) {
 //                    ContentView()
 //                        .environmentObject(self.data)
+//                        .padding(.bottom, self.data.presetsShown ? 32 : (self.keyboardShown ? (self.data.keyboardView == 1 ? 372 : 312) : 56))
+//                        .animation(self.reduceMotion || UserDefaults.standard.bool(forKey: "reduce_motion") ? nil : (self.keyboardShown ? .easeInOut : nil))
 //
 //                    BottomSheetView(
 //                        isOpen: self.$keyboardShown,
@@ -31,36 +53,15 @@ struct AppView: View {
 //                            .environmentObject(self.data)
 //                            .offset(y: self.keyboardShown ? -8 : 16)
 //                    }
-//                    .frame(height: self.data.presetsShown ? 32 : (self.keyboardShown ? (self.data.keyboardView == 1 ? 372 : 312) : 56) )
-//                    .offset(y: self.data.presetsShown ? (self.keyboardShown ? (self.data.keyboardView == 1 ? 372 : 312) : 56) : 0)
+//                    .frame(height: self.data.keyboardView == 1 ? 372 : 312)
 //                }
-                
-                ZStack(alignment: .bottom) {
-                    ContentView()
-                        .environmentObject(self.data)
-                        .padding(.bottom, self.data.presetsShown ? 32 : (self.keyboardShown ? (self.data.keyboardView == 1 ? 372 : 312) : 56))
-                        .animation(self.reduceMotion || UserDefaults.standard.bool(forKey: "reduce_motion") ? nil : (self.keyboardShown ? .easeInOut : nil))
-                    
-                    if !self.data.presetsShown {
-                        BottomSheetView(
-                            isOpen: self.$keyboardShown,
-                            maxHeight: self.data.keyboardView == 1 ? 372 : 312,
-                            minHeight: 56
-                        ) {
-                            KeyboardView()
-                                .environmentObject(self.data)
-                                .offset(y: self.keyboardShown ? -8 : 16)
-                        }
-                        .frame(height: self.data.keyboardView == 1 ? 372 : 312)
-                        .transition(.move(edge: .bottom))
-                    }
-                }
-                .edgesIgnoringSafeArea(.bottom)
+//                .edgesIgnoringSafeArea(.bottom)
             }
             .background(
                 Color(UIColor.systemGroupedBackground)
                     .edgesIgnoringSafeArea(.all)
             )
+                .edgesIgnoringSafeArea(.bottom)
             .onAppear{
                 UserDefaults.standard.set(false, forKey: "pro")
                 UserDefaults.standard.set(false, forKey: "didLaunchBefore")

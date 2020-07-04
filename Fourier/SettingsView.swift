@@ -7,12 +7,16 @@
 //
 
 import SwiftUI
+import MessageUI
 
 struct SettingsView: View {
     @EnvironmentObject var settings: SettingsStore
     @Environment(\.presentationMode) var presentationMode
     @State var isProView = false
     @State var isEmailShown = false
+    
+    @State var result: Result<MFMailComposeResult, Error>? = nil
+    @State var isShowingMailView = false
     
     /// Make the pickers Navigation Links to deal with Pro features
     
@@ -34,42 +38,80 @@ struct SettingsView: View {
                                 UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                             }
                         }) {
-                            HStack {
-                                Image(systemName: "lock.fill")
-                                    .font(Font.system(.title).weight(.semibold))
-                                    .padding(4)
-                                VStack(alignment: .leading) {
-                                    Text("Fourier Pro")
-                                        .font(.headline)
-
-                                    Text("Unlock All Features")
-                                        .font(.caption)
-                                }
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                            }
-                            .foregroundColor(.white)
-                            .padding(.bottom, 8)
-                            .padding(.top, 192)
-                            .listRowBackground(
+                            VStack {
                                 Image("Fourier Pro")
-                                    .resizable()
-                                    .renderingMode(.original)
-                                    .antialiased(true)
-                                    .aspectRatio(2, contentMode: .fill)
-                                    .padding(.bottom, 64)
-                                    .background(Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo"))
-                            )
-                        }.buttonStyle(PlainButtonStyle())
+                                .resizable()
+                                .renderingMode(.original)
+                                .antialiased(true)
+                                .aspectRatio(2, contentMode: .fill)
+                                
+                                HStack {
+                                    Image(systemName: "lock.fill")
+                                        .font(Font.system(.title).weight(.semibold))
+                                        .padding(4)
+                                    VStack(alignment: .leading) {
+                                        Text("Fourier Pro")
+                                            .font(.headline)
+
+                                        Text("Unlock All Features")
+                                            .font(.caption)
+                                    }
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .font(.headline)
+                                }
+                                .foregroundColor(.white)
+                                .padding(.vertical, 8)
+                                .padding(.horizontal)
+                            }
+                        }
+                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
+                        .listRowBackground(Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo"))
+                        .buttonStyle(PlainButtonStyle())
+                        
+//                        Button(action: {
+//                            self.isProView.toggle()
+//                            if UserDefaults.standard.bool(forKey: "haptics_enabled") {
+//                                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+//                            }
+//                        }) {
+//                            HStack {
+//                                Image(systemName: "lock.fill")
+//                                    .font(Font.system(.title).weight(.semibold))
+//                                    .padding(4)
+//                                VStack(alignment: .leading) {
+//                                    Text("Fourier Pro")
+//                                        .font(.headline)
+//
+//                                    Text("Unlock All Features")
+//                                        .font(.caption)
+//                                }
+//                                Spacer()
+//                                Image(systemName: "chevron.right")
+//                            }
+//                            .foregroundColor(.white)
+//                            .padding(.bottom, 8)
+//                            .padding(.top, 192)
+//                            .listRowBackground(
+//                                Image("Fourier Pro")
+//                                    .resizable()
+//                                    .renderingMode(.original)
+//                                    .antialiased(true)
+//                                    .aspectRatio(2, contentMode: .fill)
+//                                    .padding(.bottom, 64)
+//                                    .background(Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo"))
+//                            )
+//                        }.buttonStyle(PlainButtonStyle())
                     }
                     
                     
                     Section(header: Text("GENERAL")) {
                         if UIDevice.current.model == "iPhone" {
                             Toggle(isOn: $settings.isHapticsEnabled) {
-                                Image(systemName: "bolt.fill")
+                                Image(systemName: "bolt\(settings.isHapticsEnabled ? "" : ".slash").fill")
                                     .imageScale(.large)
                                     .frame(width: 32)
+                                    .padding(.horizontal, 4)
                                     .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .yellow)
                                 VStack(alignment: .leading) {
                                     Text("App Haptics")
@@ -83,7 +125,8 @@ struct SettingsView: View {
                                 Image(systemName: "keyboard")
                                     .imageScale(.large)
                                     .frame(width: 32)
-                                    .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .primary)
+                                    .padding(.horizontal, 4)
+                                    .foregroundColor(.primary)
                                 VStack(alignment: .leading) {
                                     Text("Keyboard Haptics")
                                     Text("Keypresses!")
@@ -97,6 +140,7 @@ struct SettingsView: View {
                             Image(systemName: "keyboard")
                                 .imageScale(.large)
                                 .frame(width: 32)
+                                    .padding(.horizontal, 4)
                                 .foregroundColor(.primary)
                             VStack(alignment: .leading) {
                                 Text("Use Native Keyboard")
@@ -108,10 +152,11 @@ struct SettingsView: View {
                         .disabled(true)
                         
                         Toggle(isOn: $settings.editOnOpen) {
-                            Image(systemName: "pencil")
+                            Image(systemName: "pencil\(settings.editOnOpen ? "" : ".slash")")
                                 .imageScale(.large)
                                 .frame(width: 32)
-                                .foregroundColor(.primary)
+                                    .padding(.horizontal, 4)
+                                .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .orange)
                             VStack(alignment: .leading) {
                                 Text("Edit on Open")
                                 Text("Open the keyboard automagically.")
@@ -124,6 +169,7 @@ struct SettingsView: View {
                             Image(systemName: "wind")
                                 .imageScale(.large)
                                 .frame(width: 32)
+                                    .padding(.horizontal, 4)
                                 .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .gray)
                             VStack(alignment: .leading) {
                                 Text("Reduce Motion")
@@ -133,12 +179,14 @@ struct SettingsView: View {
                         }
                         .padding(.vertical, 4)
                     }
+                    .listRowInsets(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 16))
 
                     Section(header: Text("APPEARANCE")) {
                         HStack {
                             Image(systemName: "circle.lefthalf.fill")
                                 .imageScale(.large)
                                 .frame(width: 32)
+                                    .padding(.horizontal, 4)
                                 .foregroundColor(.primary)
                             Text("Theme")
                             
@@ -150,6 +198,7 @@ struct SettingsView: View {
                                     Image(systemName: "circle.lefthalf.fill")
                                         .imageScale(.large)
                                         .frame(width: 32)
+                                    .padding(.horizontal, 4)
                                     Text("Theme")
                                 }
                             ) {
@@ -165,6 +214,7 @@ struct SettingsView: View {
                             Image(systemName: "eyedropper.halffull")
                                 .imageScale(.large)
                                 .frame(width: 32)
+                                    .padding(.horizontal, 4)
                                 .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .purple)
                             VStack(alignment: .leading) {
                                 Text("Reduce Colors")
@@ -181,6 +231,7 @@ struct SettingsView: View {
                                     Image(systemName: "paintbrush")
                                         .imageScale(.large)
                                         .frame(width: 32)
+                                    .padding(.horizontal, 4)
                                     .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .red)
                                     VStack(alignment: .leading) {
                                         Text("App Tint")
@@ -205,6 +256,7 @@ struct SettingsView: View {
                                 Image(systemName: "paintbrush")
                                     .imageScale(.large)
                                     .frame(width: 32)
+                                    .padding(.horizontal, 4)
                                     .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .red)
                                 VStack(alignment: .leading) {
                                     Text("App Tint")
@@ -222,6 +274,7 @@ struct SettingsView: View {
                                 Image(systemName: "app")
                                     .imageScale(.large)
                                     .frame(width: 32)
+                                    .padding(.horizontal, 4)
                                     .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : Color(UIColor.systemTeal))
                                 VStack(alignment: .leading) {
                                     Text("App Icon")
@@ -239,6 +292,7 @@ struct SettingsView: View {
                                 Image(systemName: "app.gift")
                                     .imageScale(.large)
                                     .frame(width: 32)
+                                    .padding(.horizontal, 4)
                                     .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : Color(UIColor.systemTeal))
                                 VStack(alignment: .leading) {
                                     Text("App Icon")
@@ -253,6 +307,7 @@ struct SettingsView: View {
                             Image(systemName: "textformat.size")
                                 .imageScale(.large)
                                 .frame(width: 32)
+                                    .padding(.horizontal, 4)
                                 .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .green)
                             VStack(alignment: .leading) {
                                 Text("Use Large Text")
@@ -262,52 +317,99 @@ struct SettingsView: View {
                         }
                         .padding(.vertical, 4)
                     }
+                    .listRowInsets(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 16))
                     
-                    Section(header: Text("REACH US")) {
-                        NavigationLink(destination: EmptyView(), isActive: .constant(false)) {
-                            Image(systemName: "envelope")
-                                .imageScale(.large)
-                                .frame(width: 32)
-                                .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .orange)
-                            VStack(alignment: .leading) {
-                                Text("Contact Us")
-                                Text("Get help or ask us anything.")
-                                    .font(.caption)
+                    Section(header: Text("REACH OUT")) {
+                        Button(action: {
+                            self.isShowingMailView.toggle()
+                        }) {
+                            HStack {
+                                Image(systemName: "envelope")
+                                    .imageScale(.large)
+                                    .frame(width: 32)
+                                    .padding(.horizontal, 4)
+                                    .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .orange)
+                                VStack(alignment: .leading) {
+                                    Text("Contact Us")
+                                    Text("Get help or ask us anything.")
+                                        .font(.caption)
+                                }
+                                Spacer()
+                                Image(systemName: "link")
                             }
                         }
-                        .padding(.vertical, 4)
-//                        .onTapGesture {UIApplication.shared.open(URL(string: "mailto:nistalatanay@gmail.com")!)}
+                        .buttonStyle(PlainButtonStyle())
+                        .disabled(!MFMailComposeViewController.canSendMail())
+                        .sheet(isPresented: $isShowingMailView) {
+                            MailView(result: self.$result)
+                        }
                         
-                        NavigationLink(destination: EmptyView()) {
-                            Image(systemName: "text.bubble")
-                                .imageScale(.large)
-                                .frame(width: 32)
-                                .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : Color("indigo"))
-                            VStack(alignment: .leading) {
-                                Text("Tweet Us")
-                                Text("Spread the word.")
-                                    .font(.caption)
+                        Button(action: {
+                            UIApplication.shared.open(URL(string: "mailto:nistalatanay@gmail.com")!)
+                        }) {
+                            HStack {
+                                Image(systemName: "envelope")
+                                    .imageScale(.large)
+                                    .frame(width: 32)
+                                    .padding(.horizontal, 4)
+                                    .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .orange)
+                                VStack(alignment: .leading) {
+                                    Text("Contact Us")
+                                    Text("Get help or ask us anything.")
+                                        .font(.caption)
+                                }
+                                Spacer()
+                                Image(systemName: "link")
                             }
                         }
-                        .padding(.vertical, 4)
+                        .buttonStyle(PlainButtonStyle())
                         
-                        NavigationLink(destination: EmptyView()) {
-                            Image(systemName: "heart")
-                                .imageScale(.large)
-                                .frame(width: 32)
-                                .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .pink)
-                            VStack(alignment: .leading) {
-                                Text("Leave a Review")
-                                Text("Tell us what we're doing right (and wrong).")
-                                    .font(.caption)
+                        Button(action: {
+                            UIApplication.shared.open(URL(string: "https://twitter.com/timswagwalker")!)
+                        }) {
+                            HStack {
+                                Image(systemName: "text.bubble")
+                                    .imageScale(.large)
+                                    .frame(width: 32)
+                                        .padding(.horizontal, 4)
+                                    .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : Color("indigo"))
+                                VStack(alignment: .leading) {
+                                    Text("Tweet Us")
+                                    Text("Spread the word.")
+                                        .font(.caption)
+                                }
+                                Spacer()
+                                Image(systemName: "link")
                             }
                         }
+                        .buttonStyle(PlainButtonStyle())
+                        
+                        Button(action: {
+                            UIApplication.shared.open(URL(string: "App Store Link")!)
+                        }) {
+                            HStack {
+                                Image(systemName: "heart")
+                                    .imageScale(.large)
+                                    .frame(width: 32)
+                                        .padding(.horizontal, 4)
+                                    .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .pink)
+                                VStack(alignment: .leading) {
+                                    Text("Leave a Review")
+                                    Text("Tell us what we're doing right (and wrong).")
+                                        .font(.caption)
+                                }
+                                Spacer()
+                                Image(systemName: "link")
+                            }
+                        }
+                        .buttonStyle(PlainButtonStyle())
                         .padding(.vertical, 4)
                         
                         NavigationLink(destination: Help()) {
                             Image(systemName: "questionmark")
                                 .imageScale(.large)
                                 .frame(width: 32)
+                                    .padding(.horizontal, 4)
                                 .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .gray)
                             VStack(alignment: .leading) {
                                 Text("Help")
@@ -317,12 +419,14 @@ struct SettingsView: View {
                         }
                         .padding(.vertical, 4)
                     }
+                    .listRowInsets(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 16))
                     
                     Section(header: Text("LEGAL")) {
                         NavigationLink(destination: PrivacyPolicy()) {
                             Image(systemName: "lock.shield")
                                 .imageScale(.large)
                                 .frame(width: 32)
+                                    .padding(.horizontal, 4)
                                 .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .green)
                             VStack(alignment: .leading) {
                                 Text("Privacy Policy")
@@ -336,6 +440,7 @@ struct SettingsView: View {
                             Image(systemName: "doc.text")
                                 .imageScale(.large)
                                 .frame(width: 32)
+                                    .padding(.horizontal, 4)
                                 .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : Color(UIColor.systemIndigo))
                             VStack(alignment: .leading) {
                                 Text("Terms of Use")
@@ -345,6 +450,7 @@ struct SettingsView: View {
                         }
                         .padding(.vertical, 4)
                     }
+                    .listRowInsets(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 16))
                 }
                 .onAppear{
                     UITableView.appearance().separatorInset = UIEdgeInsets(top: 0, left: 56, bottom: 0, right: 0)

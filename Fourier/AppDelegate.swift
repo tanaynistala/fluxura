@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appearance.largeTitleTextAttributes = attrs
 
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UITableView.appearance().tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 24))
         
 //        let appearance = UINavigationBarAppearance()
 //        let attrs: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(named: "\(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")") ?? UIColor.systemindigo]

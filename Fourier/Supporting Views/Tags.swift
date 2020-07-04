@@ -8,21 +8,6 @@
 
 import SwiftUI
 
-enum Subject: String, CaseIterable {
-    case all = "All"
-    case physics = "Physics"
-    case biology = "Biology"
-    case chemistry = "Chemistry"
-    case cs = "Computer Science"
-}
-
-struct Preset: Hashable {
-    var subject: Subject = .biology
-    var title: String = ""
-    var order: Int?
-    var types: [Type]
-}
-
 struct OrderTag: View {
     @State var order: Int?
     
@@ -47,15 +32,6 @@ struct LinearTag: View {
         Text(isLinear ? "Linear" : "Nonlinear")
         .tagStyle(color: isLinear ? UIColor.systemGreen : UIColor.systemPink)
     }
-}
-
-enum Type: String, CaseIterable {
-    case pde = "PDE"
-    case ode = "ODE"
-    case homo = "Homogeneous"
-    case hetero = "Heterogeneous"
-    case linear = "Linear"
-    case nonlinear = "Nonlinear"
 }
 
 struct TypeTag: View {
