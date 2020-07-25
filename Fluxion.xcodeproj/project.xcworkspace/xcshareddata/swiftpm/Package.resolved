@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "MathParser",
+        "repositoryURL": "https://github.com/davedelong/DDMathParser.git",
+        "state": {
+          "branch": null,
+          "revision": "0a159109e2393c3e1db4e2b638009c82e6650b4d",
+          "version": "3.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
