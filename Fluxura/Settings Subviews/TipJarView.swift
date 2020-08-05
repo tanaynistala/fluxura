@@ -7,10 +7,111 @@
 //
 
 import SwiftUI
+import Purchases
 
 struct TipJar: View {
+    @EnvironmentObject private var subscriptionManager: SubscriptionManager
+    @Environment(\.presentationMode) var presentationMode
     let titles = ["A generous tip", "A hefty tip", "A lavish tip"]
-    let amounts = ["0.99", "4.99", "9.99"]
+    
+    private var smallTip: Purchases.Package? {
+        subscriptionManager.smallTip
+    }
+    
+    private var mediumTip: Purchases.Package? {
+        subscriptionManager.mediumTip
+    }
+    
+    private var largeTip: Purchases.Package? {
+        subscriptionManager.largeTip
+    }
+    
+    private func formattedPrice(for package: Purchases.Package) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = smallTip!.product.priceLocale
+        return formatter.string(from: package.product.price)!
+    }
+    
+    private func buttonAction(purchase: Purchases.Package) {
+        if subscriptionManager.subscriptionStatus == true {
+            presentationMode.wrappedValue.dismiss()
+        } else {
+            subscriptionManager.purchase(product: purchase)
+        }
+    }
+    
+    private func makePurchaseButton(action: @escaping () -> Void, title: String, index: Int, label:
+            LocalizedStringKey) -> some View {
+            HStack {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(title)
+                        .font(.headline)
+                    HStack {
+                        ForEach(0..<index) { item in
+                            Image(systemName: "heart.fill")
+                        }
+                        ForEach(0..<3-index) { item in
+                            Image(systemName: "heart")
+                        }
+                    }
+                    .font(.headline)
+                    .foregroundColor(Color(.systemRed))
+                }
+                Spacer()
+                Button(action: action) {
+                    Text(label)
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding(.vertical, 4)
+                        .padding(.horizontal, 12)
+                        .background(
+                            Capsule()
+                                .foregroundColor(
+                                    UserDefaults.standard.bool(forKey: "reduce_colors") ?
+                                    Color.primary :
+                                    Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")
+                                )
+                        )
+                }
+            }
+            .padding()
+            .background(Color(.systemGray5))
+            .cornerRadius(16)
+        }
+        
+        private var paymentButtons: some View {
+            VStack(spacing: 16) {
+    //                ForEach(0..<3) { index in
+    //                    PurchaseButton(title: self.titles[index], amount: self.amounts[index])
+    //                        .environmentObject(self.settings)
+    //                }
+                
+                smallTip.map { smallTip in
+                    makePurchaseButton(action: {
+                        self.buttonAction(purchase: smallTip)
+                    }, title: "A Generous Tip", index: 1, label: "\(formattedPrice(for: smallTip))")
+                    .opacity(subscriptionManager.inPaymentProgress ? 0.5 : 1.0)
+                    .disabled(subscriptionManager.inPaymentProgress)
+                }
+                
+                mediumTip.map { mediumTip in
+                    makePurchaseButton(action: {
+                        self.buttonAction(purchase: mediumTip)
+                    }, title: "A Hefty Tip", index: 2, label: "\(formattedPrice(for: mediumTip))")
+                    .opacity(subscriptionManager.inPaymentProgress ? 0.5 : 1.0)
+                    .disabled(subscriptionManager.inPaymentProgress)
+                }
+                
+                largeTip.map { largeTip in
+                    makePurchaseButton(action: {
+                        self.buttonAction(purchase: largeTip)
+                    }, title: "A Lavish Tip", index: 3, label: "\(formattedPrice(for: largeTip))")
+                    .opacity(subscriptionManager.inPaymentProgress ? 0.5 : 1.0)
+                    .disabled(subscriptionManager.inPaymentProgress)
+                }
+            }
+        }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -18,9 +119,7 @@ struct TipJar: View {
             Text("To be clear, these don't unlock any extra functionality.")
                 .foregroundColor(Color(.secondaryLabel))
             
-            ForEach(0..<3) {index in
-                TipButton(title: self.titles[index], amount: self.amounts[index], index: index+1)
-            }
+            self.paymentButtons
             
             Spacer()
         }
@@ -35,11 +134,13 @@ struct TipJar_Previews: PreviewProvider {
         Group {
         NavigationView {
             TipJar()
+                .environmentObject(SubscriptionManager.shared)
         }
         .environment(\.colorScheme, .dark)
             
             NavigationView {
                 TipJar()
+                .environmentObject(SubscriptionManager.shared)
             }
         }
     }
@@ -85,8 +186,7 @@ struct TipButton: View {
             }
         }
         .padding()
-        .background(Color(colorScheme == .dark ? .systemGray5 : .white))
+        .background(Color(.systemGray5))
         .cornerRadius(16)
-        .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.2), radius: 8, y: 2)
     }
 }

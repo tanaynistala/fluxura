@@ -27,7 +27,7 @@ struct SettingsView: View {
                 NavigationLink(
                     destination: ProPreview()
                         .navigationBarTitle(Text("Fluxura Pro"))
-                        .environmentObject(self.settings),
+                        .environmentObject(SubscriptionManager.shared),
                     isActive: self.$isProView
                 ) {EmptyView()}
                 
@@ -367,7 +367,7 @@ struct SettingsView: View {
                         } else {
                             NavigationLink(destination:
                                 ProPreview()
-                                    .environmentObject(self.settings)
+                                    .environmentObject(SubscriptionManager.shared)
                                     .navigationBarTitle("Fluxura Pro")
                             ) {
                                 Image(systemName: "paintbrush")
@@ -405,7 +405,7 @@ struct SettingsView: View {
                         } else {
                             NavigationLink(destination:
                                 ProPreview()
-                                    .environmentObject(self.settings)
+                                    .environmentObject(SubscriptionManager.shared)
                                     .navigationBarTitle("Fluxura Pro")
                             ) {
                                 Image(systemName: "app.gift")
@@ -524,7 +524,7 @@ struct SettingsView: View {
                         }
                         .padding(.vertical, 4)
                         
-                        NavigationLink(destination: TipJar()) {
+                        NavigationLink(destination: TipJar().environmentObject(SubscriptionManager.shared)) {
                             Image(systemName: "gift")
                                 .imageScale(.large)
                                 .frame(width: 32)

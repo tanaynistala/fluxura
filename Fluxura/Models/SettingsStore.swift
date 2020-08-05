@@ -159,14 +159,14 @@ final class SettingsStore: ObservableObject {
     }
 }
 
-extension SettingsStore {
-    func unlockPro() {
-        // You can do your in-app transactions here
-        isPro = true
-    }
-
-    func restorePurchase() {
-        // You can do you in-app purchase restore here
-        isPro = true
-    }
-}
+//extension SettingsStore {
+//    func unlockPro() {
+//        // You can do your in-app transactions here
+//        isPro = true
+//    }
+//
+//    func restorePurchase() {
+//        // You can do you in-app purchase restore here
+//        isPro = true
+//    }
+//}

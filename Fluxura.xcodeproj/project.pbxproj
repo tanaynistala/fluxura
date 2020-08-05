@@ -32,6 +32,9 @@
 		1132EC94249735E10017628A /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1132EC93249735E10017628A /* KeyboardView.swift */; };
 		1132EC9924973D820017628A /* Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1132EC9824973D820017628A /* Extended.swift */; };
 		1137797B24C70FC100D4A09C /* EquationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137797A24C70FC100D4A09C /* EquationView.swift */; };
+		113FFBA724D93C6B00883C67 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113FFBA624D93C6B00883C67 /* StoreKit.framework */; };
+		11429FC424D926670058E7A7 /* Purchases in Frameworks */ = {isa = PBXBuildFile; productRef = 11429FC324D926670058E7A7 /* Purchases */; };
+		11429FC624D927180058E7A7 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11429FC524D927180058E7A7 /* SubscriptionManager.swift */; };
 		1146694F249B90C4008B7812 /* EntryViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1146694E249B90C4008B7812 /* EntryViews.swift */; };
 		114B0E2224D11C2900DE0859 /* TipJarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114B0E2124D11C2900DE0859 /* TipJarView.swift */; };
 		114DA6C524C5BFE600A15017 /* InputViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DA6C424C5BFE600A15017 /* InputViews.swift */; };
@@ -89,6 +92,8 @@
 		1132EC93249735E10017628A /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		1132EC9824973D820017628A /* Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extended.swift; sourceTree = "<group>"; };
 		1137797A24C70FC100D4A09C /* EquationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationView.swift; sourceTree = "<group>"; };
+		113FFBA624D93C6B00883C67 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		11429FC524D927180058E7A7 /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
 		1146694E249B90C4008B7812 /* EntryViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViews.swift; sourceTree = "<group>"; };
 		114B0E2124D11C2900DE0859 /* TipJarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJarView.swift; sourceTree = "<group>"; };
 		114DA6C424C5BFE600A15017 /* InputViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViews.swift; sourceTree = "<group>"; };
@@ -122,7 +127,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				113FFBA724D93C6B00883C67 /* StoreKit.framework in Frameworks */,
 				1150F2D024B42B76005E599D /* MathParser in Frameworks */,
+				11429FC424D926670058E7A7 /* Purchases in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,6 +185,7 @@
 			children = (
 				1132EC7E249735CE0017628A /* Fluxura */,
 				1132EC7D249735CE0017628A /* Products */,
+				113FFBA524D93C6B00883C67 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -233,12 +241,21 @@
 			path = Keyboards;
 			sourceTree = "<group>";
 		};
+		113FFBA524D93C6B00883C67 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				113FFBA624D93C6B00883C67 /* StoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1171FA7B24AE21FB00C4F6BE /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				1171FA7424AE21F500C4F6BE /* PresetModel.swift */,
 				11924A43249B3B71009719D2 /* AppData.swift */,
 				11924A3F249A84A6009719D2 /* SettingsStore.swift */,
+				11429FC524D927180058E7A7 /* SubscriptionManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -294,6 +311,7 @@
 			name = Fluxura;
 			packageProductDependencies = (
 				1150F2CF24B42B76005E599D /* MathParser */,
+				11429FC324D926670058E7A7 /* Purchases */,
 			);
 			productName = Integra;
 			productReference = 1132EC7C249735CE0017628A /* Fluxura.app */;
@@ -325,6 +343,7 @@
 			mainGroup = 1132EC73249735CE0017628A;
 			packageReferences = (
 				1150F2CE24B42B76005E599D /* XCRemoteSwiftPackageReference "DDMathParser" */,
+				11429FC224D926670058E7A7 /* XCRemoteSwiftPackageReference "purchases-ios" */,
 			);
 			productRefGroup = 1132EC7D249735CE0017628A /* Products */;
 			projectDirPath = "";
@@ -384,6 +403,7 @@
 				11D2D4B424A5038300D1E6FA /* Splashscreen.swift in Sources */,
 				1137797B24C70FC100D4A09C /* EquationView.swift in Sources */,
 				11FD5538249A41CA00D775D8 /* BottomSheetView.swift in Sources */,
+				11429FC624D927180058E7A7 /* SubscriptionManager.swift in Sources */,
 				1132EC94249735E10017628A /* KeyboardView.swift in Sources */,
 				1146694F249B90C4008B7812 /* EntryViews.swift in Sources */,
 				11F00C0424AE46F70048A7EE /* Tags.swift in Sources */,
@@ -537,6 +557,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Fluxura/Preview Content\"";
 				DEVELOPMENT_TEAM = 7N3FSBSYL9;
 				ENABLE_PREVIEWS = YES;
@@ -557,6 +578,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Fluxura/Preview Content\"";
 				DEVELOPMENT_TEAM = 7N3FSBSYL9;
 				ENABLE_PREVIEWS = YES;
@@ -596,6 +618,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		11429FC224D926670058E7A7 /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.5.2;
+			};
+		};
 		1150F2CE24B42B76005E599D /* XCRemoteSwiftPackageReference "DDMathParser" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/davedelong/DDMathParser.git";
@@ -607,6 +637,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		11429FC324D926670058E7A7 /* Purchases */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 11429FC224D926670058E7A7 /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = Purchases;
+		};
 		1150F2CF24B42B76005E599D /* MathParser */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1150F2CE24B42B76005E599D /* XCRemoteSwiftPackageReference "DDMathParser" */;

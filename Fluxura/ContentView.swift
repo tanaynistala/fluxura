@@ -14,6 +14,7 @@ struct ContentView: View {
     @Environment(\.accessibilityReduceMotion) var reduceMotion
 
     @State var settingsShown = false
+    @State var proPreviewShown = false
     @State var configShown = true
     let vars = ["x", "y", "z"]
     /// Code to call the Runge-Kutta solver
@@ -151,8 +152,10 @@ struct ContentView: View {
                 Section {
                     ScrollView(.horizontal, showsIndicators: false) {
                         EquationView()
+                        .padding()
                         .environmentObject(self.data)
                     }
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
 
                 Section(header: HStack {
@@ -222,20 +225,21 @@ struct ContentView: View {
                     .buttonStyle(IconButtonStyle())
                     .accessibility(label: Text("Configuration"))
                     
-                    NavigationLink(
-                        destination:
-                            PresetsView()
-                                .environmentObject(PresetData())
-                                .navigationBarTitle("Presets")
-                                .navigationBarBackButtonHidden(false),
-                        isActive: self.$data.presetsShown) {
-                            Image(systemName: "square.stack.3d.down.right\(self.data.presetsShown ? ".fill" : "")")
-//                                .imageScale(.large)
-                                .font(.headline)
-                                .frame(width: 24, height: 24)
+                    if UserDefaults.standard.bool(forKey: "pro") {
+                        NavigationLink(
+                            destination:
+                                PresetsView()
+                                    .environmentObject(PresetData())
+                                    .navigationBarTitle("Presets"),
+                            isActive: self.$data.presetsShown) {
+                                Image(systemName: "square.stack.3d.down.right\(self.data.presetsShown ? ".fill" : "")")
+    //                                .imageScale(.large)
+                                    .font(.headline)
+                                    .frame(width: 24, height: 24)
+                        }
+                        .buttonStyle(IconButtonStyle())
+                        .accessibility(label: Text("Presets"))
                     }
-                    .buttonStyle(IconButtonStyle())
-                    .accessibility(label: Text("Presets"))
                     
                     Button(action: {
                         self.settingsShown.toggle()

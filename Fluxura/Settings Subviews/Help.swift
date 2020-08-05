@@ -104,9 +104,8 @@ struct Card<Content: View>: View {
     var body: some View {
         content
             .padding()
-            .background(colorScheme == .dark ? Color(.systemGray6) : Color.white)
+            .background(Color(.systemGray5))
             .cornerRadius(16)
-            .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.2), radius: 5, y: 2)
     }
 }
 

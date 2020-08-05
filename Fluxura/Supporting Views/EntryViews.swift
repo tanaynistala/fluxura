@@ -20,7 +20,6 @@ struct EntryView: View {
                     target: target,
                     isActive: [target.type, target.index] == self.data.activeInput
                 ).environmentObject(self.data)
-                .animation(nil)
                 
 //                if target.value.count > 0 {
 //                    ClearButton(
@@ -28,6 +27,7 @@ struct EntryView: View {
 //                    )
 //                }
             }
+            .animation(nil)
             .listRowBackground(
                 Group {
                     [target.type, target.index] == self.data.activeInput ? (
@@ -107,3 +107,14 @@ struct EntryView: View {
 //        }
 //    }
 //}
+
+struct EntryViews_Previews: PreviewProvider {
+    static var previews: some View {
+        Form {
+            Section {
+                EntryView(type: 0)
+                    .environmentObject(AppData())
+            }
+        }
+    }
+}
