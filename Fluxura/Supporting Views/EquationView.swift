@@ -55,7 +55,7 @@ struct EquationRHS: View {
     let letters = (97...131).map({Character(UnicodeScalar($0))})
     
     var body: some View {
-        ForEach((1..<self.data.inputs[1].count).reversed(), id: \.self) { input in
+        ForEach((1..<self.data.inputs[self.data.loadedPreset==nil ? 1 : 2].count).reversed(), id: \.self) { input in
             Group {
                 if input != self.data.inputs[2].count {
                     Text(" + ")

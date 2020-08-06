@@ -63,11 +63,6 @@ struct AppView: View {
                 Color(UIColor.systemGroupedBackground)
                     .edgesIgnoringSafeArea(.all)
             )
-            .onAppear{
-                UserDefaults.standard.set(false, forKey: "pro")
-                UserDefaults.standard.set(false, forKey: "didLaunchBefore")
-                UserDefaults.standard.set(false, forKey: "didShowHint")
-            }
 //            .sheet(isPresented: self.$data.onboarding) {
 //                        Splashscreen()
 //                        .environmentObject(self.data)

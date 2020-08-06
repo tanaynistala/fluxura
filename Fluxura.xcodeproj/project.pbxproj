@@ -19,6 +19,8 @@
 		11116E6124A0467F00CDACF9 /* TwilightMonochrome.png in Resources */ = {isa = PBXBuildFile; fileRef = 11116E5724A0467F00CDACF9 /* TwilightMonochrome.png */; };
 		11116E6224A0467F00CDACF9 /* NetworkLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 11116E5824A0467F00CDACF9 /* NetworkLight.png */; };
 		11116E6324A0467F00CDACF9 /* SineDark.png in Resources */ = {isa = PBXBuildFile; fileRef = 11116E5924A0467F00CDACF9 /* SineDark.png */; };
+		111175DE24DC38F200C2FD9F /* HarmonicMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111175DD24DC38F200C2FD9F /* HarmonicMotion.swift */; };
+		111175E024DC3A3900C2FD9F /* LorenzSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111175DF24DC3A3900C2FD9F /* LorenzSystem.swift */; };
 		11164E7924BA0FBC00FD6B8B /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11164E7824BA0FBC00FD6B8B /* Presets.swift */; };
 		111DE42624A49CE5001A0964 /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111DE42524A49CE4001A0964 /* Help.swift */; };
 		11214C1C24A476F900AEADD5 /* PrivacyPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11214C1B24A476F900AEADD5 /* PrivacyPolicy.swift */; };
@@ -40,11 +42,13 @@
 		114DA6C524C5BFE600A15017 /* InputViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DA6C424C5BFE600A15017 /* InputViews.swift */; };
 		1150F2D024B42B76005E599D /* MathParser in Frameworks */ = {isa = PBXBuildFile; productRef = 1150F2CF24B42B76005E599D /* MathParser */; };
 		11527BAA24986E2200263B83 /* Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11527BA924986E2200263B83 /* Standard.swift */; };
-		115851C024B7589700B48C5C /* Pendulum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115851BF24B7589700B48C5C /* Pendulum.swift */; };
+		115851C024B7589700B48C5C /* SAM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115851BF24B7589700B48C5C /* SAM.swift */; };
 		115851C224B758BC00B48C5C /* Lotka-Volterra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115851C124B758BC00B48C5C /* Lotka-Volterra.swift */; };
 		115851C424B77A6D00B48C5C /* TimeParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115851C324B77A6D00B48C5C /* TimeParameters.swift */; };
 		1171FA7824AE21F500C4F6BE /* PresetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1171FA7424AE21F500C4F6BE /* PresetModel.swift */; };
 		1171FA7924AE21F500C4F6BE /* presetData.json in Resources */ = {isa = PBXBuildFile; fileRef = 1171FA7524AE21F500C4F6BE /* presetData.json */; };
+		118C282B24DAD50C00A33CDC /* DoublePendulum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118C282A24DAD50C00A33CDC /* DoublePendulum.swift */; };
+		118C282D24DADE2100A33CDC /* PresetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118C282C24DADE2100A33CDC /* PresetEntryView.swift */; };
 		11924A3C249A7848009719D2 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11924A3B249A7848009719D2 /* AppView.swift */; };
 		11924A3E249A8453009719D2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11924A3D249A8453009719D2 /* SettingsView.swift */; };
 		11924A40249A84A6009719D2 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11924A3F249A84A6009719D2 /* SettingsStore.swift */; };
@@ -57,6 +61,8 @@
 		11BA57FF24C7F15500B69C39 /* ODE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BA57FE24C7F15500B69C39 /* ODE.swift */; };
 		11C27D7D24AA44F60030FD0B /* PresetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C27D7C24AA44F60030FD0B /* PresetsView.swift */; };
 		11D2D4B424A5038300D1E6FA /* Splashscreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D2D4B324A5038300D1E6FA /* Splashscreen.swift */; };
+		11DC900924DC1829002A8AF0 /* RateEquation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DC900824DC1829002A8AF0 /* RateEquation.swift */; };
+		11DC900B24DC1A80002A8AF0 /* FluidResistance3D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DC900A24DC1A80002A8AF0 /* FluidResistance3D.swift */; };
 		11F00C0424AE46F70048A7EE /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F00C0324AE46F70048A7EE /* Tags.swift */; };
 		11F00C0624AE47080048A7EE /* SubjectPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F00C0524AE47080048A7EE /* SubjectPicker.swift */; };
 		11F00C0824AE47160048A7EE /* PresetDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F00C0724AE47160048A7EE /* PresetDetailView.swift */; };
@@ -77,6 +83,8 @@
 		11116E5724A0467F00CDACF9 /* TwilightMonochrome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwilightMonochrome.png; sourceTree = "<group>"; };
 		11116E5824A0467F00CDACF9 /* NetworkLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NetworkLight.png; sourceTree = "<group>"; };
 		11116E5924A0467F00CDACF9 /* SineDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SineDark.png; sourceTree = "<group>"; };
+		111175DD24DC38F200C2FD9F /* HarmonicMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmonicMotion.swift; sourceTree = "<group>"; };
+		111175DF24DC3A3900C2FD9F /* LorenzSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LorenzSystem.swift; sourceTree = "<group>"; };
 		11164E7824BA0FBC00FD6B8B /* Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
 		111DE42524A49CE4001A0964 /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
 		11214C1B24A476F900AEADD5 /* PrivacyPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicy.swift; sourceTree = "<group>"; };
@@ -98,11 +106,13 @@
 		114B0E2124D11C2900DE0859 /* TipJarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJarView.swift; sourceTree = "<group>"; };
 		114DA6C424C5BFE600A15017 /* InputViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViews.swift; sourceTree = "<group>"; };
 		11527BA924986E2200263B83 /* Standard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standard.swift; sourceTree = "<group>"; };
-		115851BF24B7589700B48C5C /* Pendulum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pendulum.swift; sourceTree = "<group>"; };
+		115851BF24B7589700B48C5C /* SAM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAM.swift; sourceTree = "<group>"; };
 		115851C124B758BC00B48C5C /* Lotka-Volterra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lotka-Volterra.swift"; sourceTree = "<group>"; };
 		115851C324B77A6D00B48C5C /* TimeParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeParameters.swift; sourceTree = "<group>"; };
 		1171FA7424AE21F500C4F6BE /* PresetModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetModel.swift; sourceTree = "<group>"; };
 		1171FA7524AE21F500C4F6BE /* presetData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = presetData.json; sourceTree = "<group>"; };
+		118C282A24DAD50C00A33CDC /* DoublePendulum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoublePendulum.swift; sourceTree = "<group>"; };
+		118C282C24DADE2100A33CDC /* PresetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetEntryView.swift; sourceTree = "<group>"; };
 		11924A3B249A7848009719D2 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		11924A3D249A8453009719D2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		11924A3F249A84A6009719D2 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
@@ -115,6 +125,8 @@
 		11BA57FE24C7F15500B69C39 /* ODE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ODE.swift; sourceTree = "<group>"; };
 		11C27D7C24AA44F60030FD0B /* PresetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetsView.swift; sourceTree = "<group>"; };
 		11D2D4B324A5038300D1E6FA /* Splashscreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splashscreen.swift; sourceTree = "<group>"; };
+		11DC900824DC1829002A8AF0 /* RateEquation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateEquation.swift; sourceTree = "<group>"; };
+		11DC900A24DC1A80002A8AF0 /* FluidResistance3D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FluidResistance3D.swift; sourceTree = "<group>"; };
 		11F00C0324AE46F70048A7EE /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
 		11F00C0524AE47080048A7EE /* SubjectPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectPicker.swift; sourceTree = "<group>"; };
 		11F00C0724AE47160048A7EE /* PresetDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetDetailView.swift; sourceTree = "<group>"; };
@@ -265,8 +277,13 @@
 			children = (
 				119AE162249880D500D84555 /* Solver.swift */,
 				11BA57FE24C7F15500B69C39 /* ODE.swift */,
+				11DC900824DC1829002A8AF0 /* RateEquation.swift */,
 				115851C124B758BC00B48C5C /* Lotka-Volterra.swift */,
-				115851BF24B7589700B48C5C /* Pendulum.swift */,
+				115851BF24B7589700B48C5C /* SAM.swift */,
+				118C282A24DAD50C00A33CDC /* DoublePendulum.swift */,
+				11DC900A24DC1A80002A8AF0 /* FluidResistance3D.swift */,
+				111175DF24DC3A3900C2FD9F /* LorenzSystem.swift */,
+				111175DD24DC38F200C2FD9F /* HarmonicMotion.swift */,
 			);
 			path = Algorithms;
 			sourceTree = "<group>";
@@ -287,6 +304,7 @@
 				11F00C0324AE46F70048A7EE /* Tags.swift */,
 				11F00C0524AE47080048A7EE /* SubjectPicker.swift */,
 				11F00C0724AE47160048A7EE /* PresetDetailView.swift */,
+				118C282C24DADE2100A33CDC /* PresetEntryView.swift */,
 				115851C324B77A6D00B48C5C /* TimeParameters.swift */,
 				11F9BDC424AF7B7800859CE3 /* PresetRow.swift */,
 			);
@@ -383,13 +401,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				118C282D24DADE2100A33CDC /* PresetEntryView.swift in Sources */,
 				11214C1E24A478A600AEADD5 /* TermsOfUse.swift in Sources */,
 				119EA0F024A7ACAB00838C2E /* CoefficientsList.swift in Sources */,
 				115851C424B77A6D00B48C5C /* TimeParameters.swift in Sources */,
 				119F9F5024AE870C00BD26CA /* MailView.swift in Sources */,
 				11164E7924BA0FBC00FD6B8B /* Presets.swift in Sources */,
 				11116E4D249F11D500CDACF9 /* AppIconsView.swift in Sources */,
-				115851C024B7589700B48C5C /* Pendulum.swift in Sources */,
+				115851C024B7589700B48C5C /* SAM.swift in Sources */,
 				11924A42249AFDED009719D2 /* Buttons.swift in Sources */,
 				115851C224B758BC00B48C5C /* Lotka-Volterra.swift in Sources */,
 				11527BAA24986E2200263B83 /* Standard.swift in Sources */,
@@ -398,6 +417,7 @@
 				114B0E2224D11C2900DE0859 /* TipJarView.swift in Sources */,
 				11BA57FF24C7F15500B69C39 /* ODE.swift in Sources */,
 				1132EC80249735CE0017628A /* AppDelegate.swift in Sources */,
+				111175DE24DC38F200C2FD9F /* HarmonicMotion.swift in Sources */,
 				11924A44249B3B71009719D2 /* AppData.swift in Sources */,
 				1171FA7824AE21F500C4F6BE /* PresetModel.swift in Sources */,
 				11D2D4B424A5038300D1E6FA /* Splashscreen.swift in Sources */,
@@ -414,11 +434,15 @@
 				119AE163249880D500D84555 /* Solver.swift in Sources */,
 				11924A3C249A7848009719D2 /* AppView.swift in Sources */,
 				1132EC82249735CE0017628A /* SceneDelegate.swift in Sources */,
+				11DC900B24DC1A80002A8AF0 /* FluidResistance3D.swift in Sources */,
+				111175E024DC3A3900C2FD9F /* LorenzSystem.swift in Sources */,
 				11924A40249A84A6009719D2 /* SettingsStore.swift in Sources */,
+				118C282B24DAD50C00A33CDC /* DoublePendulum.swift in Sources */,
 				1132EC84249735CE0017628A /* ContentView.swift in Sources */,
 				11F00C0624AE47080048A7EE /* SubjectPicker.swift in Sources */,
 				11214C1C24A476F900AEADD5 /* PrivacyPolicy.swift in Sources */,
 				1108914E249EEAD2003CED17 /* ProPreview.swift in Sources */,
+				11DC900924DC1829002A8AF0 /* RateEquation.swift in Sources */,
 				11F9BDC524AF7B7800859CE3 /* PresetRow.swift in Sources */,
 				11924A3E249A8453009719D2 /* SettingsView.swift in Sources */,
 			);

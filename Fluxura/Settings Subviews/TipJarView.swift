@@ -115,7 +115,7 @@ struct TipJar: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("If you feel like going above and beyond to support the app and the devs behind it, we'd greatly appreciate extra tips.")
+            Text("If you'd like to help support the app and us (the devs) even more, we'd greatly appreciate any extra tips!")
             Text("To be clear, these don't unlock any extra functionality.")
                 .foregroundColor(Color(.secondaryLabel))
             
@@ -131,17 +131,9 @@ struct TipJar: View {
 
 struct TipJar_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
         NavigationView {
             TipJar()
-                .environmentObject(SubscriptionManager.shared)
-        }
-        .environment(\.colorScheme, .dark)
-            
-            NavigationView {
-                TipJar()
-                .environmentObject(SubscriptionManager.shared)
-            }
+            .environmentObject(SubscriptionManager.shared)
         }
     }
 }

@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-class ODE: Solver {
+extension Solver {
     func ODEModel1(t: Double, x: [Double], params: [Double]) -> [Double] {
         let xDot: [Double] = [params[0]*x[0] + params[1]]
         return xDot

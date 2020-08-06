@@ -23,31 +23,29 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             Form {
-                if self.configShown {
-                    Section(
-                        header: HStack {
-                            HStack {
-                                Image(systemName: "slider.horizontal.3")
-                                Text("Configuration")
-                            }.font(.headline)
-                            Spacer()
-                            ResetFieldsView().environmentObject(self.data).padding(4)
-                        }
-//                        , footer: Text("Nonlinear differential equations are not supported yet.")
-                    ) {
-                        
+                Section(
+                    header: HStack {
                         HStack {
-                            Text("Type")
-                            Spacer()
-                            Picker(selection: self.$data.type, label: Text("Type")) {
-                                Text("Ordinary").tag(1)
-                                Text("Partial").tag(2)
-                            }
-                            .pickerStyle(SegmentedPickerStyle())
-                            .fixedSize(horizontal: true, vertical: true)
-                            .animation(nil)
-                        }
-                        
+                            Image(systemName: "slider.horizontal.3")
+                            Text("Configuration")
+                        }.font(.headline)
+                        Spacer()
+                        ResetFieldsView().environmentObject(self.data).padding(4)
+                    }
+                ) {
+                    if self.configShown && self.data.loadedPreset == nil {
+                    
+//                        HStack {
+//                            Text("Type")
+//                            Spacer()
+//                            Picker(selection: self.$data.type, label: Text("Type")) {
+//                                Text("Ordinary").tag(1)
+//                                Text("Partial").tag(2)
+//                            }
+//                            .pickerStyle(SegmentedPickerStyle())
+//                            .fixedSize(horizontal: true, vertical: true)
+//                        }
+                    
                         HStack {
                             Image(systemName: "\(self.data.order).square")
                                 .accessibility(hidden: true)
@@ -59,7 +57,6 @@ struct ContentView: View {
                                     UISelectionFeedbackGenerator().selectionChanged()
                                 }
                             })
-                            .animation(nil)
                         }
                         
                         if self.data.type == 2 {
@@ -87,45 +84,41 @@ struct ContentView: View {
                                         UISelectionFeedbackGenerator().selectionChanged()
                                     }
                                 })
-                                .animation(nil)
                             }
-                        }
-                        
-//                        Toggle("Linear", isOn: self.$data.isLinear)
-//                            .disabled(true)
-                        
-                        if self.data.showMenu {
-                            HStack {
-                                Text("Angles")
-                                Spacer()
-                                Picker(selection: self.$data.angleType, label: Text("Angles")) {
-                                    Text("Degrees").tag(1)
-                                    Text("Radians").tag(2)
-                                }
-                                .pickerStyle(SegmentedPickerStyle())
-                                .fixedSize(horizontal: true, vertical: true)
-                                .animation(nil)
-                            }
-                            .padding(.vertical, 4)
-
-                            Stepper(value: self.$data.precision, in: 0...10, onEditingChanged: {_ in
-                                if UserDefaults.standard.bool(forKey: "haptics_enabled") {
-                                    UISelectionFeedbackGenerator().selectionChanged()
-                                }
-                            }) {
-                                HStack {
-                                    Image(systemName: "\(self.data.precision).square")
-                                    .accessibility(hidden: true)
-                                    .imageScale(.large)
-                                    .font(.headline)
-                                    Text("Precision")
-                                }
-                                .padding(.vertical, 4)
-                            }
-                            .animation(nil)
                         }
                     }
-                    .transition(.slide)
+                    
+//                        Toggle("Linear", isOn: self.$data.isLinear)
+//                            .disabled(true)
+                    
+                    if self.data.showMenu {
+                        HStack {
+                            Text("Angles")
+                            Spacer()
+                            Picker(selection: self.$data.angleType, label: Text("Angles")) {
+                                Text("Degrees").tag(1)
+                                Text("Radians").tag(2)
+                            }
+                            .pickerStyle(SegmentedPickerStyle())
+                            .fixedSize(horizontal: true, vertical: true)
+                        }
+                        .padding(.vertical, 4)
+
+                        Stepper(value: self.$data.precision, in: 0...10, onEditingChanged: {_ in
+                            if UserDefaults.standard.bool(forKey: "haptics_enabled") {
+                                UISelectionFeedbackGenerator().selectionChanged()
+                            }
+                        }) {
+                            HStack {
+                                Image(systemName: "\(self.data.precision).square")
+                                .accessibility(hidden: true)
+                                .imageScale(.large)
+                                .font(.headline)
+                                Text("Precision")
+                            }
+                            .padding(.vertical, 4)
+                        }
+                    }
                 }
                 
                 
@@ -149,20 +142,25 @@ struct ContentView: View {
                         .environmentObject(self.data)
                 }
                 
-                Section {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        EquationView()
-                        .padding()
-                        .environmentObject(self.data)
+                if self.data.loadedPreset == nil {
+                    Section {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            if self.data.loadedPreset == nil {
+                                EquationView()
+                                .padding()
+                                .environmentObject(self.data)
+                                
+                            }
+                        }
+                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                     }
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 }
-
+                
                 Section(header: HStack {
                     HStack {
-                        Image(systemName: "\(self.data.inputCount1).square")
+                        Image(systemName: "\(self.data.inputs[1].count).square")
                             .imageScale(.large)
-                        Text("Coefficient\(self.data.inputCount1 == 1 ? "" : "s")")
+                        Text("Parameter\(self.data.inputs[1].count == 1 ? "" : "s")")
                     }
                     .font(.headline)
                     Spacer()
@@ -174,9 +172,9 @@ struct ContentView: View {
 
                 Section(header: HStack {
                     HStack {
-                        Image(systemName: "\(self.data.inputCount2).square")
+                        Image(systemName: "\(self.data.inputs[2].count).square")
                             .imageScale(.large)
-                        Text("Initial Condition\(self.data.inputCount2 == 1 ? "" : "s")")
+                        Text("Initial Condition\(self.data.inputs[2].count == 1 ? "" : "s")")
                     }
                     .font(.headline)
                     Spacer()
@@ -211,35 +209,37 @@ struct ContentView: View {
             .navigationBarTitle("Fluxura")
             .navigationBarItems(trailing:
                 HStack {
-                    Button(action: {
-                        self.configShown.toggle()
-                        if UserDefaults.standard.bool(forKey: "haptics_enabled") {
-                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                    if self.data.loadedPreset == nil {
+                        Button(action: {
+                            self.configShown.toggle()
+                            if UserDefaults.standard.bool(forKey: "haptics_enabled") {
+                                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                            }
+                        }) {
+                            Image(systemName: "dial\(self.configShown ? ".fill" : "")")
+                                .font(.headline)
+                                .frame(width: 24, height: 24)
                         }
-                    }) {
-                        Image(systemName: "dial\(self.configShown ? ".fill" : "")")
-//                            .imageScale(.large)
-                            .font(.headline)
-                            .frame(width: 24, height: 24)
+                        .buttonStyle(IconButtonStyle())
+                        .accessibility(label: Text("Configuration"))
                     }
-                    .buttonStyle(IconButtonStyle())
-                    .accessibility(label: Text("Configuration"))
                     
-                    if UserDefaults.standard.bool(forKey: "pro") {
+                    /// Uncomment this for the v1.1 release with presets
+                    
+//                    if UserDefaults.standard.bool(forKey: "pro") {
                         NavigationLink(
                             destination:
                                 PresetsView()
-                                    .environmentObject(PresetData())
+                                    .environmentObject(self.data)
                                     .navigationBarTitle("Presets"),
                             isActive: self.$data.presetsShown) {
                                 Image(systemName: "square.stack.3d.down.right\(self.data.presetsShown ? ".fill" : "")")
-    //                                .imageScale(.large)
                                     .font(.headline)
                                     .frame(width: 24, height: 24)
                         }
                         .buttonStyle(IconButtonStyle())
                         .accessibility(label: Text("Presets"))
-                    }
+//                    }
                     
                     Button(action: {
                         self.settingsShown.toggle()
@@ -248,7 +248,6 @@ struct ContentView: View {
                         }
                     }) {
                         Image(systemName: "gear")
-//                            .imageScale(.large)
                             .font(.headline)
                             .frame(width: 24, height: 24)
                             .rotationEffect(.degrees(self.reduceMotion || UserDefaults.standard.bool(forKey: "reduce_motion") ? 0 : (self.settingsShown ? 180 : 0)))

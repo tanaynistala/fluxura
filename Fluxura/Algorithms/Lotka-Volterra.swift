@@ -8,8 +8,8 @@
 
 import Foundation
 
-class LotkaVolterra: Solver {
-    func LotkaVolteraModel(t: Double, x: [Double], params: [Double]) -> [Double] {
+extension Solver {
+    func LotkaVoltera(t: Double, x: [Double], params: [Double]) -> [Double] {
         let alpha = params[0]
         let beta = params[1]
         let gamma = params[2]

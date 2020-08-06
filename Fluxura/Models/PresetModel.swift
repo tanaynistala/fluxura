@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 struct Preset {
-    var id: Int
+    var id = UUID()
     var name: String
     var subject: Subject
     var order: Int
@@ -18,9 +18,11 @@ struct Preset {
     var url: String
     
     // Remove these if using JSON parsing
-    var model: Solver
+    var model: (_ t: Double, _ x: [Double], _ params: [Double]) -> [Double]
     var parameters: [String]
-    var coefficients: [String]
+    var initial: [String]
+    
+    var inputDescription: [[String]]
 
     enum Subject: String, CaseIterable, Codable, Hashable {
         case all = "All"
@@ -39,10 +41,5 @@ struct Preset {
         case linear = "Linear"
         case nonlinear = "Nonlinear"
     }
-}
-
-final class PresetData: ObservableObject {
-    @Published var selectedField = "All"
-    @Published var presets = Presets().presets
 }
 

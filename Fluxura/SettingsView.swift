@@ -8,6 +8,7 @@
 
 import SwiftUI
 import MessageUI
+import StoreKit
 
 struct SettingsView: View {
     @EnvironmentObject var settings: SettingsStore
@@ -488,7 +489,7 @@ struct SettingsView: View {
                         .buttonStyle(PlainButtonStyle())
                         
                         Button(action: {
-                            UIApplication.shared.open(URL(string: "App Store Link")!)
+                            SKStoreReviewController.requestReview()
                         }) {
                             HStack {
                                 Image(systemName: "heart")

@@ -71,7 +71,7 @@ struct Placeholder: View {
 struct InputView: View {
     @EnvironmentObject var data: AppData
     @Environment(\.accessibilityReduceTransparency) var reduceTransparency
-    @State var target: Input
+    var target: Input
     @State var isActive: Bool = false
     let letters = (97...131).map({Character(UnicodeScalar($0))})
     
@@ -79,29 +79,41 @@ struct InputView: View {
         HStack {
             Group {
                 if target.type == 1 {
-                    Text("\(String(letters[target.index])) = ")
-                    .italic()
-                } else if target.type == 2 {
-                    if self.data.type == 1 {
-                        Group {
-                            Text("f ").italic()
-                                +
-                            Text("(\(target.index))")
+                    if self.data.loadedPreset == nil {
+                        Text("\(String(letters[target.index])) = ")
                                 .italic()
-                                .font(Font.system(.footnote, design: .serif))
-                                .baselineOffset(6.0)
+                    } else {
+                        Text("\(self.data.loadedPreset?.parameters[target.index] ?? "") = ")
+                    }
+                } else if target.type == 2 {
+                    if self.data.loadedPreset == nil {
+                        if self.data.type == 1 {
+                            Group {
+                                Text("f ").italic()
+                                    +
+                                Text("(\(target.index))")
+                                    .italic()
+                                    .font(Font.system(.footnote, design: .serif))
+                                    .baselineOffset(6.0)
+                                +
+                                Text(" = ")
+                                    .italic()
+                            }
+                            .font(Font.system(.body, design: .serif))
+                        } else {
+                            CoefficientsList().list[self.data.vars - 1][target.index]
+                                .font(Font.system(.body, design: .serif))
+                                .italic()
                             +
                             Text(" = ")
-                                .italic()
-                        }
-                        .font(Font.system(.body, design: .serif))
-                    } else {
-                        CoefficientsList().list[self.data.vars - 1][target.index]
-                            .font(Font.system(.body, design: .serif))
                             .italic()
-                        +
-                        Text(" = ")
-                        .italic()
+                        }
+                    } else {
+                        if target.index < self.data.inputs[2].count {
+                            Text("\(self.data.loadedPreset?.initial[target.index] ?? "") = ")
+                        } else {
+                            /*@START_MENU_TOKEN@*/EmptyView()/*@END_MENU_TOKEN@*/
+                        }
                     }
                 } else {
                     Text("\(target.index == 0 ? "Initial " : (target.index == 1 ? "Final " : ""))Time\(target.index == 2 ? " Interval" : ""): ")

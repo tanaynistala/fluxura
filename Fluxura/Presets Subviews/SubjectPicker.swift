@@ -47,7 +47,7 @@ struct SubjectPickerItem: View {
 }
 
 struct SubjectPicker: View {
-    @EnvironmentObject var data: PresetData
+    @EnvironmentObject var data: AppData
 
     var body: some View {
         HStack {
@@ -75,6 +75,6 @@ struct SubjectPicker: View {
 struct SubjectPicker_Previews: PreviewProvider {
     static var previews: some View {
         SubjectPicker()
-        .environmentObject(PresetData())
+        .environmentObject(AppData())
     }
 }

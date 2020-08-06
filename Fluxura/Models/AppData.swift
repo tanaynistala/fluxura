@@ -17,11 +17,15 @@ class AppData: ObservableObject {
         Input(type: 0, index: 2, value: "", cursorLocation: 0)
     ], [], []]
     
+    @Published var loadedPreset: Preset? = nil { didSet { refreshEntries() } }
+    @Published var selectedField = "All"
+    @Published var presets = Presets().presets
+    
     @Published var answer = [0.0]
     
     // Data Entry
-    @Published var inputCount1 = 1
-    @Published var inputCount2 = 1
+    private var inputCount1 = 1
+    private var inputCount2 = 1
     @Published var activeInput = [0, 0] {
         didSet {
             if UserDefaults.standard.bool(forKey: "haptics_enabled") {
@@ -43,7 +47,6 @@ class AppData: ObservableObject {
     @Published var reduceColors = UserDefaults.standard.bool(forKey: "reduce_colors")
     @Published var appTint = UserDefaults.standard.string(forKey: "app_tint")
     @Published var onboarding: Bool
-    
     
     let coefficientCount: [[Int]] = [
         [1, 2, 3, 4],
@@ -104,28 +107,37 @@ class AppData: ObservableObject {
     }
     
     func refreshEntries() {
-        if type == 1 {
-            inputCount2 = order
-            inputCount1 = order+1
+        
+        if loadedPreset != nil {
+            inputCount2 = loadedPreset?.initial.count ?? 1 // Initial Conditions
+            inputCount1 = loadedPreset?.parameters.count ?? 1 // Parameters
+            
+            inputs[1].removeAll()
+            inputs[2].removeAll()
         } else {
-            inputCount2 = coefficientCount[vars-1][order-1]
-            inputCount1 = inputCount2 + 1
+            if type == 1 {
+                inputCount2 = order
+                inputCount1 = order+1
+            } else {
+                inputCount2 = coefficientCount[vars-1][order-1]
+                inputCount1 = inputCount2 + 1
+            }
         }
 
-        while inputCount1 > inputs[1].count {
-            inputs[1].append(Input(type: 1, index: inputs[1].count, value: "", cursorLocation: 0))
-        }
-        
         while inputCount1 < inputs[1].count {
             inputs[1].removeLast()
         }
         
-        while inputCount2 > inputs[2].count {
-            inputs[2].append(Input(type: 2, index: inputs[2].count, value: "", cursorLocation: 0))
-        }
-        
         while inputCount2 < inputs[2].count {
             inputs[2].removeLast()
+        }
+        
+        while inputCount1 > inputs[1].count {
+            inputs[1].append(Input(type: 1, index: inputs[1].count, value: "", cursorLocation: 0))
+        }
+                
+        while inputCount2 > inputs[2].count {
+            inputs[2].append(Input(type: 2, index: inputs[2].count, value: "", cursorLocation: 0))
         }
     }
     
@@ -208,15 +220,20 @@ class AppData: ObservableObject {
         }
         
         var model: (_ t: Double, _ x: [Double], _ params: [Double]) -> [Double]
-        switch order {
-        case 1:
-            model = ODE().ODEModel1(t:x:params:)
-        case 2:
-            model = ODE().ODEModel2(t:x:params:)
-        case 3:
-            model = ODE().ODEModel3(t:x:params:)
-        default:
-            model = ODE().ODEModel1(t:x:params:)
+        
+        if loadedPreset == nil {
+            switch order {
+            case 1:
+                model = Solver().ODEModel1(t:x:params:)
+            case 2:
+                model = Solver().ODEModel2(t:x:params:)
+            case 3:
+                model = Solver().ODEModel3(t:x:params:)
+            default:
+                model = Solver().ODEModel1(t:x:params:)
+            }
+        } else {
+            model = loadedPreset?.model ?? Solver().ODEModel1(t:x:params:)
         }
         
         let output = Solver().RungeKutta(model: model, x0: x0, t: t, params: params)

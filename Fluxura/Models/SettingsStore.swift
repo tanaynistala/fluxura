@@ -135,22 +135,70 @@ final class SettingsStore: ObservableObject {
     }
     
     enum AppIcon: String, CaseIterable {
-        case SineLight = "Sine Light"
-        case SineDark = "Sine Dark"
-        case LogLight = "Log Light"
-        case LogDark = "Log Dark"
-        case TwilightMonochrome = "Twilight Monochrome"
-        case SunriseMonochrome = "Sunrise Monochrome"
-        case Twilight
-        case Sunrise
-        case NetworkLight = "Network Light"
-        case NetworkDark = "Network Dark"
+//        case SineLight = "Sine Light"
+//        case SineDark = "Sine Dark"
+//        case LogLight = "Log Light"
+//        case LogDark = "Log Dark"
+//        case TwilightMonochrome = "Twilight Monochrome"
+//        case SunriseMonochrome = "Sunrise Monochrome"
+//        case Twilight
+//        case Sunrise
+//        case NetworkLight = "Network Light"
+//        case NetworkDark = "Network Dark"
+        
+        case rainbow = "Rainbow"
+        case twilight = "Twilight"
+        case gray = "Gray"
+        case blue = "Blue"
+        case teal = "Teal"
+        case green = "Green"
+        case yellow = "Yellow"
+        case orange = "Orange"
+        case red = "Red"
+        case pink = "Pink"
+        case purple = "Purple"
+        
+        case rainbowSplash = "Rainbow Splash"
+        case twilightSplash = "Twilight Splash"
+        case graySplash = "Gray Splash"
+        case blueSplash = "Blue Splash"
+        case tealSplash = "Teal Splash"
+        case greenSplash = "Green Splash"
+        case yellowSplash = "Yellow Splash"
+        case orangeSplash = "Orange Splash"
+        case redSplash = "Red Splash"
+        case pinkSplash = "Pink Splash"
+        case purpleSplash = "Purple Splash"
+        
+        case rainbowDark = "Rainbow Dark"
+        case twilightDark = "Twilight Dark"
+        case grayDark = "Gray Dark"
+        case blueDark = "Blue Dark"
+        case tealDark = "Teal Dark"
+        case greenDark = "Green Dark"
+        case yellowDark = "Yellow Dark"
+        case orangeDark = "Orange Dark"
+        case redDark = "Red Dark"
+        case pinkDark = "Pink Dark"
+        case purpleDark = "Purple Dark"
+        
+        case rainbowSplashDark = "Rainbow Splash Dark"
+        case twilightSplashDark = "Twilight Splash Dark"
+        case graySplashDark = "Gray Splash Dark"
+        case blueSplashDark = "Blue Splash Dark"
+        case tealSplashDark = "Teal Splash Dark"
+        case greenSplashDark = "Green Splash Dark"
+        case yellowSplashDark = "Yellow Splash Dark"
+        case orangeSplashDark = "Orange Splash Dark"
+        case redSplashDark = "Red Splash Dark"
+        case pinkSplashDark = "Pink Splash Dark"
+        case purpleSplashDark = "Purple Splash Dark"
     }
 
     var appIcon: AppIcon {
         get {
             return defaults.string(forKey: Keys.appIcon)
-            .flatMap { AppIcon(rawValue: $0) } ?? .SineLight
+            .flatMap { AppIcon(rawValue: $0) } ?? .twilight
         }
 
         set {

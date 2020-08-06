@@ -15,19 +15,11 @@ struct EntryView: View {
     
     var body: some View {
         ForEach(self.data.inputs[type], id: \.self) { target in
-            HStack {
-                InputView(
-                    target: target,
-                    isActive: [target.type, target.index] == self.data.activeInput
-                ).environmentObject(self.data)
-                
-//                if target.value.count > 0 {
-//                    ClearButton(
-//                        target: target
-//                    )
-//                }
-            }
-            .animation(nil)
+            InputView(
+                target: target,
+                isActive: [target.type, target.index] == self.data.activeInput
+            )
+            .environmentObject(self.data)
             .listRowBackground(
                 Group {
                     [target.type, target.index] == self.data.activeInput ? (
@@ -36,7 +28,7 @@ struct EntryView: View {
                         Color(self.data.appTint ?? "indigo").opacity(self.reduceTransparency ? 1 : 0.3)
                     ) : Color.clear
                 }
-                .animation(.spring())
+//                .animation(.spring())
             )
             .onAppear{
                 UITableView.appearance().separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)

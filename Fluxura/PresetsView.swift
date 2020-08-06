@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct PresetsView: View {
-    @EnvironmentObject var data: PresetData
+    @EnvironmentObject var data: AppData
     @State var showFilter: Bool = true
     
     var body: some View {
@@ -26,13 +26,47 @@ struct PresetsView: View {
             }
             
             Section {
+                HStack {
+                    if !UserDefaults.standard.bool(forKey: "reduce_colors") {
+                        Rectangle()
+                            .frame(width: 8)
+                            .foregroundColor(Color(.systemIndigo))
+                    }
+                    VStack(alignment: .leading) {
+                        Text("Generic")
+                            .font(.headline)
+                    }
+                    Spacer()
+                    Button(action: {self.data.loadedPreset = nil}) {
+                        Text("Load")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding(.vertical, 4)
+                            .padding(.horizontal, 12)
+                            .background(
+                                Capsule()
+                                    .foregroundColor(
+                                        UserDefaults.standard.bool(forKey: "reduce_colors") ?
+                                        Color.primary :
+                                        Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")
+                                    )
+                            )
+                    }
+                }
+                .listRowInsets(UserDefaults.standard.bool(forKey: "reduce_colors") ? nil : EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
+            }
+            
+            Section {
                 ForEach(0..<data.presets.count, id: \.self) { preset in
                     Group {
                         if self.data.selectedField == "All" ||
 //                        (self.data.selectedField == "Favorites" && preset.isFavorite) ||
                             (self.data.selectedField == self.data.presets[preset].subject.rawValue) {
                             VStack {
-                                NavigationLink(destination: PresetDetailView(preset: self.data.presets[preset])) {
+                                NavigationLink(destination:
+                                    PresetDetailView(preset: self.data.presets[preset])
+                                        .environmentObject(self.data)
+                                ) {
                                     PresetRow(preset: self.data.presets[preset])
                                 }
                             }
@@ -69,7 +103,7 @@ struct PresetsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             PresetsView()
-            .environmentObject(PresetData())
+            .environmentObject(AppData())
             .navigationBarTitle("Presets")
         }
     }
