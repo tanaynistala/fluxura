@@ -75,7 +75,7 @@ struct KeyboardView: View {
                         .imageScale(.large)
                         .font(.headline)
                         .frame(width: 44, height: 24)
-                        .foregroundColor(Color(UIColor.systemRed))
+                        .foregroundColor(Color(.systemRed))
                 }
                 .buttonStyle(IconButtonStyle())
                 .accessibility(label: Text("Delete"))
@@ -92,28 +92,21 @@ struct KeyboardView: View {
                         .font(.headline)
                         .frame(width: 44, height: 24)
                         .padding(4)
-                        .foregroundColor(
-//                            self.data.inputs.contains("") ? Color.gray :
-                            (self.data.reduceColors ? Color.black : Color.white)
-                        )
+                        .foregroundColor(self.data.reduceColors ? Color.black : Color.white)
                         .background(
                             RoundedRectangle(cornerRadius: 8, style: .continuous)
                         )
                 }
-//                .disabled(self.data.coefficients.contains(""))
                 .buttonStyle(KeyboardButtonStyle())
-                .foregroundColor(
-//                    self.data.coefficients.contains("") ? Color(UIColor.systemGray4) :
-                        (self.data.reduceColors ?
-                    Color(UIColor.systemGray4) :
-                        Color(self.data.appTint ?? "indigo"))
-                )
+                .foregroundColor(self.data.reduceColors ? Color(.systemGray4) : Color(self.data.appTint ?? "indigo"))
                 .animation(self.reduceMotion || UserDefaults.standard.bool(forKey: "reduce_motion") ? nil : .easeInOut)
                 .accessibility(label: Text("Calculate"))
             }
+            .offset(y: self.data.keyboardShown ? -8 : -16)
             
-//            Divider()
+            /// Nonlinear entry buttons
             
+            /*
             if !self.data.isLinear {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
@@ -131,30 +124,25 @@ struct KeyboardView: View {
                                 .foregroundColor(.primary)
                                 .background(
                                     RoundedRectangle(cornerRadius: 8, style: .continuous)
-                                        .foregroundColor(Color(UIColor.systemGray4))
+                                        .foregroundColor(Color(.systemGray4))
                                 )
                             }
                         }
                     }.padding(.horizontal)
                 }
             }
+            */
             
             Divider()
             
             if self.data.keyboardView == 1 {
-                Standard().environmentObject(self.data)
+                Standard().environmentObject(AppData.shared)
             } else if self.data.keyboardView == 2 {
-                Extended().environmentObject(self.data)
+                Extended().environmentObject(AppData.shared)
             }
         }
         .padding(.vertical)
         .padding(.bottom)
-//        .background(
-//            RoundedRectangle(cornerRadius: 16)
-//                .frame(width: UIScreen.main.bounds.size.width)
-//                .foregroundColor(Color(UIColor.systemGray6))
-//                .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.25), radius: 2, y: -2)
-//        )
     }
 }
 

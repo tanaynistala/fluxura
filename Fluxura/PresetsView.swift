@@ -10,20 +10,29 @@ import SwiftUI
 
 struct PresetsView: View {
     @EnvironmentObject var data: AppData
+    @Environment(\.presentationMode) var presentationMode
     @State var showFilter: Bool = true
     
     var body: some View {
         Form {
+            /*
             if showFilter {
-                Section(header: Text("Filters").font(.headline)) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Filters")
+                        .font(.headline)
+                        .padding([.leading, .top])
+                    
                     ScrollView(.horizontal, showsIndicators: false) {
                         SubjectPicker()
                             .padding()
-                            .environmentObject(self.data)
+                            .environmentObject(AppData.shared)
                     }
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                    .background(Color(.systemGroupedBackground))
+                    .cornerRadius(10)
                 }
             }
+             */
             
             Section {
                 HStack {
@@ -33,11 +42,14 @@ struct PresetsView: View {
                             .foregroundColor(Color(.systemIndigo))
                     }
                     VStack(alignment: .leading) {
-                        Text("Generic")
+                        Text("Generic ODE")
                             .font(.headline)
                     }
                     Spacer()
-                    Button(action: {self.data.loadedPreset = nil}) {
+                    Button(action: {
+                        self.data.loadedPreset = nil
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
                         Text("Load")
                             .font(.headline)
                             .foregroundColor(.white)
@@ -47,11 +59,13 @@ struct PresetsView: View {
                                 Capsule()
                                     .foregroundColor(
                                         UserDefaults.standard.bool(forKey: "reduce_colors") ?
-                                        Color.primary :
+                                            Color(.systemGray4) :
                                         Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")
                                     )
                             )
                     }
+                    .buttonStyle(BorderlessButtonStyle())
+                    .padding(.vertical)
                 }
                 .listRowInsets(UserDefaults.standard.bool(forKey: "reduce_colors") ? nil : EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
             }
@@ -60,14 +74,30 @@ struct PresetsView: View {
                 ForEach(0..<data.presets.count, id: \.self) { preset in
                     Group {
                         if self.data.selectedField == "All" ||
-//                        (self.data.selectedField == "Favorites" && preset.isFavorite) ||
                             (self.data.selectedField == self.data.presets[preset].subject.rawValue) {
                             VStack {
                                 NavigationLink(destination:
                                     PresetDetailView(preset: self.data.presets[preset])
-                                        .environmentObject(self.data)
+                                        .environmentObject(AppData.shared)
                                 ) {
                                     PresetRow(preset: self.data.presets[preset])
+                                        .environmentObject(AppData.shared)
+                                        .contextMenu {
+                                            Button(action: {
+                                                self.data.loadedPreset = self.data.presets[preset]
+                                                self.presentationMode.wrappedValue.dismiss()
+                                            }) {
+                                                Text("Load Preset")
+                                                Image(systemName: "rectangle.stack.badge.plus")
+                                            }
+
+                                            Button(action: {
+                                                UIApplication.shared.open(URL(string: self.data.presets[preset].url)!)
+                                            }) {
+                                                Text("Learn More")
+                                                Image(systemName: "link")
+                                            }
+                                        }
                                 }
                             }
                             .listRowInsets(UserDefaults.standard.bool(forKey: "reduce_colors") ? nil : EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
@@ -75,36 +105,54 @@ struct PresetsView: View {
                     }
                 }
             }
+            
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                Spacer(minLength: self.data.presetsShown ? 0 : (self.data.keyboardShown ? (self.data.keyboardView == 1 ? 324 : 264) : 48))
+                .listRowBackground(Color(.systemGroupedBackground))
+            }
         }
         .environment(\.horizontalSizeClass, .regular)
-        .onAppear{UITableView.appearance().separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 56, right: 0)}
+        .onAppear {
+            UITableView.appearance().separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
         .navigationBarItems(trailing:
-            Button(action: {
-                withAnimation(.spring()) {
-                    self.showFilter.toggle()
-                }
-            }) {
-                Image(systemName: "line.horizontal.3.decrease.circle\(self.showFilter ? ".fill" : "")")
-                    .imageScale(.large)
-                    .foregroundColor(
-                        UserDefaults.standard.bool(forKey: "reduce_colors") ?
-                        Color.primary :
-                        Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")
-                    )
-                    .font(.headline)
+            Image(systemName: "line.horizontal.3.decrease.circle")
+                .imageScale(.large)
+                .foregroundColor(
+                    UserDefaults.standard.bool(forKey: "reduce_colors") ?
+                    Color.primary :
+                    Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")
+                )
+                .font(.headline)
                 .frame(width: 24, height: 24)
-            }
-            .buttonStyle(IconButtonStyle())
+                .contextMenu {
+                    ForEach(Preset.Subject.allCases, id: \.self) { subject in
+                        Button(action: {
+                            self.data.selectedField = subject.rawValue
+                        }) {
+                            Text(subject.rawValue)
+                        }
+                    }
+                }
         )
     }
 }
 
 struct PresetsView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            PresetsView()
-            .environmentObject(AppData())
-            .navigationBarTitle("Presets")
+        Group {
+            NavigationView {
+                PresetsView()
+                .environmentObject(AppData())
+                .navigationBarTitle("Presets")
+            }
+            
+            NavigationView {
+                PresetsView()
+                .environmentObject(AppData())
+                .navigationBarTitle("Presets")
+            }
+            .environment(\.colorScheme, .dark)
         }
     }
 }

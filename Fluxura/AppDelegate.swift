@@ -11,8 +11,6 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -25,11 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UITableView.appearance().tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 24))
-        
-//        let appearance = UINavigationBarAppearance()
-//        let attrs: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor(named: "\(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")") ?? UIColor.systemindigo]
-//        appearance.largeTitleTextAttributes = attrs
-//        UINavigationBar.appearance().standardAppearance = appearance
         
         return true
     }

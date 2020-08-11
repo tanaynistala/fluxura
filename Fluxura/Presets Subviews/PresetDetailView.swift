@@ -37,13 +37,12 @@ struct PresetDetailView: View {
                     }) {
                         Image(systemName: "plus.circle")
                             .imageScale(.large)
-                            .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : Color(.systemIndigo))
+                            .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo"))
                             .font(.headline)
                     }
                 }
                 
                 Text(preset.description)
-                    .font(.callout)
                     .padding(.bottom, 2)
                 
                 HStack {
@@ -61,26 +60,29 @@ struct PresetDetailView: View {
                     .buttonStyle(IconButtonStyle())
                 }
                 
+                Divider()
+                
                 VStack(alignment: .leading, spacing: 16) {
-                    Text("Parameters")
-                        .font(.title)
+                    HStack {
+                        Image(systemName: "\(self.preset.parameters.count + self.preset.initial.count).square")
+                            .imageScale(.large)
+                        Text("Parameters")
+                        Spacer()
+                    }
+                    .font(.headline)
                     
                     ForEach(preset.inputDescription, id: \.self) { input in
-                        HStack {
-                            Text(input[0])
-                            .bold()
-                            +
-                            Text(": ")
-                            +
-                            Text(input[1])
-                            
-                            Spacer()
+                        HStack(spacing: 16) {
+                            Image(systemName: "number")
+                            VStack(alignment: .leading) {
+                                Text(input[0])
+                                    
+                                Text(input[1])
+                                    .font(.footnote)
+                            }
                         }
                     }
                 }
-                .padding()
-                .background(Color(.systemGray6))
-                .cornerRadius(16)
             
                 Spacer()
                 
@@ -94,20 +96,20 @@ struct PresetDetailView: View {
                         .padding()
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                         .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
-                            .fill(Color(UIColor.systemIndigo)))
+                            .fill(UserDefaults.standard.bool(forKey: "reduce_colors") ? Color(.tertiarySystemGroupedBackground) : Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")))
                         .padding(.bottom)
                 }
             }
-        .padding()
+            .padding()
         }
-        .navigationBarTitle(preset.name)
+        .navigationBarTitle(Text(preset.name), displayMode: .inline)
     }
 }
 
 struct PresetDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            PresetDetailView(preset: Presets().presets[1])
+            PresetDetailView(preset: Presets().presets[3])
                 .environmentObject(AppData())
         }
     }

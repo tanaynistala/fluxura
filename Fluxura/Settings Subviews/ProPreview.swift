@@ -13,13 +13,13 @@ struct ProPreview: View {
     @EnvironmentObject private var subscriptionManager: SubscriptionManager
     @Environment(\.presentationMode) var presentationMode
     
-    private var sub: Purchases.Package? {
-        subscriptionManager.monthlySubscription
-    }
-    
-    private var yearlySub: Purchases.Package? {
-        subscriptionManager.yearlySubscription
-    }
+//    private var sub: Purchases.Package? {
+//        subscriptionManager.monthlySubscription
+//    }
+//    
+//    private var yearlySub: Purchases.Package? {
+//        subscriptionManager.yearlySubscription
+//    }
     
     private var lifetime: Purchases.Package? {
         subscriptionManager.lifetime
@@ -28,7 +28,7 @@ struct ProPreview: View {
     private func formattedPrice(for package: Purchases.Package) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
-        formatter.locale = sub!.product.priceLocale
+        formatter.locale = lifetime!.product.priceLocale
         return formatter.string(from: package.product.price)!
     }
     
@@ -62,24 +62,20 @@ struct ProPreview: View {
                         Capsule()
                             .foregroundColor(
                                 UserDefaults.standard.bool(forKey: "reduce_colors") ?
-                                Color.primary :
+                                    Color(.systemGray4) :
                                 Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")
                             )
                     )
             }
         }
         .padding()
-        .background(Color(.systemGray5))
-        .cornerRadius(16)
+        .background(Color(.tertiarySystemGroupedBackground))
+        .cornerRadius(10)
     }
     
     private var paymentButtons: some View {
         VStack(spacing: 16) {
-//                ForEach(0..<3) { index in
-//                    PurchaseButton(title: self.titles[index], amount: self.amounts[index])
-//                        .environmentObject(self.settings)
-//                }
-            
+            /*
             sub.map { sub in
                 makePurchaseButton(action: {
                     self.buttonAction(purchase: sub)
@@ -87,7 +83,9 @@ struct ProPreview: View {
                 .opacity(subscriptionManager.inPaymentProgress ? 0.5 : 1.0)
                 .disabled(subscriptionManager.inPaymentProgress)
             }
+             */
             
+            /*
             yearlySub.map { yearlySub in
                 makePurchaseButton(action: {
                     self.buttonAction(purchase: yearlySub)
@@ -95,11 +93,12 @@ struct ProPreview: View {
                 .opacity(subscriptionManager.inPaymentProgress ? 0.5 : 1.0)
                 .disabled(subscriptionManager.inPaymentProgress)
             }
+             */
             
             lifetime.map { lifetime in
                 makePurchaseButton(action: {
                     self.buttonAction(purchase: lifetime)
-                }, title: "Lifetime", subtitle: "", label: "\(formattedPrice(for: lifetime))")
+                }, title: "Fluxura Pro", subtitle: "", label: "\(formattedPrice(for: lifetime))")
                 .opacity(subscriptionManager.inPaymentProgress ? 0.5 : 1.0)
                 .disabled(subscriptionManager.inPaymentProgress)
             }
@@ -123,10 +122,10 @@ struct ProPreview: View {
                     
                     ProFeatureDetail(
                         title: "Equation Presets",
-                        subTitle: "Get presets for common differential equations in physics, biology, chemistry, and computer science.",
+                        subTitle: "Get presets for common differential equations in physics, biology, chemistry, and economics. We're always adding more!",
                         imageName: "square.stack.3d.up.fill",
                         color: .blue,
-                        isComing: true
+                        isComing: false
                     )
                     
                     ProFeatureDetail(
@@ -184,7 +183,7 @@ struct ProPreview: View {
 struct ProPreview_Previews: PreviewProvider {
     static var previews: some View {
         ProPreview()
-            .environmentObject(SettingsStore())
+            .environmentObject(SettingsStore.shared)
             .environmentObject(SubscriptionManager())
     }
 }

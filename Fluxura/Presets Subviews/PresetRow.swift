@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct PresetRow: View {
+    @EnvironmentObject var data: AppData
     var preset: Preset
     var color: UIColor {
         switch preset.subject {
@@ -18,7 +19,7 @@ struct PresetRow: View {
             return .systemRed
         case .biology:
             return .systemGreen
-        case .cs:
+        case .economics:
             return .systemTeal
         default:
             return .systemIndigo
@@ -50,7 +51,15 @@ struct PresetRow: View {
                 }
             }
             .padding(.vertical, UserDefaults.standard.bool(forKey: "reduce_colors") ? 0 : 8)
+            
             Spacer()
+            
+            if self.data.loadedPreset?.name == self.preset.name {
+                Image(systemName: "checkmark.circle.fill")
+                    .imageScale(.large)
+                    .font(.headline)
+                    .foregroundColor(self.data.reduceColors ? Color(.systemGray4) : Color(self.data.appTint ?? "indigo"))
+            }
         }
     }
 }
@@ -59,5 +68,6 @@ struct PresetRow_Previews: PreviewProvider {
     static var previews: some View {
         PresetRow(preset: Presets().presets.last!)
             .previewLayout(.fixed(width: 300, height: 64))
+            .environmentObject(AppData.shared)
     }
 }

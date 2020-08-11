@@ -14,13 +14,12 @@ struct SettingsView: View {
     @EnvironmentObject var settings: SettingsStore
     @EnvironmentObject var data: AppData
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.accessibilityReduceMotion) var reduceMotion
     @State var isProView = false
     @State var isEmailShown = false
     
     @State var result: Result<MFMailComposeResult, Error>? = nil
     @State var isShowingMailView = false
-    
-    /// Make the pickers Navigation Links to deal with Pro features
     
     var body: some View {
         NavigationView {
@@ -70,43 +69,10 @@ struct SettingsView: View {
                         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
                         .listRowBackground(Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo"))
                         .buttonStyle(PlainButtonStyle())
-                        
-//                        Button(action: {
-//                            self.isProView.toggle()
-//                            if UserDefaults.standard.bool(forKey: "haptics_enabled") {
-//                                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-//                            }
-//                        }) {
-//                            HStack {
-//                                Image(systemName: "lock.fill")
-//                                    .font(Font.system(.title).weight(.semibold))
-//                                    .padding(4)
-//                                VStack(alignment: .leading) {
-//                                    Text("Fluxura Pro")
-//                                        .font(.headline)
-//
-//                                    Text("Unlock All Features")
-//                                        .font(.caption)
-//                                }
-//                                Spacer()
-//                                Image(systemName: "chevron.right")
-//                            }
-//                            .foregroundColor(.white)
-//                            .padding(.bottom, 8)
-//                            .padding(.top, 192)
-//                            .listRowBackground(
-//                                Image("Fluxura Pro")
-//                                    .resizable()
-//                                    .renderingMode(.original)
-//                                    .antialiased(true)
-//                                    .aspectRatio(2, contentMode: .fill)
-//                                    .padding(.bottom, 64)
-//                                    .background(Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo"))
-//                            )
-//                        }.buttonStyle(PlainButtonStyle())
                     }
                     
                     Section(header: Text("MATH")) {
+                        /*
                         Toggle(isOn: self.$data.showMenu) {
                             Image(systemName: "slider.horizontal.below.rectangle")
                                 .imageScale(.large)
@@ -121,6 +87,7 @@ struct SettingsView: View {
                             }
                         }
                         .padding(.vertical, 4)
+                          */
                         
                         HStack {
                             Image(systemName: "lessthan")
@@ -130,7 +97,7 @@ struct SettingsView: View {
                                 .padding(.horizontal, 4)
                                 .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : Color(.systemTeal))
                                 .rotationEffect(.degrees(self.data.angleType == 1 ? 0 : 180))
-                                .animation(.spring())
+                                .animation(self.reduceMotion || UserDefaults.standard.bool(forKey: "reduce_motion") ? nil : .spring())
                             VStack(alignment: .leading) {
                                 Text("Angles")
                                 Text("Sorry, no gradians.")
@@ -146,30 +113,6 @@ struct SettingsView: View {
                             .animation(nil)
                         }
                         .padding(.vertical, 4)
-                        
-//                        HStack {
-//                            Image(systemName: "number")
-//                                .accessibility(hidden: true)
-//                                .imageScale(.large)
-//                                .frame(width: 32)
-//                                .font(.headline)
-//                                .padding(.horizontal, 4)
-//                                .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .red)
-//                            VStack(alignment: .leading) {
-//                                Text("Precision")
-//                                Text("Sig Figs or Decimals?")
-//                                    .font(.caption)
-//                            }
-//                            Spacer()
-//                            Picker(selection: self.$data.precisionType, label: Text("Angles")) {
-//                                Text("Sig Figs").tag(1)
-//                                Text("Decimals").tag(2)
-//                            }
-//                            .pickerStyle(SegmentedPickerStyle())
-//                            .fixedSize(horizontal: true, vertical: true)
-//                            .animation(nil)
-//                        }
-//                        .padding(.vertical, 4)
                         
                         Toggle(isOn: self.$data.useSigFigs) {
                             Image(systemName: "number")
@@ -243,21 +186,22 @@ struct SettingsView: View {
                             .padding(.vertical, 4)
                         }
                         
-//                        Toggle(isOn: $settings.nativeKeyboard) {
-//                            Image(systemName: "keyboard")
-//                                .imageScale(.large)
-//                                .frame(width: 32)
-//                                .font(.headline)
-//                                .padding(.horizontal, 4)
-//                                .foregroundColor(.primary)
-//                            VStack(alignment: .leading) {
-//                                Text("Use Native Keyboard")
-//                                Text("Use the system keyboard.")
-//                                    .font(.caption)
-//                            }
-//                        }
-//                        .padding(.vertical, 4)
-//                        .disabled(true)
+                        /*
+                        Toggle(isOn: $settings.nativeKeyboard) {
+                            Image(systemName: "keyboard")
+                                .imageScale(.large)
+                                .frame(width: 32)
+                                .font(.headline)
+                                .padding(.horizontal, 4)
+                                .foregroundColor(.primary)
+                            VStack(alignment: .leading) {
+                                Text("Use Native Keyboard")
+                                Text("Use the system keyboard.")
+                                    .font(.caption)
+                            }
+                        }
+                        .padding(.vertical, 4)
+                        */
                         
                         Toggle(isOn: $settings.editOnOpen) {
                             Image(systemName: "pencil\(settings.editOnOpen ? "" : ".slash")")
@@ -292,36 +236,6 @@ struct SettingsView: View {
                     .listRowInsets(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 16))
 
                     Section(header: Text("APPEARANCE")) {
-//                        HStack {
-//                            Image(systemName: "circle.lefthalf.fill")
-//                                .imageScale(.large)
-//                                .frame(width: 32)
-//                                    .font(.headline)
-//                                    .padding(.horizontal, 4)
-//                                .foregroundColor(.primary)
-//                            Text("Theme")
-//
-//                            Spacer(minLength: 32)
-//
-//                            Picker(
-//                                selection: $settings.appTheme,
-//                                label: HStack {
-//                                    Image(systemName: "circle.lefthalf.fill")
-//                                        .imageScale(.large)
-//                                        .frame(width: 32)
-//                                    .font(.headline)
-//                                    .padding(.horizontal, 4)
-//                                    Text("Theme")
-//                                }
-//                            ) {
-//                                Text("System").tag(0)
-//                                Text("Light").tag(1)
-//                                Text("Dark").tag(2)
-//                            }.pickerStyle(SegmentedPickerStyle())
-//                            .disabled(true)
-//                        }
-//                        .padding(.vertical, 4)
-                        
                         Toggle(isOn: $settings.reduceColors) {
                             Image(systemName: "eyedropper.halffull")
                                 .imageScale(.large)
@@ -358,10 +272,6 @@ struct SettingsView: View {
                                     ColorRow(color: $0.rawValue).tag($0)
                                 }
                                 .navigationBarTitle("App Tint")
-                                .environment(\.horizontalSizeClass, .regular)
-                                .onAppear {
-                                    UITableView.appearance().separatorInset = UIEdgeInsets(top: 0, left: 42, bottom: 0, right: 0)
-                                }
                             }
                             .navigationBarTitle("Settings")
                             .padding(.vertical, 4)
@@ -395,7 +305,7 @@ struct SettingsView: View {
                                     .frame(width: 32)
                                     .font(.headline)
                                     .padding(.horizontal, 4)
-                                    .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : Color(UIColor.systemTeal))
+                                    .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : Color(.systemTeal))
                                 VStack(alignment: .leading) {
                                     Text("App Icon")
                                     Text("Change the app's icon.")
@@ -414,7 +324,7 @@ struct SettingsView: View {
                                     .frame(width: 32)
                                     .font(.headline)
                                     .padding(.horizontal, 4)
-                                    .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : Color(UIColor.systemTeal))
+                                    .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : Color(.systemTeal))
                                 VStack(alignment: .leading) {
                                     Text("App Icon")
                                     Text("Change the app's icon.")
@@ -564,7 +474,7 @@ struct SettingsView: View {
                                 .frame(width: 32)
                                     .font(.headline)
                                     .padding(.horizontal, 4)
-                                .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : Color(UIColor.systemIndigo))
+                                .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : Color(.systemIndigo))
                             VStack(alignment: .leading) {
                                 Text("Terms of Use")
                                 Text("It's simple.")
@@ -574,8 +484,32 @@ struct SettingsView: View {
                         .padding(.vertical, 4)
                     }
                     .listRowInsets(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 16))
+                    
+                    Section {
+                        VStack {
+                            Image(UIApplication.shared.alternateIconName ?? "Twilight")
+                                .resizable()
+                                .aspectRatio(1, contentMode: .fit)
+                                .frame(width: 64, height: 64, alignment: .center)
+                                .cornerRadius(16)
+                                .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.05), radius: 4, y: 2)
+                            
+                            HStack {
+                                Spacer()
+                                VStack {
+                                    Text("Fluxura\(self.settings.isPro ? " Pro" : "")")
+                                    Text("\(UIApplication.appVersion ?? "") (\(UIApplication.buildNumber ?? "1"))")
+                                        .foregroundColor(Color(.placeholderText))
+                                }
+                                .font(.headline)
+                                Spacer()
+                            }
+                        }
+                        .padding(.vertical, 32)
+                        .listRowBackground(Color(.systemGroupedBackground))
+                    }
                 }
-                .onAppear{
+                .onAppear {
                     UITableView.appearance().separatorInset = UIEdgeInsets(top: 0, left: 56, bottom: 0, right: 0)
                 }
                 .environment(\.horizontalSizeClass, .regular)
@@ -593,21 +527,19 @@ struct SettingsView: View {
                             .frame(width: 24, height: 24)
                     }
                     .buttonStyle(IconButtonStyle())
-                    .foregroundColor(
-    //                UserDefaults.standard.bool(forKey: "reduce_colors") ?
-    //                Color.primary :
-    //                Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")
-                        .primary
-                    )
+                    .foregroundColor(.primary)
                 )
             }
         }
-        .accentColor(
-            UserDefaults.standard.bool(forKey: "reduce_colors") ?
-            Color.primary :
-            Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")
-        )
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+}
+
+struct SettingsView_Previews: PreviewProvider {
+    static var previews: some View {
+        SettingsView()
+        .environmentObject(SettingsStore.shared)
+        .environmentObject(AppData.shared)
     }
 }
 
@@ -618,17 +550,19 @@ struct ColorRow: View {
         HStack {
             Image(systemName: "circle.fill")
                 .foregroundColor(Color("\(self.color)"))
+                .padding(.trailing)
             
             Text("\(self.color.capitalized)")
         }
     }
 }
 
-
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsView()
-        .environmentObject(SettingsStore())
-        .environmentObject(AppData())
+extension UIApplication {
+    static var appVersion: String? {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+    }
+    
+    static var buildNumber: String? {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String
     }
 }

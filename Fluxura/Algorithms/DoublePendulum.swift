@@ -8,9 +8,6 @@
 
 import Foundation
 
-// INPUT: x = [ r, rDot, theta, thetaDot ]
-// OUTPUT: xDot = [ rDot, rDotDot, thetaDot, thetaDotDot ] = [ x[1], d/dx(x[1]), x[3], d/dx(x[3]) ]
-
 extension Solver {
     func DoublePendulum(t: Double, x: [Double], params: [Double]) -> [Double] {
         let g = params[4]

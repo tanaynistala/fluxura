@@ -69,24 +69,19 @@ struct TipJar: View {
                             Capsule()
                                 .foregroundColor(
                                     UserDefaults.standard.bool(forKey: "reduce_colors") ?
-                                    Color.primary :
+                                        Color(.tertiarySystemGroupedBackground) :
                                     Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")
                                 )
                         )
                 }
             }
             .padding()
-            .background(Color(.systemGray5))
-            .cornerRadius(16)
+            .background(Color(.tertiarySystemGroupedBackground))
+            .cornerRadius(10)
         }
         
         private var paymentButtons: some View {
             VStack(spacing: 16) {
-    //                ForEach(0..<3) { index in
-    //                    PurchaseButton(title: self.titles[index], amount: self.amounts[index])
-    //                        .environmentObject(self.settings)
-    //                }
-                
                 smallTip.map { smallTip in
                     makePurchaseButton(action: {
                         self.buttonAction(purchase: smallTip)
@@ -158,7 +153,7 @@ struct TipButton: View {
                     }
                 }
                 .font(.headline)
-                .foregroundColor(Color(.systemRed))
+                .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .red)
             }
             Spacer()
             Button(action: {}) {
@@ -171,7 +166,7 @@ struct TipButton: View {
                         Capsule()
                             .foregroundColor(
                                 UserDefaults.standard.bool(forKey: "reduce_colors") ?
-                                Color.primary :
+                                    Color(.tertiarySystemGroupedBackground) :
                                 Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")
                             )
                     )

@@ -21,7 +21,7 @@ struct TermsOfUse: View {
             
             Text("Fluxura Pro")
                 .font(.headline)
-            Text("Fluxura Pro is enabled through a one-time purchase or a recurring, cancelable subscription. This unlocks all features, including non-linear differential equations, presets, and app customization options.")
+            Text("Fluxura Pro is enabled through a one-time purchase. This unlocks all features, including presets and app customization options, as well as certain future additions.")
             Spacer()
             Button(action: {
                 self.isShowingMailView.toggle()
@@ -32,7 +32,7 @@ struct TermsOfUse: View {
                 .padding()
                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                 .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
-                    .fill(Color(UIColor.systemIndigo)))
+                    .fill(Color(.systemIndigo)))
                 .padding(.bottom)
             }
             .disabled(!MFMailComposeViewController.canSendMail())

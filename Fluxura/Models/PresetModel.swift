@@ -6,7 +6,6 @@ The model for an individual landmark.
 */
 
 import SwiftUI
-import Combine
 
 struct Preset {
     var id = UUID()
@@ -17,7 +16,6 @@ struct Preset {
     var description: String
     var url: String
     
-    // Remove these if using JSON parsing
     var model: (_ t: Double, _ x: [Double], _ params: [Double]) -> [Double]
     var parameters: [String]
     var initial: [String]
@@ -26,11 +24,10 @@ struct Preset {
 
     enum Subject: String, CaseIterable, Codable, Hashable {
         case all = "All"
-//        case favorites = "Favorites"
         case physics = "Physics"
         case biology = "Biology"
         case chemistry = "Chemistry"
-        case cs = "Computer Science"
+        case economics = "Economics"
     }
     
     enum Category: String, CaseIterable, Codable, Hashable {

@@ -10,6 +10,14 @@ import SwiftUI
 import MathParser
 
 class AppData: ObservableObject {
+    public static let shared = AppData()
+    
+    let coefficientCount: [[Int]] = [
+        [1, 2, 3, 4],
+        [2, 5, 9, 14],
+        [3, 9, 19, 34]
+    ]
+    
     // Input Values
     @Published var inputs = [[
         Input(type: 0, index: 0, value: "", cursorLocation: 0),
@@ -17,11 +25,14 @@ class AppData: ObservableObject {
         Input(type: 0, index: 2, value: "", cursorLocation: 0)
     ], [], []]
     
+    // Preset Loading
     @Published var loadedPreset: Preset? = nil { didSet { refreshEntries() } }
     @Published var selectedField = "All"
     @Published var presets = Presets().presets
     
-    @Published var answer = [0.0]
+    @Published var answer = [String]()
+    @Published var isInvalid: Bool = false
+    @Published var invalidCount: Int = 0
     
     // Data Entry
     private var inputCount1 = 1
@@ -48,24 +59,22 @@ class AppData: ObservableObject {
     @Published var appTint = UserDefaults.standard.string(forKey: "app_tint")
     @Published var onboarding: Bool
     
-    let coefficientCount: [[Int]] = [
-        [1, 2, 3, 4],
-        [2, 5, 9, 14],
-        [3, 9, 19, 34]
-    ]
-    
     // Misc. Settings
-    @Published var angleType = UserDefaults.standard.integer(forKey: "angle_type") {
-        didSet { UserDefaults.standard.set(angleType, forKey: "angle_type") }
+    var angleType: Int {
+        get { UserDefaults.standard.integer(forKey: "angle_type") }
+        set { UserDefaults.standard.set(newValue, forKey: "angle_type") }
     }
-    @Published var useSigFigs = UserDefaults.standard.bool(forKey: "precision_type") {
-        didSet { UserDefaults.standard.set(angleType, forKey: "precision_type") }
+    var useSigFigs: Bool {
+        get { UserDefaults.standard.bool(forKey: "precision_type") }
+        set { UserDefaults.standard.set(newValue, forKey: "precision_type") }
     }
-    @Published var precision = UserDefaults.standard.integer(forKey: "precision") {
-        didSet { UserDefaults.standard.set(precision, forKey: "precision") }
+    var precision: Int {
+        get { UserDefaults.standard.integer(forKey: "precision") }
+        set { UserDefaults.standard.set(newValue, forKey: "precision") }
     }
-    @Published var showMenu = UserDefaults.standard.bool(forKey: "show_menu") {
-        didSet { UserDefaults.standard.set(showMenu, forKey: "show_menu") }
+    var showMenu: Bool {
+        get { UserDefaults.standard.bool(forKey: "show_menu") }
+        set { UserDefaults.standard.set(newValue, forKey: "show_menu") }
     }
     
     @Published var presetsShown = false {
@@ -155,6 +164,8 @@ class AppData: ObservableObject {
         var evaluator: Evaluator = .default
         evaluator.angleMeasurementMode = UserDefaults.standard.integer(forKey: "angle_type") == 1 ? .degrees : .radians
         
+        invalidCount = 0
+        
         var x0 = [Double]()
         var params = [Double]()
         var t = [Double]()
@@ -183,38 +194,29 @@ class AppData: ObservableObject {
                 text = text.replacingOccurrences(of: "e", with: "e()")
                 
                 do {
-                    let formatter = NumberFormatter()
-                    
-                    if useSigFigs {
-                        formatter.minimumSignificantDigits = 1
-                        formatter.maximumSignificantDigits = precision
-                    } else {
-                        formatter.minimumFractionDigits = 0
-                        formatter.maximumFractionDigits = precision
-                    }
-                    
-                    formatter.numberStyle = .decimal
-                    
                     let expression = try Expression(string: text)
-                    let answer = try evaluator.evaluate(expression)
-//                        formatter.string(from: try evaluator.evaluate(expression) as NSNumber) ?? "n/a"
-    //                    String(format: "%.\(UserDefaults.standard.integer(forKey: "precision"))f", try evaluator.evaluate(expression))
+                    let answerElement = try evaluator.evaluate(expression)
                     
-//                    inputs[inputType][index].value = answer
-//                    inputs[inputType][index].cursorLocation = answer.count
+                    if answerElement.floatingPointClass == .quietNaN {
+                        inputs[inputType][index].isInvalid = true
+                        invalidCount += 1
+                    } else {
+                        inputs[inputType][index].isInvalid = false
+                    }
                     
                     switch inputType {
                     case 0:
-                        t.append(answer)
+                        t.append(answerElement)
                     case 1:
-                        params.append(answer)
+                        params.append(answerElement)
                     case 2:
-                        x0.append(answer)
+                        x0.append(answerElement)
                     default:
-                        x0.append(answer)
+                        x0.append(answerElement)
                     }
                 } catch {
-                    inputs[type][index].value = "0"
+                    isInvalid = true
+                    return
                 }
             }
         }
@@ -237,7 +239,26 @@ class AppData: ObservableObject {
         }
         
         let output = Solver().RungeKutta(model: model, x0: x0, t: t, params: params)
-        print(output)
-        answer = output.1.last ?? [0.0]
+        
+        let formatter = NumberFormatter()
+        
+        if useSigFigs {
+            formatter.usesSignificantDigits = true
+            formatter.minimumSignificantDigits = 1
+            formatter.maximumSignificantDigits = precision
+        } else {
+            formatter.usesSignificantDigits = false
+            formatter.minimumFractionDigits = 0
+            formatter.maximumFractionDigits = precision
+        }
+        
+        formatter.numberStyle = .decimal
+        let answerArray = output.1.last ?? [Double.nan]
+        
+        answer = answerArray.map{ (formatter.string(from: NSNumber(value: $0)) ?? "NaN") }
+        
+        if inputs.flatMap({$0}).map({$0.isInvalid}).contains(true) {
+            isInvalid = true
+        } else {isInvalid = false}
     }
 }

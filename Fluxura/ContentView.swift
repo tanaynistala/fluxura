@@ -6,269 +6,46 @@
 //  Copyright © 2020 Tanay Nistala. All rights reserved.
 //
 
+import Foundation
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var solver = Solver()
     @EnvironmentObject var data: AppData
-    @Environment(\.accessibilityReduceMotion) var reduceMotion
+    
+    @State private var isiPad = UIDevice.current.userInterfaceIdiom == .pad
 
-    @State var settingsShown = false
     @State var proPreviewShown = false
-    @State var configShown = true
     let vars = ["x", "y", "z"]
-    /// Code to call the Runge-Kutta solver
-    /// Button(action: {print(self.solver.RungeKutta(model: self.solver.LotkaVolteraModel(t:x:parameters:), x0: [20, 5], t0: 0, tf: 100, dt: 0.01).1[1][1])}){Text("Toggle")}
     
     var body: some View {
-        NavigationView {
-            Form {
-                Section(
-                    header: HStack {
-                        HStack {
-                            Image(systemName: "slider.horizontal.3")
-                            Text("Configuration")
-                        }.font(.headline)
-                        Spacer()
-                        ResetFieldsView().environmentObject(self.data).padding(4)
-                    }
-                ) {
-                    if self.configShown && self.data.loadedPreset == nil {
+        VStack {
+            if isiPad {
+                NavigationView {
+                    Inputs()
+                    .environmentObject(AppData.shared)
                     
-//                        HStack {
-//                            Text("Type")
-//                            Spacer()
-//                            Picker(selection: self.$data.type, label: Text("Type")) {
-//                                Text("Ordinary").tag(1)
-//                                Text("Partial").tag(2)
-//                            }
-//                            .pickerStyle(SegmentedPickerStyle())
-//                            .fixedSize(horizontal: true, vertical: true)
-//                        }
-                    
-                        HStack {
-                            Image(systemName: "\(self.data.order).square")
-                                .accessibility(hidden: true)
+                    if isiPad {
+                        PresetsView()
+                            .environmentObject(AppData.shared)
+                            .navigationBarTitle("Presets")
+                    } else {
+                        VStack {
+                            Image(systemName: "lock.fill")
                                 .imageScale(.large)
-                                .font(.headline)
-                            
-                            Stepper("Order", value: self.$data.order, in: 1...4, onEditingChanged: {_ in
-                                if UserDefaults.standard.bool(forKey: "haptics_enabled") {
-                                    UISelectionFeedbackGenerator().selectionChanged()
-                                }
-                            })
-                        }
-                        
-                        if self.data.type == 2 {
-                            HStack {
-                                ForEach(0..<3, id: \.self) { item in
-                                    Image(systemName: "\(self.vars[item]).square\(item < self.data.vars ? ".fill" : "")")
-                                        .imageScale(.large)
-                                        .font(.headline)
-                                        .frame(width: 24, height: 24)
-                                        .foregroundColor(
-                                            UserDefaults.standard.bool(forKey: "reduce_colors") ?
-                                            Color.primary :
-                                                (item < self.data.vars ? Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo") : Color.primary)
-                                        )
-                                        .onTapGesture {
-                                            self.data.vars = item+1
-                                            if UserDefaults.standard.bool(forKey: "haptics_enabled") {
-                                                UISelectionFeedbackGenerator().selectionChanged()
-                                            }
-                                    }
-                                }
-                                
-                                Stepper("Variables", value: self.$data.vars, in: 1...3, onEditingChanged: {_ in
-                                    if UserDefaults.standard.bool(forKey: "haptics_enabled") {
-                                        UISelectionFeedbackGenerator().selectionChanged()
-                                    }
-                                })
-                            }
-                        }
-                    }
-                    
-//                        Toggle("Linear", isOn: self.$data.isLinear)
-//                            .disabled(true)
-                    
-                    if self.data.showMenu {
-                        HStack {
-                            Text("Angles")
-                            Spacer()
-                            Picker(selection: self.$data.angleType, label: Text("Angles")) {
-                                Text("Degrees").tag(1)
-                                Text("Radians").tag(2)
-                            }
-                            .pickerStyle(SegmentedPickerStyle())
-                            .fixedSize(horizontal: true, vertical: true)
-                        }
-                        .padding(.vertical, 4)
-
-                        Stepper(value: self.$data.precision, in: 0...10, onEditingChanged: {_ in
-                            if UserDefaults.standard.bool(forKey: "haptics_enabled") {
-                                UISelectionFeedbackGenerator().selectionChanged()
-                            }
-                        }) {
-                            HStack {
-                                Image(systemName: "\(self.data.precision).square")
-                                .accessibility(hidden: true)
-                                .imageScale(.large)
-                                .font(.headline)
-                                Text("Precision")
-                            }
-                            .padding(.vertical, 4)
+                                .font(.title)
+                            Text("Get Fluxura Pro to unlock Presets")
                         }
                     }
                 }
-                
-                
-//                    if !UserDefaults.standard.bool(forKey: "native_keyboard") {
-//                        Section(header: ClearFieldsView().environmentObject(self.data)) {
-//                            NativeEntryView()
-//                                .environmentObject(self.data)
-//                        }
-//                    } else {
-                
-                Section(header: HStack {
-                    HStack {
-                        Image(systemName: "stopwatch")
-                        Text("Time Span")
-                    }
-                    .font(.headline)
-                    Spacer()
-                    ClearFieldsView(target: 0).environmentObject(self.data).padding(4)
-                }) {
-                    EntryView(type: 0)
-                        .environmentObject(self.data)
+                .padding(.leading, UserDefaults.standard.bool(forKey: "isPro") ? 1 : 0)
+            } else {
+                NavigationView {
+                    Inputs()
+                    .environmentObject(AppData.shared)
                 }
-                
-                if self.data.loadedPreset == nil {
-                    Section {
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            if self.data.loadedPreset == nil {
-                                EquationView()
-                                .padding()
-                                .environmentObject(self.data)
-                                
-                            }
-                        }
-                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                    }
-                }
-                
-                Section(header: HStack {
-                    HStack {
-                        Image(systemName: "\(self.data.inputs[1].count).square")
-                            .imageScale(.large)
-                        Text("Parameter\(self.data.inputs[1].count == 1 ? "" : "s")")
-                    }
-                    .font(.headline)
-                    Spacer()
-                    ClearFieldsView(target: 1).environmentObject(self.data).padding(4)
-                }) {
-                    EntryView(type: 1)
-                        .environmentObject(self.data)
-                }
-
-                Section(header: HStack {
-                    HStack {
-                        Image(systemName: "\(self.data.inputs[2].count).square")
-                            .imageScale(.large)
-                        Text("Initial Condition\(self.data.inputs[2].count == 1 ? "" : "s")")
-                    }
-                    .font(.headline)
-                    Spacer()
-                    ClearFieldsView(target: 2).environmentObject(self.data).padding(4)
-                }) {
-                    EntryView(type: 2)
-                        .environmentObject(self.data)
-                }
-                
-                
-//                    }
-                
-                
-                Section {
-                    Text("Answer:")
-                        .font(Font.system(.title).weight(.semibold))
-                    
-                    ForEach(self.data.answer, id: \.self) { answer in
-                        Text("\(answer)")
-                    }
-                }
-                .foregroundColor(
-                    UserDefaults.standard.bool(forKey: "reduce_colors") ?
-                    Color.primary :
-                    Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")
-                )
+                .navigationViewStyle(StackNavigationViewStyle())
             }
-            .environment(\.horizontalSizeClass, .regular)
-            .onAppear {
-                UITableView.appearance().tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-            }
-            .navigationBarTitle("Fluxura")
-            .navigationBarItems(trailing:
-                HStack {
-                    if self.data.loadedPreset == nil {
-                        Button(action: {
-                            self.configShown.toggle()
-                            if UserDefaults.standard.bool(forKey: "haptics_enabled") {
-                                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                            }
-                        }) {
-                            Image(systemName: "dial\(self.configShown ? ".fill" : "")")
-                                .font(.headline)
-                                .frame(width: 24, height: 24)
-                        }
-                        .buttonStyle(IconButtonStyle())
-                        .accessibility(label: Text("Configuration"))
-                    }
-                    
-                    /// Uncomment this for the v1.1 release with presets
-                    
-//                    if UserDefaults.standard.bool(forKey: "pro") {
-                        NavigationLink(
-                            destination:
-                                PresetsView()
-                                    .environmentObject(self.data)
-                                    .navigationBarTitle("Presets"),
-                            isActive: self.$data.presetsShown) {
-                                Image(systemName: "square.stack.3d.down.right\(self.data.presetsShown ? ".fill" : "")")
-                                    .font(.headline)
-                                    .frame(width: 24, height: 24)
-                        }
-                        .buttonStyle(IconButtonStyle())
-                        .accessibility(label: Text("Presets"))
-//                    }
-                    
-                    Button(action: {
-                        self.settingsShown.toggle()
-                        if UserDefaults.standard.bool(forKey: "haptics_enabled") {
-                            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                        }
-                    }) {
-                        Image(systemName: "gear")
-                            .font(.headline)
-                            .frame(width: 24, height: 24)
-                            .rotationEffect(.degrees(self.reduceMotion || UserDefaults.standard.bool(forKey: "reduce_motion") ? 0 : (self.settingsShown ? 180 : 0)))
-                            .animation(.spring())
-                    }
-                    .buttonStyle(IconButtonStyle())
-                    .sheet(isPresented: self.$settingsShown, onDismiss: {self.data.refresh()}) {
-                        SettingsView()
-                            .environmentObject(SettingsStore())
-                            .environmentObject(self.data)
-                    }
-                    .accessibility(label: Text("Settings"))
-                }
-                .foregroundColor(
-                    UserDefaults.standard.bool(forKey: "reduce_colors") ?
-                    Color.primary :
-                    Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")
-                )
-            )
         }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
@@ -276,5 +53,157 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .environmentObject(AppData())
+    }
+}
+
+struct Inputs: View {
+    @EnvironmentObject var data: AppData
+    @Environment(\.accessibilityReduceMotion) var reduceMotion
+    
+    @State private var isiPad = UIDevice.current.userInterfaceIdiom == .pad
+    
+    @State var settingsShown = false
+    
+    var body: some View {
+        Form {
+            ConfigView()
+                .environmentObject(AppData.shared)
+            
+            Section(header: HStack {
+                HStack {
+                    Image(systemName: "stopwatch")
+                    Text("Time Span")
+                }
+                .font(.headline)
+                Spacer()
+                ClearFieldsView(target: 0).environmentObject(AppData.shared)
+            }) {
+                EntryView(type: 0)
+                    .environmentObject(AppData.shared)
+            }
+            
+            if self.data.loadedPreset == nil {
+                Section(header: HStack {
+                    HStack {
+                        Image(systemName: "function")
+                        Text("Equation")
+                    }
+                    .font(.headline)
+                }) {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        if self.data.loadedPreset == nil {
+                            EquationView()
+                                .padding()
+                                .environmentObject(AppData.shared)
+                            
+                        }
+                    }
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                }
+            }
+            
+            Section(header: HStack {
+                HStack {
+                    Image(systemName: "\(self.data.inputs[1].count).square")
+                        .imageScale(.large)
+                    Text("Parameter\(self.data.inputs[1].count == 1 ? "" : "s")")
+                }
+                .font(.headline)
+                Spacer()
+                ClearFieldsView(target: 1).environmentObject(AppData.shared)
+            }) {
+                EntryView(type: 1)
+                    .environmentObject(AppData.shared)
+            }
+            
+            Section(header: HStack {
+                HStack {
+                    Image(systemName: "\(self.data.inputs[2].count).square")
+                        .imageScale(.large)
+                    Text("Initial Condition\(self.data.inputs[2].count == 1 ? "" : "s")")
+                }
+                .font(.headline)
+                Spacer()
+                ClearFieldsView(target: 2).environmentObject(AppData.shared)
+            }) {
+                EntryView(type: 2)
+                    .environmentObject(AppData.shared)
+            }
+            
+            if self.data.answer != [] {
+                Section(header: HStack {
+                    HStack {
+                        Image(systemName: "equal.square")
+                            .imageScale(.large)
+                        Text("Answer\(self.data.answer.count == 1 ? "" : "s")")
+                    }
+                    .font(.headline)
+                }) {
+                    AnswerRow()
+                        .environmentObject(AppData.shared)
+                }
+                .foregroundColor(
+                    UserDefaults.standard.bool(forKey: "reduce_colors") ?
+                        Color.primary :
+                        Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")
+                )
+                    .alert(isPresented: self.$data.isInvalid) {
+                        Alert(
+                            title: Text("Invalid Input"),
+                            message: Text("\(data.invalidCount) input\(data.invalidCount == 1 ? "" : "s") \(data.invalidCount == 1 ? "has" : "have") invalid, and \(data.invalidCount == 1 ? "was" : "were") been highlighted in red."),
+                            dismissButton: .cancel(Text("OK"))
+                        )
+                }
+            }
+            
+            Spacer(minLength: self.data.presetsShown ? 0 : (self.data.keyboardShown ? (self.data.keyboardView == 1 ? 324 : 264) : 48))
+                .listRowBackground(Color(.systemGroupedBackground))
+        }
+        .environment(\.horizontalSizeClass, .regular)
+        .onAppear{ UITableView.appearance().tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: Double.leastNonzeroMagnitude)) }
+        .navigationBarTitle(self.data.loadedPreset?.name ?? "Generic ODE")
+        .navigationBarItems(trailing:
+            HStack {
+                if !isiPad  {
+                    NavigationLink(
+                        destination:
+                        PresetsView()
+                            .environmentObject(AppData.shared)
+                            .navigationBarTitle("Presets"),
+                        isActive: self.$data.presetsShown) {
+                            Image(systemName: "square.stack.3d.down.right\(self.data.presetsShown ? ".fill" : "")")
+                                .font(.headline)
+                                .frame(width: 24, height: 24)
+                    }
+                    .buttonStyle(IconButtonStyle())
+                    .accessibility(label: Text("Presets"))
+                }
+                
+                Button(action: {
+                    self.settingsShown.toggle()
+                    if UserDefaults.standard.bool(forKey: "haptics_enabled") {
+                        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                    }
+                }) {
+                    Image(systemName: "gear")
+                        .font(.headline)
+                        .frame(width: 24, height: 24)
+                        .rotationEffect(.degrees(self.reduceMotion || UserDefaults.standard.bool(forKey: "reduce_motion") ? 0 : (self.settingsShown ? 180 : 0)))
+                        .animation(.spring())
+                }
+                .buttonStyle(IconButtonStyle())
+                .sheet(isPresented: self.$settingsShown, onDismiss: {self.data.refresh()}) {
+                    SettingsView()
+                        .environmentObject(SettingsStore.shared)
+                        .environmentObject(AppData.shared)
+                }
+                .accessibility(label: Text("Settings"))
+            }
+            .foregroundColor(
+                UserDefaults.standard.bool(forKey: "reduce_colors") ?
+                    Color.primary :
+                    Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")
+            )
+        )
     }
 }

@@ -11,6 +11,8 @@ import Combine
 import UIKit
 
 final class SettingsStore: ObservableObject {
+    public static let shared = SettingsStore()
+    
     private enum Keys {
         static let pro = "pro"
         static let hapticsEnabled = "haptics_enabled"
@@ -135,18 +137,7 @@ final class SettingsStore: ObservableObject {
     }
     
     enum AppIcon: String, CaseIterable {
-//        case SineLight = "Sine Light"
-//        case SineDark = "Sine Dark"
-//        case LogLight = "Log Light"
-//        case LogDark = "Log Dark"
-//        case TwilightMonochrome = "Twilight Monochrome"
-//        case SunriseMonochrome = "Sunrise Monochrome"
-//        case Twilight
-//        case Sunrise
-//        case NetworkLight = "Network Light"
-//        case NetworkDark = "Network Dark"
-        
-        case rainbow = "Rainbow"
+//        case rainbow = "Rainbow"
         case twilight = "Twilight"
         case gray = "Gray"
         case blue = "Blue"
@@ -158,7 +149,7 @@ final class SettingsStore: ObservableObject {
         case pink = "Pink"
         case purple = "Purple"
         
-        case rainbowSplash = "Rainbow Splash"
+//        case rainbowSplash = "Rainbow Splash"
         case twilightSplash = "Twilight Splash"
         case graySplash = "Gray Splash"
         case blueSplash = "Blue Splash"
@@ -170,7 +161,7 @@ final class SettingsStore: ObservableObject {
         case pinkSplash = "Pink Splash"
         case purpleSplash = "Purple Splash"
         
-        case rainbowDark = "Rainbow Dark"
+//        case rainbowDark = "Rainbow Dark"
         case twilightDark = "Twilight Dark"
         case grayDark = "Gray Dark"
         case blueDark = "Blue Dark"
@@ -182,7 +173,7 @@ final class SettingsStore: ObservableObject {
         case pinkDark = "Pink Dark"
         case purpleDark = "Purple Dark"
         
-        case rainbowSplashDark = "Rainbow Splash Dark"
+//        case rainbowSplashDark = "Rainbow Splash Dark"
         case twilightSplashDark = "Twilight Splash Dark"
         case graySplashDark = "Gray Splash Dark"
         case blueSplashDark = "Blue Splash Dark"
@@ -207,14 +198,16 @@ final class SettingsStore: ObservableObject {
     }
 }
 
-//extension SettingsStore {
-//    func unlockPro() {
-//        // You can do your in-app transactions here
-//        isPro = true
-//    }
-//
-//    func restorePurchase() {
-//        // You can do you in-app purchase restore here
-//        isPro = true
-//    }
-//}
+/*
+extension SettingsStore {
+    func unlockPro() {
+        // You can do your in-app transactions here
+        isPro = true
+    }
+
+    func restorePurchase() {
+        // You can do you in-app purchase restore here
+        isPro = true
+    }
+}
+*/

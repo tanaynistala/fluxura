@@ -32,7 +32,7 @@ struct PrivacyPolicy: View {
                 .padding()
                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                 .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
-                    .fill(Color(UIColor.systemIndigo)))
+                    .fill(Color(.systemIndigo)))
                 .padding(.bottom)
             }
             .disabled(!MFMailComposeViewController.canSendMail())

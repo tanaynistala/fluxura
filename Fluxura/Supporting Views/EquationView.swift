@@ -12,49 +12,23 @@ struct EquationView: View {
     @EnvironmentObject var data: AppData
     let letters = (97...131).map({Character(UnicodeScalar($0))})
     
-    var body: some View {
-        HStack(spacing: 0) {
-            EquationLHS()
-                .environmentObject(self.data)
-            
-            EquationRHS()
-                .environmentObject(self.data)
-            
-            Text(" + ")
-            Text("\(String(self.letters[self.data.inputs[1].count-1]))")
-            .italic()
-        }
-        .font(Font.system(.body, design: .serif))
-    }
-}
-
-struct EquationLHS: View {
-    @EnvironmentObject var data: AppData
-    
-    var body: some View {
+    var LHS: some View {
         VStack {
             if self.data.type == 1 {
                 Text("f ")
                 .italic()
                 +
-            Text("(\(self.data.inputs[2].count))")
-                .font(Font.system(.footnote, design: .serif))
-                .baselineOffset(6.0)
-                .italic()
+                Text("(\(self.data.inputs[2].count))")
+                    .font(Font.system(.footnote, design: .serif))
+                    .baselineOffset(6.0)
+                    .italic()
                 +
-            Text(" = ")
-            } else {
-                /*@START_MENU_TOKEN@*/EmptyView()/*@END_MENU_TOKEN@*/
+                Text(" = ")
             }
         }
     }
-}
-
-struct EquationRHS: View {
-    @EnvironmentObject var data: AppData
-    let letters = (97...131).map({Character(UnicodeScalar($0))})
     
-    var body: some View {
+    var RHS: some View {
         ForEach((1..<self.data.inputs[self.data.loadedPreset==nil ? 1 : 2].count).reversed(), id: \.self) { input in
             Group {
                 if input != self.data.inputs[2].count {
@@ -65,10 +39,23 @@ struct EquationRHS: View {
                     .italic()
                 
                 Variable(input: input)
-                    .environmentObject(self.data)
+                    .environmentObject(AppData.shared)
             }
             .font(Font.system(.body, design: .serif))
         }
+    }
+    
+    var body: some View {
+        HStack(spacing: 0) {
+            self.LHS
+            
+            self.RHS
+            
+            Text(" + ")
+            Text("\(String(self.letters[self.data.inputs[1].count-1]))")
+            .italic()
+        }
+        .font(Font.system(.body, design: .serif))
     }
 }
 

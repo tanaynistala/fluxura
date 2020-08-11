@@ -39,7 +39,7 @@ struct AppIconsView: View {
                                 Image(systemName: "xmark.circle.fill")
                                     .imageScale(.large)
                                     .frame(width: 16, height: 16)
-                                    .foregroundColor(Color(UIColor.placeholderText))
+                                    .foregroundColor(Color(.placeholderText))
                             }.buttonStyle(BorderlessButtonStyle())
                         }.padding(.vertical)
                     }
@@ -49,27 +49,34 @@ struct AppIconsView: View {
                     ForEach(SettingsStore.AppIcon.allCases, id: \.self) { icon in
                         Group {
                             if (self.mode == "Light" && !icon.rawValue.contains("Dark")) || (self.mode == "Dark" && icon.rawValue.contains("Dark")) {
-                                HStack {
-                                    Image("\(icon.rawValue)")
-                                        .resizable()
-                                        .renderingMode(.original)
-                                        .aspectRatio(1, contentMode: .fit)
-                                        .frame(width: 48, height: 48)
-                                        .cornerRadius(8)
-                                        .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.2), radius: 5, y: 2)
-                                        .padding([.vertical, .trailing], 8)
-                                        .onTapGesture {
+                                Button(action: {
+                                    if UIApplication.shared.supportsAlternateIcons {
+                                        UIApplication.shared.setAlternateIconName("\(icon.rawValue)")
+                                        self.icon = UIApplication.shared.alternateIconName
+                                    }
+                                }) {
+                                    HStack {
+                                        Button(action:{
                                             self.selectedIcon = icon
                                             self.showPreview = true
+                                        }) {
+                                            Image("\(icon.rawValue)")
+                                                .resizable()
+                                                .renderingMode(.original)
+                                                .aspectRatio(1, contentMode: .fit)
+                                                .frame(width: 48, height: 48)
+                                                .cornerRadius(8)
+                                                .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.2), radius: 2, y: 2)
+                                                .padding([.vertical, .trailing], 8)
                                         }
-                                    
-                                    Text("\(icon.rawValue)")
-                                        .font(.headline)
-                                    
-                                    Spacer()
-                                    
-                                    if self.icon == icon.rawValue {
-                                        Image(systemName: "checkmark.circle.fill")
+                                        .buttonStyle(BorderlessButtonStyle())
+                                        
+                                        Text("\(icon.rawValue)")
+                                            .font(.headline)
+                                        
+                                        Spacer()
+                                        
+                                        Image(systemName: "\(self.icon == icon.rawValue ? "checkmark." : "")circle\(self.icon == icon.rawValue ? ".fill" : "")")
                                             .imageScale(.large)
                                             .font(.headline)
                                             .foregroundColor(
@@ -79,10 +86,7 @@ struct AppIconsView: View {
                                             )
                                     }
                                 }
-                                .onTapGesture {
-                                    UIApplication.shared.setAlternateIconName("\(icon.rawValue)")
-                                    self.icon = UIApplication.shared.alternateIconName
-                                }
+                                .buttonStyle(PlainButtonStyle())
                             }
                         }
                     }
@@ -106,7 +110,7 @@ struct AppIconsView: View {
                                 .padding()
                                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .center)
                                 .background(RoundedRectangle(cornerRadius: 15, style: .continuous)
-                                    .fill(Color(UIColor.systemIndigo)))
+                                    .fill(Color(.systemIndigo)))
                         }
                         .padding(.horizontal)
                     }
@@ -125,9 +129,11 @@ struct AppIconsView: View {
                 .pickerStyle(SegmentedPickerStyle())
                 .padding()
                 .padding(.bottom)
+                .padding(.horizontal)
                 .background(Color(.systemGray6))
             }
             .edgesIgnoringSafeArea(.bottom)
+            .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.2), radius: 5, x: 0, y: -2)
         }
     }
 }
@@ -136,8 +142,8 @@ struct AppIconsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
                 AppIconsView()
-            .navigationBarTitle("App Icons")
-                    .environment(\.horizontalSizeClass, .regular)
+                .navigationBarTitle("App Icons")
+                .environment(\.horizontalSizeClass, .regular)
         }
     }
 }
