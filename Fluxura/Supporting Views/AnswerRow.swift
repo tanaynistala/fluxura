@@ -39,7 +39,7 @@ struct AnswerRow: View {
                     }
                 } else {
                     if index < self.data.inputs[2].count {
-                        Text("\(self.data.loadedPreset?.initial[index] ?? "") = ")
+                        Text("\(self.data.loadedPreset?.initial[index].0 ?? "") = ")
                     }
                 }
                 

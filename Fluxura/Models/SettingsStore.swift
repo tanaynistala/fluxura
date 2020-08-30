@@ -29,6 +29,7 @@ final class SettingsStore: ObservableObject {
         static let precisionType = "precision_type"
         static let precision = "precision"
         static let showMenu = "show_menu"
+        static let autoOpenKeyboard = "auto_open"
     }
 
     private let cancellable: Cancellable
@@ -53,7 +54,8 @@ final class SettingsStore: ObservableObject {
             Keys.angleType: 1,
             Keys.precisionType: false,
             Keys.precision: 3,
-            Keys.showMenu: false
+            Keys.showMenu: false,
+            Keys.autoOpenKeyboard: false
         ])
 
         cancellable = NotificationCenter.default
@@ -80,6 +82,11 @@ final class SettingsStore: ObservableObject {
     var editOnOpen: Bool {
         set { defaults.set(newValue, forKey: Keys.editOnOpen) }
         get { defaults.bool(forKey: Keys.editOnOpen) }
+    }
+    
+    var autoOpenKeyboard: Bool {
+        set { defaults.set(newValue, forKey: Keys.autoOpenKeyboard) }
+        get { defaults.bool(forKey: Keys.autoOpenKeyboard) }
     }
     
     var largeText: Bool {

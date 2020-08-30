@@ -51,3 +51,14 @@ struct AppView_Previews: PreviewProvider {
             .environmentObject(AppData())
     }
 }
+
+extension UINavigationController {
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+
+        let standard = UINavigationBarAppearance()
+        standard.largeTitleTextAttributes = [.foregroundColor: UIColor(named: SettingsStore.shared.appTint.rawValue) ?? UIColor.systemIndigo]
+
+        navigationBar.standardAppearance = standard
+    }
+}

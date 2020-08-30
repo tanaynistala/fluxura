@@ -113,7 +113,7 @@ struct KeyboardView: View {
                         ForEach(0..<self.data.order, id: \.self) { diff in
                             Button(action: {}) {
                                 Group {
-                                    Text("y")
+                                    Text("f")
                                     +
                                     Text("(\(diff))")
                                         .font(.footnote)

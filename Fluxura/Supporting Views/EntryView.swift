@@ -15,7 +15,7 @@ struct EntryView: View {
     
     var body: some View {
         ForEach(self.data.inputs[type], id: \.self) { target in
-            InputView(
+            InputRow(
                 target: target,
                 isActive: [target.type, target.index] == self.data.activeInput
             )

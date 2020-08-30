@@ -34,11 +34,7 @@ struct TipJar: View {
     }
     
     private func buttonAction(purchase: Purchases.Package) {
-        if subscriptionManager.subscriptionStatus == true {
-            presentationMode.wrappedValue.dismiss()
-        } else {
-            subscriptionManager.purchase(product: purchase)
-        }
+        subscriptionManager.purchase(product: purchase)
     }
     
     private func makePurchaseButton(action: @escaping () -> Void, title: String, index: Int, label:
@@ -108,15 +104,27 @@ struct TipJar: View {
             }
         }
     
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("If you'd like to help support the app and us (the devs) even more, we'd greatly appreciate any extra tips!")
-            Text("To be clear, these don't unlock any extra functionality.")
-                .foregroundColor(Color(.secondaryLabel))
-            
-            self.paymentButtons
-            
-            Spacer()
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                Text("If you'd like to help support the app and us (the devs) even more, we'd greatly appreciate any extra tips!")
+                Text("To be clear, these don't unlock any extra functionality.")
+                    .foregroundColor(Color(.secondaryLabel))
+                
+                self.paymentButtons
+                
+                Spacer()
+                
+                /*
+                Image("Heart Code \(colorScheme == .dark ? "Dark" : "Light")")
+                .resizable()
+                .renderingMode(.original)
+                .aspectRatio(16/9, contentMode: .fit)
+                .scaleEffect(0.25)
+                 */
+            }
         }
         .padding()
         .navigationBarTitle("Tip Jar")

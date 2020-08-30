@@ -12,50 +12,6 @@
 		111175DE24DC38F200C2FD9F /* HarmonicMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111175DD24DC38F200C2FD9F /* HarmonicMotion.swift */; };
 		111175E024DC3A3900C2FD9F /* LorenzSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111175DF24DC3A3900C2FD9F /* LorenzSystem.swift */; };
 		111175E224DC475100C2FD9F /* BassDiffusion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111175E124DC475100C2FD9F /* BassDiffusion.swift */; };
-		1111761124DC55A500C2FD9F /* Blue Splash Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175E424DC55A500C2FD9F /* Blue Splash Dark.png */; };
-		1111761224DC55A500C2FD9F /* Red Splash Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175E524DC55A500C2FD9F /* Red Splash Dark.png */; };
-		1111761324DC55A500C2FD9F /* Gray Splash Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175E624DC55A500C2FD9F /* Gray Splash Dark.png */; };
-		1111761424DC55A500C2FD9F /* Pink Splash Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175E724DC55A500C2FD9F /* Pink Splash Dark.png */; };
-		1111761524DC55A500C2FD9F /* Green Splash Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175E824DC55A500C2FD9F /* Green Splash Dark.png */; };
-		1111761624DC55A500C2FD9F /* Pink Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175E924DC55A500C2FD9F /* Pink Dark.png */; };
-		1111761724DC55A500C2FD9F /* Twilight Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175EA24DC55A500C2FD9F /* Twilight Dark.png */; };
-		1111761824DC55A500C2FD9F /* Rainbow Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175EB24DC55A500C2FD9F /* Rainbow Dark.png */; };
-		1111761924DC55A500C2FD9F /* Purple Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175EC24DC55A500C2FD9F /* Purple Dark.png */; };
-		1111761A24DC55A500C2FD9F /* Yellow Splash Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175ED24DC55A500C2FD9F /* Yellow Splash Dark.png */; };
-		1111761B24DC55A500C2FD9F /* Orange Splash Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175EE24DC55A500C2FD9F /* Orange Splash Dark.png */; };
-		1111761C24DC55A500C2FD9F /* Green Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175EF24DC55A500C2FD9F /* Green Dark.png */; };
-		1111761D24DC55A500C2FD9F /* Orange Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175F024DC55A500C2FD9F /* Orange Dark.png */; };
-		1111761E24DC55A500C2FD9F /* Gray Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175F124DC55A500C2FD9F /* Gray Dark.png */; };
-		1111761F24DC55A500C2FD9F /* Teal Splash Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175F224DC55A500C2FD9F /* Teal Splash Dark.png */; };
-		1111762024DC55A500C2FD9F /* Rainbow Splash Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175F324DC55A500C2FD9F /* Rainbow Splash Dark.png */; };
-		1111762124DC55A500C2FD9F /* Red Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175F424DC55A500C2FD9F /* Red Dark.png */; };
-		1111762224DC55A500C2FD9F /* Yellow Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175F524DC55A500C2FD9F /* Yellow Dark.png */; };
-		1111762324DC55A500C2FD9F /* Blue Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175F624DC55A500C2FD9F /* Blue Dark.png */; };
-		1111762424DC55A500C2FD9F /* Purple Splash Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175F724DC55A500C2FD9F /* Purple Splash Dark.png */; };
-		1111762524DC55A500C2FD9F /* Teal Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175F824DC55A500C2FD9F /* Teal Dark.png */; };
-		1111762624DC55A500C2FD9F /* Twilight Splash Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175F924DC55A500C2FD9F /* Twilight Splash Dark.png */; };
-		1111762724DC55A500C2FD9F /* Teal.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175FB24DC55A500C2FD9F /* Teal.png */; };
-		1111762824DC55A500C2FD9F /* Gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175FC24DC55A500C2FD9F /* Gray.png */; };
-		1111762924DC55A500C2FD9F /* Yellow Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175FD24DC55A500C2FD9F /* Yellow Splash.png */; };
-		1111762A24DC55A500C2FD9F /* Blue Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175FE24DC55A500C2FD9F /* Blue Splash.png */; };
-		1111762B24DC55A500C2FD9F /* Twilight.png in Resources */ = {isa = PBXBuildFile; fileRef = 111175FF24DC55A500C2FD9F /* Twilight.png */; };
-		1111762C24DC55A500C2FD9F /* Yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1111760024DC55A500C2FD9F /* Yellow.png */; };
-		1111762D24DC55A500C2FD9F /* Twiight Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 1111760124DC55A500C2FD9F /* Twiight Splash.png */; };
-		1111762E24DC55A500C2FD9F /* Pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 1111760224DC55A500C2FD9F /* Pink.png */; };
-		1111762F24DC55A500C2FD9F /* Blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 1111760324DC55A500C2FD9F /* Blue.png */; };
-		1111763024DC55A500C2FD9F /* Purple Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 1111760424DC55A500C2FD9F /* Purple Splash.png */; };
-		1111763124DC55A500C2FD9F /* Gray Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 1111760524DC55A500C2FD9F /* Gray Splash.png */; };
-		1111763224DC55A500C2FD9F /* Orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 1111760624DC55A500C2FD9F /* Orange.png */; };
-		1111763324DC55A500C2FD9F /* Rainbow Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 1111760724DC55A500C2FD9F /* Rainbow Splash.png */; };
-		1111763424DC55A500C2FD9F /* Orange Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 1111760824DC55A500C2FD9F /* Orange Splash.png */; };
-		1111763524DC55A500C2FD9F /* Pink Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 1111760924DC55A500C2FD9F /* Pink Splash.png */; };
-		1111763624DC55A500C2FD9F /* Green.png in Resources */ = {isa = PBXBuildFile; fileRef = 1111760A24DC55A500C2FD9F /* Green.png */; };
-		1111763724DC55A500C2FD9F /* Red Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 1111760B24DC55A500C2FD9F /* Red Splash.png */; };
-		1111763824DC55A500C2FD9F /* Green Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 1111760C24DC55A500C2FD9F /* Green Splash.png */; };
-		1111763924DC55A500C2FD9F /* Teal Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 1111760D24DC55A500C2FD9F /* Teal Splash.png */; };
-		1111763A24DC55A500C2FD9F /* Red.png in Resources */ = {isa = PBXBuildFile; fileRef = 1111760E24DC55A500C2FD9F /* Red.png */; };
-		1111763B24DC55A500C2FD9F /* Purple.png in Resources */ = {isa = PBXBuildFile; fileRef = 1111760F24DC55A500C2FD9F /* Purple.png */; };
-		1111763C24DC55A500C2FD9F /* Rainbow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1111761024DC55A500C2FD9F /* Rainbow.png */; };
 		1111763E24DC5AE300C2FD9F /* AnswerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1111763D24DC5AE300C2FD9F /* AnswerRow.swift */; };
 		11164E7924BA0FBC00FD6B8B /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11164E7824BA0FBC00FD6B8B /* Presets.swift */; };
 		111DE42624A49CE5001A0964 /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111DE42524A49CE4001A0964 /* Help.swift */; };
@@ -72,15 +28,15 @@
 		1132EC94249735E10017628A /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1132EC93249735E10017628A /* KeyboardView.swift */; };
 		1132EC9924973D820017628A /* Extended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1132EC9824973D820017628A /* Extended.swift */; };
 		1137797B24C70FC100D4A09C /* EquationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137797A24C70FC100D4A09C /* EquationView.swift */; };
+		113EF32224F0BCD70044FB2F /* AppTintsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113EF32124F0BCD70044FB2F /* AppTintsView.swift */; };
 		113FFBA724D93C6B00883C67 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 113FFBA624D93C6B00883C67 /* StoreKit.framework */; };
 		11429FC424D926670058E7A7 /* Purchases in Frameworks */ = {isa = PBXBuildFile; productRef = 11429FC324D926670058E7A7 /* Purchases */; };
 		11429FC624D927180058E7A7 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11429FC524D927180058E7A7 /* SubscriptionManager.swift */; };
 		1146694F249B90C4008B7812 /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1146694E249B90C4008B7812 /* EntryView.swift */; };
 		114B0E2224D11C2900DE0859 /* TipJarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114B0E2124D11C2900DE0859 /* TipJarView.swift */; };
-		114DA6C524C5BFE600A15017 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DA6C424C5BFE600A15017 /* InputView.swift */; };
+		114DA6C524C5BFE600A15017 /* InputRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114DA6C424C5BFE600A15017 /* InputRow.swift */; };
 		1150F2D024B42B76005E599D /* MathParser in Frameworks */ = {isa = PBXBuildFile; productRef = 1150F2CF24B42B76005E599D /* MathParser */; };
 		11527BAA24986E2200263B83 /* Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11527BA924986E2200263B83 /* Standard.swift */; };
-		1152B87C24E2657A00EF3FFA /* Twiight Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 1152B87B24E2657A00EF3FFA /* Twiight Splash.png */; };
 		115851C024B7589700B48C5C /* SAM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115851BF24B7589700B48C5C /* SAM.swift */; };
 		115851C224B758BC00B48C5C /* LotkaVolterra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115851C124B758BC00B48C5C /* LotkaVolterra.swift */; };
 		1171FA7824AE21F500C4F6BE /* PresetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1171FA7424AE21F500C4F6BE /* PresetModel.swift */; };
@@ -91,6 +47,50 @@
 		11924A40249A84A6009719D2 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11924A3F249A84A6009719D2 /* SettingsStore.swift */; };
 		11924A42249AFDED009719D2 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11924A41249AFDED009719D2 /* Buttons.swift */; };
 		11924A44249B3B71009719D2 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11924A43249B3B71009719D2 /* AppData.swift */; };
+		11967D1F24E26676008DBA75 /* Blue Splash Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967CF224E26675008DBA75 /* Blue Splash Dark.png */; };
+		11967D2024E26676008DBA75 /* Red Splash Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967CF324E26675008DBA75 /* Red Splash Dark.png */; };
+		11967D2124E26676008DBA75 /* Gray Splash Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967CF424E26675008DBA75 /* Gray Splash Dark.png */; };
+		11967D2224E26676008DBA75 /* Pink Splash Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967CF524E26675008DBA75 /* Pink Splash Dark.png */; };
+		11967D2324E26676008DBA75 /* Green Splash Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967CF624E26675008DBA75 /* Green Splash Dark.png */; };
+		11967D2424E26676008DBA75 /* Pink Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967CF724E26675008DBA75 /* Pink Dark.png */; };
+		11967D2524E26676008DBA75 /* Twilight Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967CF824E26675008DBA75 /* Twilight Dark.png */; };
+		11967D2624E26676008DBA75 /* Rainbow Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967CF924E26675008DBA75 /* Rainbow Dark.png */; };
+		11967D2724E26676008DBA75 /* Purple Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967CFA24E26675008DBA75 /* Purple Dark.png */; };
+		11967D2824E26676008DBA75 /* Yellow Splash Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967CFB24E26675008DBA75 /* Yellow Splash Dark.png */; };
+		11967D2924E26676008DBA75 /* Orange Splash Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967CFC24E26675008DBA75 /* Orange Splash Dark.png */; };
+		11967D2A24E26676008DBA75 /* Green Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967CFD24E26675008DBA75 /* Green Dark.png */; };
+		11967D2B24E26676008DBA75 /* Orange Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967CFE24E26675008DBA75 /* Orange Dark.png */; };
+		11967D2C24E26676008DBA75 /* Gray Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967CFF24E26675008DBA75 /* Gray Dark.png */; };
+		11967D2D24E26676008DBA75 /* Teal Splash Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D0024E26675008DBA75 /* Teal Splash Dark.png */; };
+		11967D2E24E26676008DBA75 /* Rainbow Splash Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D0124E26675008DBA75 /* Rainbow Splash Dark.png */; };
+		11967D2F24E26676008DBA75 /* Red Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D0224E26675008DBA75 /* Red Dark.png */; };
+		11967D3024E26676008DBA75 /* Yellow Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D0324E26675008DBA75 /* Yellow Dark.png */; };
+		11967D3124E26676008DBA75 /* Blue Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D0424E26675008DBA75 /* Blue Dark.png */; };
+		11967D3224E26676008DBA75 /* Purple Splash Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D0524E26675008DBA75 /* Purple Splash Dark.png */; };
+		11967D3324E26676008DBA75 /* Teal Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D0624E26675008DBA75 /* Teal Dark.png */; };
+		11967D3424E26676008DBA75 /* Twilight Splash Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D0724E26675008DBA75 /* Twilight Splash Dark.png */; };
+		11967D3524E26676008DBA75 /* Teal.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D0924E26675008DBA75 /* Teal.png */; };
+		11967D3624E26676008DBA75 /* Gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D0A24E26675008DBA75 /* Gray.png */; };
+		11967D3724E26676008DBA75 /* Yellow Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D0B24E26675008DBA75 /* Yellow Splash.png */; };
+		11967D3824E26676008DBA75 /* Blue Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D0C24E26675008DBA75 /* Blue Splash.png */; };
+		11967D3924E26676008DBA75 /* Twilight.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D0D24E26675008DBA75 /* Twilight.png */; };
+		11967D3A24E26676008DBA75 /* Yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D0E24E26675008DBA75 /* Yellow.png */; };
+		11967D3B24E26676008DBA75 /* Twilight Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D0F24E26675008DBA75 /* Twilight Splash.png */; };
+		11967D3C24E26676008DBA75 /* Pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D1024E26675008DBA75 /* Pink.png */; };
+		11967D3D24E26676008DBA75 /* Blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D1124E26675008DBA75 /* Blue.png */; };
+		11967D3E24E26676008DBA75 /* Purple Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D1224E26675008DBA75 /* Purple Splash.png */; };
+		11967D3F24E26676008DBA75 /* Gray Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D1324E26675008DBA75 /* Gray Splash.png */; };
+		11967D4024E26676008DBA75 /* Orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D1424E26675008DBA75 /* Orange.png */; };
+		11967D4124E26676008DBA75 /* Rainbow Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D1524E26675008DBA75 /* Rainbow Splash.png */; };
+		11967D4224E26676008DBA75 /* Orange Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D1624E26675008DBA75 /* Orange Splash.png */; };
+		11967D4324E26676008DBA75 /* Pink Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D1724E26675008DBA75 /* Pink Splash.png */; };
+		11967D4424E26676008DBA75 /* Green.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D1824E26675008DBA75 /* Green.png */; };
+		11967D4524E26676008DBA75 /* Red Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D1924E26675008DBA75 /* Red Splash.png */; };
+		11967D4624E26676008DBA75 /* Green Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D1A24E26675008DBA75 /* Green Splash.png */; };
+		11967D4724E26676008DBA75 /* Teal Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D1B24E26675008DBA75 /* Teal Splash.png */; };
+		11967D4824E26676008DBA75 /* Red.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D1C24E26675008DBA75 /* Red.png */; };
+		11967D4924E26676008DBA75 /* Purple.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D1D24E26675008DBA75 /* Purple.png */; };
+		11967D4A24E26676008DBA75 /* Rainbow.png in Resources */ = {isa = PBXBuildFile; fileRef = 11967D1E24E26675008DBA75 /* Rainbow.png */; };
 		119AE163249880D500D84555 /* Solver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119AE162249880D500D84555 /* Solver.swift */; };
 		119EA0F024A7ACAB00838C2E /* CoefficientsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119EA0EF24A7ACAB00838C2E /* CoefficientsList.swift */; };
 		119F9F5024AE870C00BD26CA /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119F9F4F24AE870C00BD26CA /* MailView.swift */; };
@@ -115,50 +115,6 @@
 		111175DD24DC38F200C2FD9F /* HarmonicMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmonicMotion.swift; sourceTree = "<group>"; };
 		111175DF24DC3A3900C2FD9F /* LorenzSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LorenzSystem.swift; sourceTree = "<group>"; };
 		111175E124DC475100C2FD9F /* BassDiffusion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BassDiffusion.swift; sourceTree = "<group>"; };
-		111175E424DC55A500C2FD9F /* Blue Splash Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Blue Splash Dark.png"; sourceTree = "<group>"; };
-		111175E524DC55A500C2FD9F /* Red Splash Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red Splash Dark.png"; sourceTree = "<group>"; };
-		111175E624DC55A500C2FD9F /* Gray Splash Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gray Splash Dark.png"; sourceTree = "<group>"; };
-		111175E724DC55A500C2FD9F /* Pink Splash Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pink Splash Dark.png"; sourceTree = "<group>"; };
-		111175E824DC55A500C2FD9F /* Green Splash Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Green Splash Dark.png"; sourceTree = "<group>"; };
-		111175E924DC55A500C2FD9F /* Pink Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pink Dark.png"; sourceTree = "<group>"; };
-		111175EA24DC55A500C2FD9F /* Twilight Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Twilight Dark.png"; sourceTree = "<group>"; };
-		111175EB24DC55A500C2FD9F /* Rainbow Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rainbow Dark.png"; sourceTree = "<group>"; };
-		111175EC24DC55A500C2FD9F /* Purple Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Purple Dark.png"; sourceTree = "<group>"; };
-		111175ED24DC55A500C2FD9F /* Yellow Splash Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Yellow Splash Dark.png"; sourceTree = "<group>"; };
-		111175EE24DC55A500C2FD9F /* Orange Splash Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orange Splash Dark.png"; sourceTree = "<group>"; };
-		111175EF24DC55A500C2FD9F /* Green Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Green Dark.png"; sourceTree = "<group>"; };
-		111175F024DC55A500C2FD9F /* Orange Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orange Dark.png"; sourceTree = "<group>"; };
-		111175F124DC55A500C2FD9F /* Gray Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gray Dark.png"; sourceTree = "<group>"; };
-		111175F224DC55A500C2FD9F /* Teal Splash Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Teal Splash Dark.png"; sourceTree = "<group>"; };
-		111175F324DC55A500C2FD9F /* Rainbow Splash Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rainbow Splash Dark.png"; sourceTree = "<group>"; };
-		111175F424DC55A500C2FD9F /* Red Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red Dark.png"; sourceTree = "<group>"; };
-		111175F524DC55A500C2FD9F /* Yellow Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Yellow Dark.png"; sourceTree = "<group>"; };
-		111175F624DC55A500C2FD9F /* Blue Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Blue Dark.png"; sourceTree = "<group>"; };
-		111175F724DC55A500C2FD9F /* Purple Splash Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Purple Splash Dark.png"; sourceTree = "<group>"; };
-		111175F824DC55A500C2FD9F /* Teal Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Teal Dark.png"; sourceTree = "<group>"; };
-		111175F924DC55A500C2FD9F /* Twilight Splash Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Twilight Splash Dark.png"; sourceTree = "<group>"; };
-		111175FB24DC55A500C2FD9F /* Teal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Teal.png; sourceTree = "<group>"; };
-		111175FC24DC55A500C2FD9F /* Gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gray.png; sourceTree = "<group>"; };
-		111175FD24DC55A500C2FD9F /* Yellow Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Yellow Splash.png"; sourceTree = "<group>"; };
-		111175FE24DC55A500C2FD9F /* Blue Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Blue Splash.png"; sourceTree = "<group>"; };
-		111175FF24DC55A500C2FD9F /* Twilight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Twilight.png; sourceTree = "<group>"; };
-		1111760024DC55A500C2FD9F /* Yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yellow.png; sourceTree = "<group>"; };
-		1111760124DC55A500C2FD9F /* Twiight Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Twiight Splash.png"; sourceTree = "<group>"; };
-		1111760224DC55A500C2FD9F /* Pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pink.png; sourceTree = "<group>"; };
-		1111760324DC55A500C2FD9F /* Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue.png; sourceTree = "<group>"; };
-		1111760424DC55A500C2FD9F /* Purple Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Purple Splash.png"; sourceTree = "<group>"; };
-		1111760524DC55A500C2FD9F /* Gray Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gray Splash.png"; sourceTree = "<group>"; };
-		1111760624DC55A500C2FD9F /* Orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Orange.png; sourceTree = "<group>"; };
-		1111760724DC55A500C2FD9F /* Rainbow Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rainbow Splash.png"; sourceTree = "<group>"; };
-		1111760824DC55A500C2FD9F /* Orange Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orange Splash.png"; sourceTree = "<group>"; };
-		1111760924DC55A500C2FD9F /* Pink Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pink Splash.png"; sourceTree = "<group>"; };
-		1111760A24DC55A500C2FD9F /* Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Green.png; sourceTree = "<group>"; };
-		1111760B24DC55A500C2FD9F /* Red Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red Splash.png"; sourceTree = "<group>"; };
-		1111760C24DC55A500C2FD9F /* Green Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Green Splash.png"; sourceTree = "<group>"; };
-		1111760D24DC55A500C2FD9F /* Teal Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Teal Splash.png"; sourceTree = "<group>"; };
-		1111760E24DC55A500C2FD9F /* Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red.png; sourceTree = "<group>"; };
-		1111760F24DC55A500C2FD9F /* Purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Purple.png; sourceTree = "<group>"; };
-		1111761024DC55A500C2FD9F /* Rainbow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rainbow.png; sourceTree = "<group>"; };
 		1111763D24DC5AE300C2FD9F /* AnswerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerRow.swift; sourceTree = "<group>"; };
 		11164E7824BA0FBC00FD6B8B /* Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
 		111DE42524A49CE4001A0964 /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
@@ -177,13 +133,13 @@
 		1132EC93249735E10017628A /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		1132EC9824973D820017628A /* Extended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extended.swift; sourceTree = "<group>"; };
 		1137797A24C70FC100D4A09C /* EquationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquationView.swift; sourceTree = "<group>"; };
+		113EF32124F0BCD70044FB2F /* AppTintsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTintsView.swift; sourceTree = "<group>"; };
 		113FFBA624D93C6B00883C67 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		11429FC524D927180058E7A7 /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
 		1146694E249B90C4008B7812 /* EntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
 		114B0E2124D11C2900DE0859 /* TipJarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJarView.swift; sourceTree = "<group>"; };
-		114DA6C424C5BFE600A15017 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		114DA6C424C5BFE600A15017 /* InputRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputRow.swift; sourceTree = "<group>"; };
 		11527BA924986E2200263B83 /* Standard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standard.swift; sourceTree = "<group>"; };
-		1152B87B24E2657A00EF3FFA /* Twiight Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Twiight Splash.png"; path = "../../../../../Documents/Fluxura/Light/Twiight Splash.png"; sourceTree = "<group>"; };
 		115851BF24B7589700B48C5C /* SAM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SAM.swift; sourceTree = "<group>"; };
 		115851C124B758BC00B48C5C /* LotkaVolterra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotkaVolterra.swift; sourceTree = "<group>"; };
 		1171FA7424AE21F500C4F6BE /* PresetModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetModel.swift; sourceTree = "<group>"; };
@@ -194,6 +150,50 @@
 		11924A3F249A84A6009719D2 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
 		11924A41249AFDED009719D2 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		11924A43249B3B71009719D2 /* AppData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
+		11967CF224E26675008DBA75 /* Blue Splash Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Blue Splash Dark.png"; sourceTree = "<group>"; };
+		11967CF324E26675008DBA75 /* Red Splash Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red Splash Dark.png"; sourceTree = "<group>"; };
+		11967CF424E26675008DBA75 /* Gray Splash Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gray Splash Dark.png"; sourceTree = "<group>"; };
+		11967CF524E26675008DBA75 /* Pink Splash Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pink Splash Dark.png"; sourceTree = "<group>"; };
+		11967CF624E26675008DBA75 /* Green Splash Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Green Splash Dark.png"; sourceTree = "<group>"; };
+		11967CF724E26675008DBA75 /* Pink Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pink Dark.png"; sourceTree = "<group>"; };
+		11967CF824E26675008DBA75 /* Twilight Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Twilight Dark.png"; sourceTree = "<group>"; };
+		11967CF924E26675008DBA75 /* Rainbow Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rainbow Dark.png"; sourceTree = "<group>"; };
+		11967CFA24E26675008DBA75 /* Purple Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Purple Dark.png"; sourceTree = "<group>"; };
+		11967CFB24E26675008DBA75 /* Yellow Splash Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Yellow Splash Dark.png"; sourceTree = "<group>"; };
+		11967CFC24E26675008DBA75 /* Orange Splash Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orange Splash Dark.png"; sourceTree = "<group>"; };
+		11967CFD24E26675008DBA75 /* Green Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Green Dark.png"; sourceTree = "<group>"; };
+		11967CFE24E26675008DBA75 /* Orange Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orange Dark.png"; sourceTree = "<group>"; };
+		11967CFF24E26675008DBA75 /* Gray Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gray Dark.png"; sourceTree = "<group>"; };
+		11967D0024E26675008DBA75 /* Teal Splash Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Teal Splash Dark.png"; sourceTree = "<group>"; };
+		11967D0124E26675008DBA75 /* Rainbow Splash Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rainbow Splash Dark.png"; sourceTree = "<group>"; };
+		11967D0224E26675008DBA75 /* Red Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red Dark.png"; sourceTree = "<group>"; };
+		11967D0324E26675008DBA75 /* Yellow Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Yellow Dark.png"; sourceTree = "<group>"; };
+		11967D0424E26675008DBA75 /* Blue Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Blue Dark.png"; sourceTree = "<group>"; };
+		11967D0524E26675008DBA75 /* Purple Splash Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Purple Splash Dark.png"; sourceTree = "<group>"; };
+		11967D0624E26675008DBA75 /* Teal Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Teal Dark.png"; sourceTree = "<group>"; };
+		11967D0724E26675008DBA75 /* Twilight Splash Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Twilight Splash Dark.png"; sourceTree = "<group>"; };
+		11967D0924E26675008DBA75 /* Teal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Teal.png; sourceTree = "<group>"; };
+		11967D0A24E26675008DBA75 /* Gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gray.png; sourceTree = "<group>"; };
+		11967D0B24E26675008DBA75 /* Yellow Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Yellow Splash.png"; sourceTree = "<group>"; };
+		11967D0C24E26675008DBA75 /* Blue Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Blue Splash.png"; sourceTree = "<group>"; };
+		11967D0D24E26675008DBA75 /* Twilight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Twilight.png; sourceTree = "<group>"; };
+		11967D0E24E26675008DBA75 /* Yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yellow.png; sourceTree = "<group>"; };
+		11967D0F24E26675008DBA75 /* Twilight Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Twilight Splash.png"; sourceTree = "<group>"; };
+		11967D1024E26675008DBA75 /* Pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pink.png; sourceTree = "<group>"; };
+		11967D1124E26675008DBA75 /* Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue.png; sourceTree = "<group>"; };
+		11967D1224E26675008DBA75 /* Purple Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Purple Splash.png"; sourceTree = "<group>"; };
+		11967D1324E26675008DBA75 /* Gray Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Gray Splash.png"; sourceTree = "<group>"; };
+		11967D1424E26675008DBA75 /* Orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Orange.png; sourceTree = "<group>"; };
+		11967D1524E26675008DBA75 /* Rainbow Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rainbow Splash.png"; sourceTree = "<group>"; };
+		11967D1624E26675008DBA75 /* Orange Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Orange Splash.png"; sourceTree = "<group>"; };
+		11967D1724E26675008DBA75 /* Pink Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pink Splash.png"; sourceTree = "<group>"; };
+		11967D1824E26675008DBA75 /* Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Green.png; sourceTree = "<group>"; };
+		11967D1924E26675008DBA75 /* Red Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Red Splash.png"; sourceTree = "<group>"; };
+		11967D1A24E26675008DBA75 /* Green Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Green Splash.png"; sourceTree = "<group>"; };
+		11967D1B24E26675008DBA75 /* Teal Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Teal Splash.png"; sourceTree = "<group>"; };
+		11967D1C24E26675008DBA75 /* Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red.png; sourceTree = "<group>"; };
+		11967D1D24E26675008DBA75 /* Purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Purple.png; sourceTree = "<group>"; };
+		11967D1E24E26675008DBA75 /* Rainbow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rainbow.png; sourceTree = "<group>"; };
 		119AE162249880D500D84555 /* Solver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solver.swift; sourceTree = "<group>"; };
 		119EA0EF24A7ACAB00838C2E /* CoefficientsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoefficientsList.swift; sourceTree = "<group>"; };
 		119F9F4F24AE870C00BD26CA /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
@@ -229,89 +229,30 @@
 		1108914C249DFB31003CED17 /* Supporting Views */ = {
 			isa = PBXGroup;
 			children = (
-				11AC22A1249DBED20061A629 /* ClearViews.swift */,
-				1146694E249B90C4008B7812 /* EntryView.swift */,
-				11FD5537249A41CA00D775D8 /* BottomSheetView.swift */,
 				11D2D4B324A5038300D1E6FA /* Splashscreen.swift */,
-				119F9F4F24AE870C00BD26CA /* MailView.swift */,
-				114DA6C424C5BFE600A15017 /* InputView.swift */,
-				1137797A24C70FC100D4A09C /* EquationView.swift */,
+				1146694E249B90C4008B7812 /* EntryView.swift */,
+				114DA6C424C5BFE600A15017 /* InputRow.swift */,
 				1111763D24DC5AE300C2FD9F /* AnswerRow.swift */,
+				1137797A24C70FC100D4A09C /* EquationView.swift */,
 				1185283024DEA2DC005B9D3A /* ConfigView.swift */,
+				11AC22A1249DBED20061A629 /* ClearViews.swift */,
+				119F9F4F24AE870C00BD26CA /* MailView.swift */,
 			);
 			path = "Supporting Views";
 			sourceTree = "<group>";
 		};
-		111175E324DC55A500C2FD9F /* Dark */ = {
-			isa = PBXGroup;
-			children = (
-				111175E424DC55A500C2FD9F /* Blue Splash Dark.png */,
-				111175E524DC55A500C2FD9F /* Red Splash Dark.png */,
-				111175E624DC55A500C2FD9F /* Gray Splash Dark.png */,
-				111175E724DC55A500C2FD9F /* Pink Splash Dark.png */,
-				111175E824DC55A500C2FD9F /* Green Splash Dark.png */,
-				111175E924DC55A500C2FD9F /* Pink Dark.png */,
-				111175EA24DC55A500C2FD9F /* Twilight Dark.png */,
-				111175EB24DC55A500C2FD9F /* Rainbow Dark.png */,
-				111175EC24DC55A500C2FD9F /* Purple Dark.png */,
-				111175ED24DC55A500C2FD9F /* Yellow Splash Dark.png */,
-				111175EE24DC55A500C2FD9F /* Orange Splash Dark.png */,
-				111175EF24DC55A500C2FD9F /* Green Dark.png */,
-				111175F024DC55A500C2FD9F /* Orange Dark.png */,
-				111175F124DC55A500C2FD9F /* Gray Dark.png */,
-				111175F224DC55A500C2FD9F /* Teal Splash Dark.png */,
-				111175F324DC55A500C2FD9F /* Rainbow Splash Dark.png */,
-				111175F424DC55A500C2FD9F /* Red Dark.png */,
-				111175F524DC55A500C2FD9F /* Yellow Dark.png */,
-				111175F624DC55A500C2FD9F /* Blue Dark.png */,
-				111175F724DC55A500C2FD9F /* Purple Splash Dark.png */,
-				111175F824DC55A500C2FD9F /* Teal Dark.png */,
-				111175F924DC55A500C2FD9F /* Twilight Splash Dark.png */,
-			);
-			path = Dark;
-			sourceTree = "<group>";
-		};
-		111175FA24DC55A500C2FD9F /* Light */ = {
-			isa = PBXGroup;
-			children = (
-				111175FB24DC55A500C2FD9F /* Teal.png */,
-				111175FC24DC55A500C2FD9F /* Gray.png */,
-				111175FD24DC55A500C2FD9F /* Yellow Splash.png */,
-				111175FE24DC55A500C2FD9F /* Blue Splash.png */,
-				1152B87B24E2657A00EF3FFA /* Twiight Splash.png */,
-				111175FF24DC55A500C2FD9F /* Twilight.png */,
-				1111760024DC55A500C2FD9F /* Yellow.png */,
-				1111760124DC55A500C2FD9F /* Twiight Splash.png */,
-				1111760224DC55A500C2FD9F /* Pink.png */,
-				1111760324DC55A500C2FD9F /* Blue.png */,
-				1111760424DC55A500C2FD9F /* Purple Splash.png */,
-				1111760524DC55A500C2FD9F /* Gray Splash.png */,
-				1111760624DC55A500C2FD9F /* Orange.png */,
-				1111760724DC55A500C2FD9F /* Rainbow Splash.png */,
-				1111760824DC55A500C2FD9F /* Orange Splash.png */,
-				1111760924DC55A500C2FD9F /* Pink Splash.png */,
-				1111760A24DC55A500C2FD9F /* Green.png */,
-				1111760B24DC55A500C2FD9F /* Red Splash.png */,
-				1111760C24DC55A500C2FD9F /* Green Splash.png */,
-				1111760D24DC55A500C2FD9F /* Teal Splash.png */,
-				1111760E24DC55A500C2FD9F /* Red.png */,
-				1111760F24DC55A500C2FD9F /* Purple.png */,
-				1111761024DC55A500C2FD9F /* Rainbow.png */,
-			);
-			path = Light;
-			sourceTree = "<group>";
-		};
-		11214C1A24A476E800AEADD5 /* Settings Subviews */ = {
+		11214C1A24A476E800AEADD5 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				1108914D249EEAD2003CED17 /* ProPreview.swift */,
 				11116E4C249F11D500CDACF9 /* AppIconsView.swift */,
+				113EF32124F0BCD70044FB2F /* AppTintsView.swift */,
 				11214C1B24A476F900AEADD5 /* PrivacyPolicy.swift */,
-				114B0E2124D11C2900DE0859 /* TipJarView.swift */,
 				11214C1D24A478A600AEADD5 /* TermsOfUse.swift */,
+				114B0E2124D11C2900DE0859 /* TipJarView.swift */,
 				111DE42524A49CE4001A0964 /* Help.swift */,
 			);
-			path = "Settings Subviews";
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		1132EC73249735CE0017628A = {
@@ -338,11 +279,10 @@
 				1132EC83249735CE0017628A /* ContentView.swift */,
 				11C27D7C24AA44F60030FD0B /* PresetsView.swift */,
 				11924A3D249A8453009719D2 /* SettingsView.swift */,
-				1132EC93249735E10017628A /* KeyboardView.swift */,
 				1108914C249DFB31003CED17 /* Supporting Views */,
-				11F00C0224AE46D40048A7EE /* Presets Subviews */,
-				11214C1A24A476E800AEADD5 /* Settings Subviews */,
-				1132EC9524973D680017628A /* Keyboard Subviews */,
+				11F00C0224AE46D40048A7EE /* Presets */,
+				11214C1A24A476E800AEADD5 /* Settings */,
+				1132EC9524973D680017628A /* Keyboard */,
 				119AE15F24987DBA00D84555 /* Algorithms */,
 				1171FA7B24AE21FB00C4F6BE /* Models */,
 				11F00C0124AE46850048A7EE /* Resources */,
@@ -365,14 +305,16 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		1132EC9524973D680017628A /* Keyboard Subviews */ = {
+		1132EC9524973D680017628A /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
+				1132EC93249735E10017628A /* KeyboardView.swift */,
+				11FD5537249A41CA00D775D8 /* BottomSheetView.swift */,
 				11924A41249AFDED009719D2 /* Buttons.swift */,
 				1132EC9824973D820017628A /* Extended.swift */,
 				11527BA924986E2200263B83 /* Standard.swift */,
 			);
-			path = "Keyboard Subviews";
+			path = Keyboard;
 			sourceTree = "<group>";
 		};
 		113FFBA524D93C6B00883C67 /* Frameworks */ = {
@@ -393,6 +335,64 @@
 				11CA573624DCED4B005CFA77 /* InputModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		11967CF124E26675008DBA75 /* Dark */ = {
+			isa = PBXGroup;
+			children = (
+				11967CF224E26675008DBA75 /* Blue Splash Dark.png */,
+				11967CF324E26675008DBA75 /* Red Splash Dark.png */,
+				11967CF424E26675008DBA75 /* Gray Splash Dark.png */,
+				11967CF524E26675008DBA75 /* Pink Splash Dark.png */,
+				11967CF624E26675008DBA75 /* Green Splash Dark.png */,
+				11967CF724E26675008DBA75 /* Pink Dark.png */,
+				11967CF824E26675008DBA75 /* Twilight Dark.png */,
+				11967CF924E26675008DBA75 /* Rainbow Dark.png */,
+				11967CFA24E26675008DBA75 /* Purple Dark.png */,
+				11967CFB24E26675008DBA75 /* Yellow Splash Dark.png */,
+				11967CFC24E26675008DBA75 /* Orange Splash Dark.png */,
+				11967CFD24E26675008DBA75 /* Green Dark.png */,
+				11967CFE24E26675008DBA75 /* Orange Dark.png */,
+				11967CFF24E26675008DBA75 /* Gray Dark.png */,
+				11967D0024E26675008DBA75 /* Teal Splash Dark.png */,
+				11967D0124E26675008DBA75 /* Rainbow Splash Dark.png */,
+				11967D0224E26675008DBA75 /* Red Dark.png */,
+				11967D0324E26675008DBA75 /* Yellow Dark.png */,
+				11967D0424E26675008DBA75 /* Blue Dark.png */,
+				11967D0524E26675008DBA75 /* Purple Splash Dark.png */,
+				11967D0624E26675008DBA75 /* Teal Dark.png */,
+				11967D0724E26675008DBA75 /* Twilight Splash Dark.png */,
+			);
+			path = Dark;
+			sourceTree = "<group>";
+		};
+		11967D0824E26675008DBA75 /* Light */ = {
+			isa = PBXGroup;
+			children = (
+				11967D0924E26675008DBA75 /* Teal.png */,
+				11967D0A24E26675008DBA75 /* Gray.png */,
+				11967D0B24E26675008DBA75 /* Yellow Splash.png */,
+				11967D0C24E26675008DBA75 /* Blue Splash.png */,
+				11967D0D24E26675008DBA75 /* Twilight.png */,
+				11967D0E24E26675008DBA75 /* Yellow.png */,
+				11967D0F24E26675008DBA75 /* Twilight Splash.png */,
+				11967D1024E26675008DBA75 /* Pink.png */,
+				11967D1124E26675008DBA75 /* Blue.png */,
+				11967D1224E26675008DBA75 /* Purple Splash.png */,
+				11967D1324E26675008DBA75 /* Gray Splash.png */,
+				11967D1424E26675008DBA75 /* Orange.png */,
+				11967D1524E26675008DBA75 /* Rainbow Splash.png */,
+				11967D1624E26675008DBA75 /* Orange Splash.png */,
+				11967D1724E26675008DBA75 /* Pink Splash.png */,
+				11967D1824E26675008DBA75 /* Green.png */,
+				11967D1924E26675008DBA75 /* Red Splash.png */,
+				11967D1A24E26675008DBA75 /* Green Splash.png */,
+				11967D1B24E26675008DBA75 /* Teal Splash.png */,
+				11967D1C24E26675008DBA75 /* Red.png */,
+				11967D1D24E26675008DBA75 /* Purple.png */,
+				11967D1E24E26675008DBA75 /* Rainbow.png */,
+			);
+			path = Light;
 			sourceTree = "<group>";
 		};
 		119AE15F24987DBA00D84555 /* Algorithms */ = {
@@ -418,8 +418,8 @@
 		11CA573824DD0518005CFA77 /* App Icons */ = {
 			isa = PBXGroup;
 			children = (
-				111175E324DC55A500C2FD9F /* Dark */,
-				111175FA24DC55A500C2FD9F /* Light */,
+				11967CF124E26675008DBA75 /* Dark */,
+				11967D0824E26675008DBA75 /* Light */,
 			);
 			path = "App Icons";
 			sourceTree = "<group>";
@@ -433,15 +433,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		11F00C0224AE46D40048A7EE /* Presets Subviews */ = {
+		11F00C0224AE46D40048A7EE /* Presets */ = {
 			isa = PBXGroup;
 			children = (
-				11F00C0324AE46F70048A7EE /* Tags.swift */,
-				11F00C0524AE47080048A7EE /* SubjectPicker.swift */,
 				11F00C0724AE47160048A7EE /* PresetDetailView.swift */,
 				11F9BDC424AF7B7800859CE3 /* PresetRow.swift */,
+				11F00C0324AE46F70048A7EE /* Tags.swift */,
+				11F00C0524AE47080048A7EE /* SubjectPicker.swift */,
 			);
-			path = "Presets Subviews";
+			path = Presets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -510,54 +510,53 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1111762224DC55A500C2FD9F /* Yellow Dark.png in Resources */,
-				1111763824DC55A500C2FD9F /* Green Splash.png in Resources */,
-				1111761824DC55A500C2FD9F /* Rainbow Dark.png in Resources */,
-				1111763524DC55A500C2FD9F /* Pink Splash.png in Resources */,
-				1111762E24DC55A500C2FD9F /* Pink.png in Resources */,
-				1111762524DC55A500C2FD9F /* Teal Dark.png in Resources */,
-				1111761624DC55A500C2FD9F /* Pink Dark.png in Resources */,
-				1111761C24DC55A500C2FD9F /* Green Dark.png in Resources */,
-				1111761524DC55A500C2FD9F /* Green Splash Dark.png in Resources */,
-				1111763A24DC55A500C2FD9F /* Red.png in Resources */,
-				1111762824DC55A500C2FD9F /* Gray.png in Resources */,
-				1111763624DC55A500C2FD9F /* Green.png in Resources */,
-				1111763024DC55A500C2FD9F /* Purple Splash.png in Resources */,
-				1111762424DC55A500C2FD9F /* Purple Splash Dark.png in Resources */,
-				1111763424DC55A500C2FD9F /* Orange Splash.png in Resources */,
-				1111761924DC55A500C2FD9F /* Purple Dark.png in Resources */,
-				1152B87C24E2657A00EF3FFA /* Twiight Splash.png in Resources */,
-				1111762C24DC55A500C2FD9F /* Yellow.png in Resources */,
-				1111762624DC55A500C2FD9F /* Twilight Splash Dark.png in Resources */,
-				1111762124DC55A500C2FD9F /* Red Dark.png in Resources */,
-				1111761E24DC55A500C2FD9F /* Gray Dark.png in Resources */,
-				1111761B24DC55A500C2FD9F /* Orange Splash Dark.png in Resources */,
-				1111761324DC55A500C2FD9F /* Gray Splash Dark.png in Resources */,
-				1111761D24DC55A500C2FD9F /* Orange Dark.png in Resources */,
-				1111762024DC55A500C2FD9F /* Rainbow Splash Dark.png in Resources */,
-				1111762F24DC55A500C2FD9F /* Blue.png in Resources */,
-				1111761124DC55A500C2FD9F /* Blue Splash Dark.png in Resources */,
-				1111763324DC55A500C2FD9F /* Rainbow Splash.png in Resources */,
+				11967D4224E26676008DBA75 /* Orange Splash.png in Resources */,
+				11967D3624E26676008DBA75 /* Gray.png in Resources */,
+				11967D2B24E26676008DBA75 /* Orange Dark.png in Resources */,
+				11967D1F24E26676008DBA75 /* Blue Splash Dark.png in Resources */,
+				11967D3924E26676008DBA75 /* Twilight.png in Resources */,
+				11967D3824E26676008DBA75 /* Blue Splash.png in Resources */,
+				11967D4824E26676008DBA75 /* Red.png in Resources */,
+				11967D4424E26676008DBA75 /* Green.png in Resources */,
+				11967D3124E26676008DBA75 /* Blue Dark.png in Resources */,
+				11967D2624E26676008DBA75 /* Rainbow Dark.png in Resources */,
+				11967D2E24E26676008DBA75 /* Rainbow Splash Dark.png in Resources */,
+				11967D3F24E26676008DBA75 /* Gray Splash.png in Resources */,
+				11967D2024E26676008DBA75 /* Red Splash Dark.png in Resources */,
+				11967D3724E26676008DBA75 /* Yellow Splash.png in Resources */,
+				11967D2524E26676008DBA75 /* Twilight Dark.png in Resources */,
+				11967D4924E26676008DBA75 /* Purple.png in Resources */,
+				11967D4124E26676008DBA75 /* Rainbow Splash.png in Resources */,
+				11967D2724E26676008DBA75 /* Purple Dark.png in Resources */,
 				1132EC89249735CF0017628A /* Preview Assets.xcassets in Resources */,
+				11967D4A24E26676008DBA75 /* Rainbow.png in Resources */,
+				11967D4624E26676008DBA75 /* Green Splash.png in Resources */,
+				11967D2F24E26676008DBA75 /* Red Dark.png in Resources */,
+				11967D2A24E26676008DBA75 /* Green Dark.png in Resources */,
+				11967D2424E26676008DBA75 /* Pink Dark.png in Resources */,
+				11967D3B24E26676008DBA75 /* Twilight Splash.png in Resources */,
+				11967D3D24E26676008DBA75 /* Blue.png in Resources */,
+				11967D2C24E26676008DBA75 /* Gray Dark.png in Resources */,
+				11967D3424E26676008DBA75 /* Twilight Splash Dark.png in Resources */,
+				11967D4324E26676008DBA75 /* Pink Splash.png in Resources */,
 				1132EC86249735CF0017628A /* Assets.xcassets in Resources */,
-				1111763C24DC55A500C2FD9F /* Rainbow.png in Resources */,
-				1111763724DC55A500C2FD9F /* Red Splash.png in Resources */,
-				1111762924DC55A500C2FD9F /* Yellow Splash.png in Resources */,
-				1111762324DC55A500C2FD9F /* Blue Dark.png in Resources */,
-				1111761A24DC55A500C2FD9F /* Yellow Splash Dark.png in Resources */,
-				1111761724DC55A500C2FD9F /* Twilight Dark.png in Resources */,
-				1111761424DC55A500C2FD9F /* Pink Splash Dark.png in Resources */,
-				1111762D24DC55A500C2FD9F /* Twiight Splash.png in Resources */,
+				11967D2924E26676008DBA75 /* Orange Splash Dark.png in Resources */,
+				11967D4524E26676008DBA75 /* Red Splash.png in Resources */,
+				11967D2D24E26676008DBA75 /* Teal Splash Dark.png in Resources */,
+				11967D3A24E26676008DBA75 /* Yellow.png in Resources */,
+				11967D3324E26676008DBA75 /* Teal Dark.png in Resources */,
 				11F7378A24DE749500EC0737 /* LaunchScreen.storyboard in Resources */,
-				1111762724DC55A500C2FD9F /* Teal.png in Resources */,
-				1111763124DC55A500C2FD9F /* Gray Splash.png in Resources */,
-				1111763B24DC55A500C2FD9F /* Purple.png in Resources */,
-				1111763224DC55A500C2FD9F /* Orange.png in Resources */,
-				1111762B24DC55A500C2FD9F /* Twilight.png in Resources */,
-				1111761F24DC55A500C2FD9F /* Teal Splash Dark.png in Resources */,
-				1111762A24DC55A500C2FD9F /* Blue Splash.png in Resources */,
-				1111761224DC55A500C2FD9F /* Red Splash Dark.png in Resources */,
-				1111763924DC55A500C2FD9F /* Teal Splash.png in Resources */,
+				11967D2824E26676008DBA75 /* Yellow Splash Dark.png in Resources */,
+				11967D2124E26676008DBA75 /* Gray Splash Dark.png in Resources */,
+				11967D3C24E26676008DBA75 /* Pink.png in Resources */,
+				11967D3524E26676008DBA75 /* Teal.png in Resources */,
+				11967D2324E26676008DBA75 /* Green Splash Dark.png in Resources */,
+				11967D3E24E26676008DBA75 /* Purple Splash.png in Resources */,
+				11967D3224E26676008DBA75 /* Purple Splash Dark.png in Resources */,
+				11967D3024E26676008DBA75 /* Yellow Dark.png in Resources */,
+				11967D2224E26676008DBA75 /* Pink Splash Dark.png in Resources */,
+				11967D4024E26676008DBA75 /* Orange.png in Resources */,
+				11967D4724E26676008DBA75 /* Teal Splash.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,6 +576,7 @@
 				115851C024B7589700B48C5C /* SAM.swift in Sources */,
 				11924A42249AFDED009719D2 /* Buttons.swift in Sources */,
 				115851C224B758BC00B48C5C /* LotkaVolterra.swift in Sources */,
+				113EF32224F0BCD70044FB2F /* AppTintsView.swift in Sources */,
 				11527BAA24986E2200263B83 /* Standard.swift in Sources */,
 				1129FB8C24DD42C9006FE76E /* FitzHughNagumo.swift in Sources */,
 				11AC22A2249DBED20061A629 /* ClearViews.swift in Sources */,
@@ -597,7 +597,7 @@
 				1146694F249B90C4008B7812 /* EntryView.swift in Sources */,
 				11F00C0424AE46F70048A7EE /* Tags.swift in Sources */,
 				11C27D7D24AA44F60030FD0B /* PresetsView.swift in Sources */,
-				114DA6C524C5BFE600A15017 /* InputView.swift in Sources */,
+				114DA6C524C5BFE600A15017 /* InputRow.swift in Sources */,
 				111DE42624A49CE5001A0964 /* Help.swift in Sources */,
 				1129FB8E24DD434C006FE76E /* SIR.swift in Sources */,
 				1132EC9924973D820017628A /* Extended.swift in Sources */,
@@ -742,7 +742,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 10300003;
 				DEVELOPMENT_ASSET_PATHS = "\"Fluxura/Preview Content\"";
 				DEVELOPMENT_TEAM = 7N3FSBSYL9;
 				ENABLE_PREVIEWS = YES;
@@ -751,6 +751,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tanaynistala.fluxura;
 				PRODUCT_NAME = Fluxura;
 				SWIFT_VERSION = 5.0;
@@ -763,7 +764,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 10300003;
 				DEVELOPMENT_ASSET_PATHS = "\"Fluxura/Preview Content\"";
 				DEVELOPMENT_TEAM = 7N3FSBSYL9;
 				ENABLE_PREVIEWS = YES;
@@ -772,6 +773,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tanaynistala.fluxura;
 				PRODUCT_NAME = Fluxura;
 				SWIFT_VERSION = 5.0;

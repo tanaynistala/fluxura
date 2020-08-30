@@ -11,7 +11,7 @@ import SwiftUI
 struct PresetsView: View {
     @EnvironmentObject var data: AppData
     @Environment(\.presentationMode) var presentationMode
-    @State var showFilter: Bool = true
+    @State var showFilter: Bool = false
     
     var body: some View {
         Form {
@@ -83,12 +83,14 @@ struct PresetsView: View {
                                     PresetRow(preset: self.data.presets[preset])
                                         .environmentObject(AppData.shared)
                                         .contextMenu {
-                                            Button(action: {
-                                                self.data.loadedPreset = self.data.presets[preset]
-                                                self.presentationMode.wrappedValue.dismiss()
-                                            }) {
-                                                Text("Load Preset")
-                                                Image(systemName: "rectangle.stack.badge.plus")
+                                            if UserDefaults.standard.bool(forKey: "pro") {
+                                                Button(action: {
+                                                    self.data.loadedPreset = self.data.presets[preset]
+                                                    self.presentationMode.wrappedValue.dismiss()
+                                                }) {
+                                                    Text("Load Preset")
+                                                    Image(systemName: "rectangle.stack.badge.plus")
+                                                }
                                             }
 
                                             Button(action: {
@@ -115,6 +117,7 @@ struct PresetsView: View {
         .onAppear {
             UITableView.appearance().separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
+        .navigationBarTitle("Presets")
         .navigationBarItems(trailing:
             Image(systemName: "line.horizontal.3.decrease.circle")
                 .imageScale(.large)
@@ -131,10 +134,39 @@ struct PresetsView: View {
                             self.data.selectedField = subject.rawValue
                         }) {
                             Text(subject.rawValue)
+                            if self.data.selectedField == subject.rawValue {
+                                Image(systemName: "checkmark.circle")
+                            }
                         }
                     }
                 }
         )
+//        .navigationBarItems(trailing:
+//            Button(action: {self.showFilter.toggle()}) {
+//                Image(systemName: "line.horizontal.3.decrease.circle")
+//                    .imageScale(.large)
+//                    .foregroundColor(
+//                        UserDefaults.standard.bool(forKey: "reduce_colors") ?
+//                        Color.primary :
+//                        Color(UserDefaults.standard.string(forKey: "app_tint") ?? "indigo")
+//                    )
+//                    .font(.headline)
+//                    .frame(width: 24, height: 24)
+//            }
+//            .actionSheet(isPresented: $showFilter) {
+//                ActionSheet(
+//                    title: Text("Filter"),
+//                    buttons: [
+//                        .default(Text("All"), action: {self.data.selectedField = "All"}),
+//                        .default(Text("Physics"), action: {self.data.selectedField = "Physics"}),
+//                        .default(Text("Chemistry"), action: {self.data.selectedField = "Chemistry"}),
+//                        .default(Text("Biology"), action: {self.data.selectedField = "Biology"}),
+//                        .default(Text("Economics"), action: {self.data.selectedField = "Economics"}),
+//                        .cancel()
+//                    ]
+//                )
+//            }
+//        )
     }
 }
 
@@ -144,13 +176,11 @@ struct PresetsView_Previews: PreviewProvider {
             NavigationView {
                 PresetsView()
                 .environmentObject(AppData())
-                .navigationBarTitle("Presets")
             }
             
             NavigationView {
                 PresetsView()
                 .environmentObject(AppData())
-                .navigationBarTitle("Presets")
             }
             .environment(\.colorScheme, .dark)
         }

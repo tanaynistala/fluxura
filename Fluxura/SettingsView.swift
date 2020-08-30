@@ -19,14 +19,15 @@ struct SettingsView: View {
     @State var isEmailShown = false
     
     @State var result: Result<MFMailComposeResult, Error>? = nil
+    @State var bugResult: Result<MFMailComposeResult, Error>? = nil
     @State var isShowingMailView = false
+    @State var isShowingBugMailView = false
     
     var body: some View {
         NavigationView {
             ZStack {
                 NavigationLink(
                     destination: ProPreview()
-                        .navigationBarTitle(Text("Fluxura Pro"))
                         .environmentObject(SubscriptionManager.shared),
                     isActive: self.$isProView
                 ) {EmptyView()}
@@ -143,7 +144,7 @@ struct SettingsView: View {
                                     .foregroundColor(.primary)
                                 VStack(alignment: .leading) {
                                     Text("\(self.data.useSigFigs ? "Significant Digit" : "Decimal Point")\(self.data.precision == 1 ? "" : "s")")
-                                    Text("How many?")
+                                    Text("How precise?")
                                         .font(.caption)
                                 }
                             }
@@ -212,7 +213,22 @@ struct SettingsView: View {
                                 .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .orange)
                             VStack(alignment: .leading) {
                                 Text("Edit on Open")
-                                Text("Open the keyboard automagically.")
+                                Text("Keep it ready for you on launch.")
+                                    .font(.caption)
+                            }
+                        }
+                        .padding(.vertical, 4)
+                        
+                        Toggle(isOn: $settings.autoOpenKeyboard) {
+                            Image(systemName: "wand.and.stars")
+                                .imageScale(.large)
+                                .frame(width: 32)
+                                    .font(.headline)
+                                    .padding(.horizontal, 4)
+                                .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .purple)
+                            VStack(alignment: .leading) {
+                                Text("Edit on Select")
+                                Text("Automagically open the keyboard!")
                                     .font(.caption)
                             }
                         }
@@ -250,7 +266,43 @@ struct SettingsView: View {
                             }
                         }
                         .padding(.vertical, 4)
+                        
+                        NavigationLink(destination:
+                            AppTintsView()
+                                .environmentObject(SettingsStore.shared)
+                        ) {
+                            Image(systemName: "paintbrush")
+                                .imageScale(.large)
+                                .frame(width: 32)
+                                .font(.headline)
+                                .padding(.horizontal, 4)
+                                .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .red)
+                            VStack(alignment: .leading) {
+                                Text("App Tint")
+                                Text("Color the app.")
+                                    .font(.caption)
+                            }
+                        }
+                        .padding(.vertical, 4)
+                        
+                        NavigationLink(destination:
+                            AppIconsView()
+                        ) {
+                            Image(systemName: "app.gift")
+                                .imageScale(.large)
+                                .frame(width: 32)
+                                .font(.headline)
+                                .padding(.horizontal, 4)
+                                .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : Color(.systemTeal))
+                            VStack(alignment: .leading) {
+                                Text("App Icon")
+                                Text("Change the app's icon.")
+                                    .font(.caption)
+                            }
+                        }
+                        .padding(.vertical, 4)
 
+                        /*
                         if settings.isPro {
                             Picker(
                                 selection: $settings.appTint,
@@ -333,6 +385,7 @@ struct SettingsView: View {
                             }
                             .padding(.vertical, 4)
                         }
+                         */
                         
                         Toggle(isOn: $settings.largeText) {
                             Image(systemName: "textformat.size")
@@ -368,13 +421,43 @@ struct SettingsView: View {
                                         .font(.caption)
                                 }
                                 Spacer()
-                                Image(systemName: "link")
+                                Image(systemName: "arrow.up.right.circle.fill")
+                                .foregroundColor(Color(.secondaryLabel))
                             }
                         }
                         .buttonStyle(PlainButtonStyle())
                         .disabled(!MFMailComposeViewController.canSendMail())
                         .sheet(isPresented: $isShowingMailView) {
-                            MailView(result: self.$result)
+                            MailView(result: self.$result, message: "")
+                        }
+                        
+                        Button(action: {
+                            self.isShowingBugMailView.toggle()
+                        }) {
+                            HStack {
+                                Image(systemName: "ant")
+                                    .imageScale(.large)
+                                    .frame(width: 32)
+                                    .font(.headline)
+                                    .padding(.horizontal, 4)
+                                    .foregroundColor(UserDefaults.standard.bool(forKey: "reduce_colors") ? .primary : .red)
+                                VStack(alignment: .leading) {
+                                    Text("Report a Bug")
+                                    Text("Found an issue? Let us know!")
+                                        .font(.caption)
+                                }
+                                Spacer()
+                                Image(systemName: "arrow.up.right.circle.fill")
+                                .foregroundColor(Color(.secondaryLabel))
+                            }
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .disabled(!MFMailComposeViewController.canSendMail())
+                        .sheet(isPresented: $isShowingBugMailView) {
+                            MailView(
+                                result: self.$bugResult,
+                                message: "Device Info:\nOS Version: \(UIDevice.current.systemName) \(UIDevice.current.systemVersion)\nDevice Model: \(UIDevice.current.localizedModel)(\(UIDevice.current.name))\nApp Version: \(UIApplication.appVersion ?? "") (\(UIApplication.buildNumber ?? "1"))\n\nFeedback:"
+                            )
                         }
                         
                         Button(action: {
@@ -393,7 +476,8 @@ struct SettingsView: View {
                                         .font(.caption)
                                 }
                                 Spacer()
-                                Image(systemName: "link")
+                                Image(systemName: "arrow.up.right.circle.fill")
+                                .foregroundColor(Color(.secondaryLabel))
                             }
                         }
                         .buttonStyle(PlainButtonStyle())
@@ -414,7 +498,8 @@ struct SettingsView: View {
                                         .font(.caption)
                                 }
                                 Spacer()
-                                Image(systemName: "link")
+                                Image(systemName: "arrow.up.right.circle.fill")
+                                .foregroundColor(Color(.secondaryLabel))
                             }
                         }
                         .buttonStyle(PlainButtonStyle())
@@ -540,20 +625,6 @@ struct SettingsView_Previews: PreviewProvider {
         SettingsView()
         .environmentObject(SettingsStore.shared)
         .environmentObject(AppData.shared)
-    }
-}
-
-struct ColorRow: View {
-    @State var color: String = ""
-    
-    var body: some View {
-        HStack {
-            Image(systemName: "circle.fill")
-                .foregroundColor(Color("\(self.color)"))
-                .padding(.trailing)
-            
-            Text("\(self.color.capitalized)")
-        }
     }
 }
 

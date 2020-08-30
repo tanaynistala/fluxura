@@ -1,5 +1,5 @@
 //
-//  InputViews.swift
+//  InputRow.swift
 //  Fluxura
 //
 //  Created by Tanay Nistala on 7/20/20.
@@ -63,14 +63,14 @@ struct Placeholder: View {
     var body: some View {
         Text(defaultValue)
             .foregroundColor(
-                self.reduceTransparency ? (isActive ? .white : .primary) : (isActive && !UserDefaults.standard.bool(forKey: "reduce_colors") ?
+                self.reduceTransparency ? .primary : (isActive && !UserDefaults.standard.bool(forKey: "reduce_colors") ?
                     Color(UserDefaults.standard.string(forKey : "app_tint") ?? "indigo") :
                     Color(.placeholderText))
             )
     }
 }
 
-struct InputView: View {
+struct InputRow: View {
     @EnvironmentObject var data: AppData
     @Environment(\.accessibilityReduceTransparency) var reduceTransparency
     var target: Input
@@ -83,8 +83,8 @@ struct InputView: View {
                 if target.type == 1 {
                     if self.data.loadedPreset == nil {
                         Text("\(String(letters[target.index])) = ")
-                    } else {
-                        Text("\(self.data.loadedPreset?.parameters[target.index] ?? "") = ")
+                    } else if target.index < self.data.loadedPreset?.parameters.count ?? 1 {
+                        Text("\(self.data.loadedPreset?.parameters[target.index].0 ?? "") = ")
                     }
                 } else if target.type == 2 {
                     if self.data.loadedPreset == nil {
@@ -109,14 +109,13 @@ struct InputView: View {
                         }
                     } else {
                         if target.index < self.data.inputs[2].count {
-                            Text("\(self.data.loadedPreset?.initial[target.index] ?? "") = ")
+                            Text("\(self.data.loadedPreset?.initial[target.index].0 ?? "") = ")
                         }
                     }
                 } else {
                     Text("\(target.index == 0 ? "Initial " : (target.index == 1 ? "Final " : ""))Time\(target.index == 2 ? " Interval" : ""): ")
                 }
             }
-            .foregroundColor(self.reduceTransparency && isActive ? .white : .primary)
             
             if target.value.count <= 0 {
                 Placeholder(
@@ -128,7 +127,7 @@ struct InputView: View {
                 ZStack(alignment: .leading) {
                     Text("\(target.value)")
                     .foregroundColor(
-                        self.reduceTransparency ? (isActive ? .white : .primary) : (isActive && !UserDefaults.standard.bool(forKey: "reduce_colors") ?
+                        self.reduceTransparency ? .primary : (isActive && !UserDefaults.standard.bool(forKey: "reduce_colors") ?
                         Color(UserDefaults.standard.string(forKey : "app_tint") ?? "indigo") :
                             .primary)
                     )

@@ -17,8 +17,8 @@ struct Preset {
     var url: String
     
     var model: (_ t: Double, _ x: [Double], _ params: [Double]) -> [Double]
-    var parameters: [String]
-    var initial: [String]
+    var parameters: [(String, Bool)]
+    var initial: [(String, Bool)]
     
     var inputDescription: [[String]]
 

@@ -23,23 +23,24 @@ struct Help: View {
                         
                         VStack(spacing: 0) {
                             Rectangle()
-                                .foregroundColor(self.selected == 1 ? Color(.systemIndigo) : Color(.systemGray5))
+                                .foregroundColor(self.selected == 1 ? Color(.systemIndigo) : Color(.systemGray6))
                                 .opacity(0.7)
                                 .onTapGesture { self.selected = 1 }
                             Divider()
                             Rectangle()
-                                .foregroundColor(self.selected == 2 ? Color(.systemIndigo) : Color(.systemGray5))
+                                .foregroundColor(self.selected == 2 ? Color(.systemIndigo) : Color(.systemGray6))
                                 .opacity(0.7)
                                 .onTapGesture { self.selected = 2 }
                             Divider()
                             Rectangle()
-                                .foregroundColor(self.selected == 3 ? Color(.systemIndigo) : Color(.systemGray5))
+                                .foregroundColor(self.selected == 3 ? Color(.systemIndigo) : Color(.systemGray6))
                                 .opacity(0.7)
                                 .onTapGesture { self.selected = 3 }
                         }
                         .frame(height: 192)
                         .clipShape(RoundedRectangle(cornerRadius: 16))
                         .padding()
+                        .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.2), radius: 5, y: 2)
                     }
                 }
                 

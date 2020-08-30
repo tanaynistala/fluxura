@@ -24,10 +24,9 @@ struct ContentView: View {
                     Inputs()
                     .environmentObject(AppData.shared)
                     
-                    if isiPad {
+                    if isiPad && UserDefaults.standard.bool(forKey: "pro") {
                         PresetsView()
                             .environmentObject(AppData.shared)
-                            .navigationBarTitle("Presets")
                     } else {
                         VStack {
                             Image(systemName: "lock.fill")
@@ -80,6 +79,12 @@ struct Inputs: View {
             }) {
                 EntryView(type: 0)
                     .environmentObject(AppData.shared)
+                    .alert(isPresented: $data.isTimeIntervalInvalid) {
+                        Alert(title: Text("Time Interval Invalid"), message: Text("The time interval must be greater than 0.01 seconds, and must be less than the time span."), dismissButton: .cancel(Text("OK")))
+                    }
+            }
+            .alert(isPresented: $data.isTimeSpanInvalid) {
+                Alert(title: Text("Time Span Invalid"), message: Text("The time span must be less than 600 seconds, and the final time must be greater than the initial time."), dismissButton: .cancel(Text("OK")))
             }
             
             if self.data.loadedPreset == nil {
@@ -150,7 +155,7 @@ struct Inputs: View {
                     .alert(isPresented: self.$data.isInvalid) {
                         Alert(
                             title: Text("Invalid Input"),
-                            message: Text("\(data.invalidCount) input\(data.invalidCount == 1 ? "" : "s") \(data.invalidCount == 1 ? "has" : "have") invalid, and \(data.invalidCount == 1 ? "was" : "were") been highlighted in red."),
+                            message: Text("\(data.invalidCount+1) input\(data.invalidCount == 0 ? "" : "s") \(data.invalidCount == 0 ? "is" : "are") invalid, and \(data.invalidCount == 0 ? "has" : "have") been highlighted in red."),
                             dismissButton: .cancel(Text("OK"))
                         )
                 }
@@ -164,12 +169,11 @@ struct Inputs: View {
         .navigationBarTitle(self.data.loadedPreset?.name ?? "Generic ODE")
         .navigationBarItems(trailing:
             HStack {
-                if !isiPad  {
+                if !isiPad /*&& UserDefaults.standard.bool(forKey: "pro")*/  {
                     NavigationLink(
                         destination:
                         PresetsView()
-                            .environmentObject(AppData.shared)
-                            .navigationBarTitle("Presets"),
+                            .environmentObject(AppData.shared),
                         isActive: self.$data.presetsShown) {
                             Image(systemName: "square.stack.3d.down.right\(self.data.presetsShown ? ".fill" : "")")
                                 .font(.headline)

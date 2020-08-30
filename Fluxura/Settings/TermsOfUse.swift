@@ -1,5 +1,5 @@
 //
-//  Privacy Policy.swift
+//  TermsOfService.swift
 //  Fluxura
 //
 //  Created by Tanay Nistala on 6/25/20.
@@ -9,19 +9,19 @@
 import SwiftUI
 import MessageUI
 
-struct PrivacyPolicy: View {
+struct TermsOfUse: View {
     @State var result: Result<MFMailComposeResult, Error>? = nil
     @State var isShowingMailView = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Personal Data")
+            Text("Free Version")
                 .font(.headline)
-            Text("We don't collect anything. Everything you type or do is stored locally, and all processing is done on-device.")
+            Text("The free version of Fluxura enables basic, linear differential equations to be solved.")
             
-            Text("Any Questions?")
+            Text("Fluxura Pro")
                 .font(.headline)
-            Text("Please don't hesitate to contact us about any queries you may have, about your data or otherwise. We're always happy to help!")
+            Text("Fluxura Pro is enabled through a one-time purchase. This unlocks all features, including presets and app customization options, as well as certain future additions.")
             Spacer()
             Button(action: {
                 self.isShowingMailView.toggle()
@@ -37,18 +37,17 @@ struct PrivacyPolicy: View {
             }
             .disabled(!MFMailComposeViewController.canSendMail())
             .sheet(isPresented: $isShowingMailView) {
-                MailView(result: self.$result)
+                MailView(result: self.$result, message: "")
             }
-            .padding(.horizontal)
         }
-        .padding()
-        .navigationBarTitle("Privacy Policy")
+        .padding(24)
+        .navigationBarTitle("Terms of Use")
         .edgesIgnoringSafeArea(.bottom)
     }
 }
 
-struct PrivacyPolicy_Previews: PreviewProvider {
+struct TermsOfUse_Previews: PreviewProvider {
     static var previews: some View {
-        PrivacyPolicy()
+        TermsOfUse()
     }
 }

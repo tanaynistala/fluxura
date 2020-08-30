@@ -172,11 +172,18 @@ struct ProPreview: View {
                     }
                     .opacity(subscriptionManager.inPaymentProgress ? 0.5 : 1.0)
                     .disabled(subscriptionManager.inPaymentProgress)
+                    
+                    NavigationLink(destination: TipJar().environmentObject(SubscriptionManager.shared)) {
+                        Image(systemName: "archivebox")
+                        Text("Tip Jar")
+                    }
+                    .padding(.vertical)
                 }
                 .foregroundColor(.secondary)
                 .padding()
             }
         }
+        .navigationBarTitle(Text("Fluxura Pro"))
     }
 }
 

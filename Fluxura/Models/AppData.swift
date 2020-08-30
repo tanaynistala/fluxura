@@ -33,6 +33,8 @@ class AppData: ObservableObject {
     @Published var answer = [String]()
     @Published var isInvalid: Bool = false
     @Published var invalidCount: Int = 0
+    @Published var isTimeSpanInvalid: Bool = false
+    @Published var isTimeIntervalInvalid: Bool = false
     
     // Data Entry
     private var inputCount1 = 1
@@ -41,6 +43,10 @@ class AppData: ObservableObject {
         didSet {
             if UserDefaults.standard.bool(forKey: "haptics_enabled") {
                 UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+            }
+            
+            if UserDefaults.standard.bool(forKey: "auto_open") {
+                keyboardShown = true
             }
         }
     }
@@ -195,13 +201,27 @@ class AppData: ObservableObject {
                 
                 do {
                     let expression = try Expression(string: text)
-                    let answerElement = try evaluator.evaluate(expression)
+                    var answerElement = try evaluator.evaluate(expression)
                     
                     if answerElement.floatingPointClass == .quietNaN {
                         inputs[inputType][index].isInvalid = true
                         invalidCount += 1
+                    } else if inputType == 0 {
+                        if index == 3 && answerElement < 0.01 {
+                            isTimeIntervalInvalid = true
+                        } else {
+                            isTimeIntervalInvalid = false
+                        }
                     } else {
                         inputs[inputType][index].isInvalid = false
+                    }
+                    
+                    if loadedPreset != nil {
+                        if (inputType == 1 && loadedPreset!.parameters[index].1) || (inputType == 2 && loadedPreset!.initial[index].1) {
+                            if angleType == 1 {
+                                answerElement = answerElement * .pi / 180
+                            }
+                        }
                     }
                     
                     switch inputType {
@@ -216,9 +236,35 @@ class AppData: ObservableObject {
                     }
                 } catch {
                     isInvalid = true
+                    inputs[inputType][index].isInvalid = true
                     return
                 }
             }
+        }
+        
+        if (t[1] - t[0]) > 600 {
+            isTimeSpanInvalid = true
+            inputs[0][0].isInvalid = true
+            inputs[0][1].isInvalid = true
+            return
+        } else if t[0] >= t[1] {
+            isTimeSpanInvalid = true
+            inputs[0][0].isInvalid = true
+            inputs[0][1].isInvalid = true
+            return
+        } else {
+            isTimeSpanInvalid = false
+            inputs[0][0].isInvalid = false
+            inputs[0][1].isInvalid = false
+        }
+        
+        if t[2] < (t[1] - t[0])/6000 {
+            isTimeIntervalInvalid = true
+            inputs[0][2].isInvalid = true
+            return
+        } else {
+            isTimeIntervalInvalid = false
+            inputs[0][2].isInvalid = false
         }
         
         var model: (_ t: Double, _ x: [Double], _ params: [Double]) -> [Double]
@@ -253,12 +299,26 @@ class AppData: ObservableObject {
         }
         
         formatter.numberStyle = .decimal
-        let answerArray = output.1.last ?? [Double.nan]
+        var answerArray = output.1.last ?? [Double.nan]
         
-        answer = answerArray.map{ (formatter.string(from: NSNumber(value: $0)) ?? "NaN") }
+        if loadedPreset != nil {
+            for value in 0..<loadedPreset!.initial.count {
+                if loadedPreset!.initial[value].1 {
+                    answerArray[value] = answerArray[value] * 180 / .pi
+                }
+            }
+        }
         
-        if inputs.flatMap({$0}).map({$0.isInvalid}).contains(true) {
+        answer = answerArray.map{
+            abs($0) != 0 && (abs($0) > 1000 || abs($0) < 0.001) ?
+                "\(formatter.string(from: NSNumber(value: $0/pow(10, log10($0).rounded(.down)))) ?? "NaN")e\(Int(floor(log10($0))))" :
+                formatter.string(from: NSNumber(value: $0)) ?? "NaN"
+        }
+        
+        if inputs[1...].flatMap({$0}).map({$0.isInvalid}).contains(true) {
             isInvalid = true
         } else {isInvalid = false}
+        
+        print(inputs[1...].flatMap({$0}).map({$0.isInvalid}))
     }
 }
