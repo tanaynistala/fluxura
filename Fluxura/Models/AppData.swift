@@ -14,7 +14,7 @@ class AppData: ObservableObject {
     
     let coefficientCount: [[Int]] = [
         [1, 2, 3, 4],
-        [2, 5, 9, 14],
+        [2, 5, 9, 14, 20],
         [3, 9, 19, 34]
     ]
     
@@ -277,6 +277,8 @@ class AppData: ObservableObject {
                 model = Solver().ODEModel2(t:x:params:)
             case 3:
                 model = Solver().ODEModel3(t:x:params:)
+            case 4:
+                model = Solver().ODEModel4(t:x:params:)
             default:
                 model = Solver().ODEModel1(t:x:params:)
             }

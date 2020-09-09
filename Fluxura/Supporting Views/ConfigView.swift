@@ -52,6 +52,19 @@ struct ConfigView: View {
                         }
                         
                         /*
+                        HStack {
+                            Text("Linearity")
+                            Spacer()
+                            Picker(selection: self.$data.isLinear, label: Text("Linearity")) {
+                                Text("Linear").tag(true)
+                                Text("Nonlinear").tag(false)
+                            }
+                            .pickerStyle(SegmentedPickerStyle())
+                            .fixedSize(horizontal: true, vertical: true)
+                        }
+                         */
+                        
+                        /*
                         if self.data.type == 2 {
                             HStack {
                                 ForEach(0..<3, id: \.self) { item in
@@ -121,7 +134,9 @@ struct ConfigView: View {
 
 struct ConfigView_Previews: PreviewProvider {
     static var previews: some View {
+        Form {
         ConfigView()
             .environmentObject(AppData.shared)
+        }
     }
 }

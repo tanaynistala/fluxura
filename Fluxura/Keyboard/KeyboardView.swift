@@ -114,24 +114,29 @@ struct KeyboardView: View {
                             Button(action: {}) {
                                 Group {
                                     Text("f")
+                                        .font(.system(.body, design: .serif))
+                                        .italic()
                                     +
                                     Text("(\(diff))")
-                                        .font(.footnote)
+                                        .font(.system(.footnote, design: .serif))
+                                        .italic()
                                         .baselineOffset(6.0)
                                 }
                                 .frame(width: 24, height: 24)
-                                .padding(4)
+                                .padding(8)
                                 .foregroundColor(.primary)
                                 .background(
                                     RoundedRectangle(cornerRadius: 8, style: .continuous)
                                         .foregroundColor(Color(.systemGray4))
                                 )
                             }
+                            .buttonStyle(KeyboardButtonStyle())
                         }
-                    }.padding(.horizontal)
+                    }
+                    .padding(.horizontal, 32)
                 }
             }
-            */
+             */
             
             Divider()
             

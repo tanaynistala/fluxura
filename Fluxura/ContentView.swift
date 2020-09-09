@@ -24,7 +24,7 @@ struct ContentView: View {
                     Inputs()
                     .environmentObject(AppData.shared)
                     
-                    if isiPad && UserDefaults.standard.bool(forKey: "pro") {
+                    if isiPad /*&& UserDefaults.standard.bool(forKey: "pro")*/ {
                         PresetsView()
                             .environmentObject(AppData.shared)
                     } else {
